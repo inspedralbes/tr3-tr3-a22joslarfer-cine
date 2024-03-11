@@ -24,6 +24,11 @@ Route::post('register', [App\Http\Controllers\AuthController::class, 'register']
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 
 
-
+// rutas para movies
 Route::post('movies', [App\Http\Controllers\MovieController::class, 'insert']);
+Route::get('estrenos', [App\Http\Controllers\MovieController::class, 'getEstrenos']);
+
+    
+
 Route::post('genres', [App\Http\Controllers\GenreController::class, 'insert']);
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class MovieController extends Controller
 {
@@ -18,6 +19,7 @@ class MovieController extends Controller
             'poster' => 'required|string',
             'synopsis' => 'required|string',
             'genre_id' => 'required|integer',
+            'showing_date' => 'required|date',
         ]);
 
         $movie = Movie::create($validatedData);
@@ -70,6 +72,15 @@ class MovieController extends Controller
         // return response with message if positive
         return response()->json(['message' => 'Movies inserted'], 201);
       
+    }
+
+    // return json of all movies with showing_date > today
+
+    public function getEstrenos()
+    {
+        $currentDate = Carbon::now();
+        $movies = Movie::where('showing_date', '>', $currentDate)->get();
+        return response()->json($movies, 200);
     }
 
     
