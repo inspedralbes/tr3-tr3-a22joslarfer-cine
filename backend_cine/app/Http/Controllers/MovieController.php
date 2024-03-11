@@ -16,6 +16,7 @@ class MovieController extends Controller
             'title' => 'required|string',
             'year' => 'required|integer',
             'rating' => 'required|numeric',
+            
             'poster' => 'required|string',
             'synopsis' => 'required|string',
             'genre_id' => 'required|integer',

@@ -3,7 +3,7 @@
         <h1>Estrenos</h1>
 
         <div v-for="estreno in  estrenos " :key="estreno.id">
-            <nuxt-link :to="'/' + {{ estreno.id }}">
+            <nuxt-link :to="'/' + '{{ estreno.id }}'">
                 <h2>{{ estreno.title }}</h2>
                 <p>{{ estreno.year }}</p>
                 <p>{{ estreno.rating }}</p>

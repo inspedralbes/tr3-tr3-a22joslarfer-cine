@@ -97,6 +97,7 @@ return [
 
     'fallback_locale' => 'en',
 
+
     /*
     |--------------------------------------------------------------------------
     | Faker Locale
@@ -154,6 +155,7 @@ return [
     |
     */
 
+
     'providers' => [
 
         /*
@@ -182,10 +184,11 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
-
+        'Tymon\JWTAuth\Providers\LaravelServiceProvider',
         /*
          * Application Service Providers...
          */
@@ -194,6 +197,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
 
     ],
 
@@ -210,6 +214,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
+        'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory'
     ])->toArray(),
 
 ];

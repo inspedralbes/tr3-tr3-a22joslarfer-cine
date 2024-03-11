@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//rutas para usuarios
 Route::group(['middleware' => 'jwt'], function () {
     Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout']);
     Route::post('refresh', [App\Http\Controllers\AuthController::class, 'refresh']);
     Route::post('me', [App\Http\Controllers\AuthController::class, 'me']);
 });
-
 Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 
@@ -28,7 +28,7 @@ Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::post('movies', [App\Http\Controllers\MovieController::class, 'insert']);
 Route::get('estrenos', [App\Http\Controllers\MovieController::class, 'getEstrenos']);
 
-    
 
+// rutas para géneros
 Route::post('genres', [App\Http\Controllers\GenreController::class, 'insert']);
 
