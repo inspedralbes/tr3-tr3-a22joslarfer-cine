@@ -3,8 +3,13 @@
         <form @submit.prevent="formPost">
 
             <div>
+                <label for="username">Nom Usuari</label>
+                <input type="text" id="username" v-model="username">
+            </div>
+
+            <div>
                 <label for="email">Email</label>
-                <input type="text" id="email" v-model="email">
+                <input type="email" id="email" v-model="email">
             </div>
 
             <div>
@@ -12,54 +17,52 @@
                 <input type="password" id="password" v-model="password">
             </div>
 
-
-
+           
             <div>
-                <nuxt-link to="/register">No tens compte? Registra't</nuxt-link>
+                <nuxt-link to="/login">Tens compte? Inicia Sessió!</nuxt-link>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit">Registrarse</button>
 
 
         </form>
     </div>
 </template>
 
-
 <script>
 export default {
     data() {
         return {
+            username: '',
             email: '',
             password: ''
         }
     },
     methods: {
         formPost() {
-            fetch('http://localhost:8000/api/login', {
+            fetch('http://localhost:8000/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    name: this.username,
                     email: this.email,
                     password: this.password
                 })
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data && data.token) {
+                    if (data && data.success) {
                         alert('Has iniciat sessió correctament!');
-                        // guardar el token que es rep a data a localStorage
-                        localStorage.setItem('token', data.token);
-                        navigateTo('perfil')
-                        
+                        navigateTo('/login')
                     } else {
                         alert('Has iniciat sessió INCORRECTAMENT!');
                     }
                 })
                 .catch(error => {
-                    console.error(error);
+                    alert('Has iniciat sessió INCORRECTAMENT!');
+                    console.log(error)
                 });
         }
     }

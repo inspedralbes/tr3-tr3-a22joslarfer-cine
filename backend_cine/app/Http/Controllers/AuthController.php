@@ -31,10 +31,14 @@ class AuthController extends Controller
         // Validation logic here
 
         $credentials = $request->only('email', 'password');
+        
+        $user = User::where('email', $credentials['email'])->first();
 
-        if (!$token = JWTAuth::attempt($credentials)) {
+        if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
+        $token = JWTAuth::fromUser($user);
 
         return response()->json(compact('token'));
     }

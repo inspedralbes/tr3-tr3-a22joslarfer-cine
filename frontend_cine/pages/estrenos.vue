@@ -1,21 +1,18 @@
 <template>
-    <div>
-        <h1>Estrenos</h1>
+    <div class="container">
+       
 
-        <div v-for="estreno in  estrenos " :key="estreno.id">
+        <div v-for="estreno in  estrenos " :key="estreno.id" class="div-movie-cont">
             <nuxt-link :to="'/' + '{{ estreno.id }}'">
-                <h2>{{ estreno.title }}</h2>
-                <p>{{ estreno.year }}</p>
-                <p>{{ estreno.rating }}</p>
-                <p>{{ estreno.poster }}</p>
-                <p>{{ estreno.synopsis }}</p>
-                <p>{{ estreno.showing_date }}</p>
-                <p>{{ estreno.genre_id }}</p>
+                <h2 class="title">{{ estreno.title }}</h2>
+                <p class="year">{{ estreno.year }}</p>
+                <p class="rating">{{ estreno.rating }}</p>
+                <img :src="estreno.poster" alt="" class="poster">
+                <p class="synopsis">{{ estreno.synopsis }}</p>
+                <p class="date">{{ estreno.showing_date }}</p>
+                <p class="genreId">{{ estreno.genre_id }}</p>
             </nuxt-link>
         </div>
-
-
-
 
     </div>
 </template>
@@ -53,4 +50,66 @@ export default {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+/* Custom Bootstrap-like CSS */
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+ 
+}
+
+.div-movie-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    max-width: 600px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.title{
+    font-size: 3em;
+    margin: 10px;
+}
+
+.year{
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+.rating{
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+
+
+.synopsis{
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+.date{
+    font-size: 1.5em;
+    margin: 10px;
+}
+
+nuxt-link{
+    text-decoration: none;
+    color: black;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+    
+
+</style>
