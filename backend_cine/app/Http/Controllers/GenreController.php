@@ -57,8 +57,9 @@ class GenreController extends Controller
                 'description' => $genre['description'],
             ]);
         }
-
-        return response()->json(null, 204);
+        // return response with message if positive 
+        return response()->json(['message' => 'Genres inserted'], 201);
+       
     }
 
     

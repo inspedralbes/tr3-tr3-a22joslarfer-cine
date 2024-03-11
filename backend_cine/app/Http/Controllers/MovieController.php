@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Http\Controllers\Controller;
 
 class MovieController extends Controller
 {
@@ -66,8 +67,9 @@ class MovieController extends Controller
                 'genre_id' => $movie['genre_id'],
             ]);
         }
-
-        return response()->json(null, 204);
+        // return response with message if positive
+        return response()->json(['message' => 'Movies inserted'], 201);
+      
     }
 
     

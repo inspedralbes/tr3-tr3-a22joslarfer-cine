@@ -24,3 +24,6 @@ Route::post('register', [App\Http\Controllers\AuthController::class, 'register']
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 
 
+
+Route::post('movies', [App\Http\Controllers\MovieController::class, 'insert']);
+Route::post('genres', [App\Http\Controllers\GenreController::class, 'insert']);
