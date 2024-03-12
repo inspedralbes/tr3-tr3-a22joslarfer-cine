@@ -43,11 +43,11 @@ export default {
             console.log('yendo a la sesión', id)
             navigateTo(`/${id}`);
             
-        }
+        },
     },
     mounted() {
         this.fetchData();
-    }
+    },
 
 }
 
