@@ -18,8 +18,6 @@ class SeatController extends Controller
     {
         $seats = $request->json()->all();
 
-       
-
         foreach ($seats as $seat) {
             Seat::create([
                 'movie_id' => $seat['movie_id'],

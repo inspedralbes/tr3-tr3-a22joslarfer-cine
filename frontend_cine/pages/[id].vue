@@ -33,10 +33,6 @@
      
     </div>
 
-
-
-
-
 </template>
 
 <script>
@@ -110,7 +106,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .container {
     display: grid;
     justify-content: center;
@@ -119,13 +115,15 @@ export default {
     height: auto;
 }
 .btn-buy{
-   
     border: 2px solid black;
     border-radius: 10px;
     background-color: #dddddd62;
     font-size: 2.5em;
     cursor: pointer;
     width: 100%;
+    
+}
+.btn-buy:hover{
     
 }
 
