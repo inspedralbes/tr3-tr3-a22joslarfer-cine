@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Sci-Fi",
+        "description": "Science fiction is a genre of speculative fiction that typically deals with imaginative and futuristic concepts."
+    },
+    {
+        "name": "Horror",
+        "description": "Horror is a genre of speculative fiction which is intended to frighten, scare, or disgust."
+    },
+    {
+        "name": "Thriller",
+        "description": "Thriller is a genre of fiction, having numerous, often overlapping sub-genres."
+    },
+    {
+        "name": "Drama",
+        "description": "Drama is a genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone."
+    },
+    {
+        "name": "Action",
+        "description": "Action is a genre of film that typically involves a story of fast-paced adventures, with physical activities, such as fights and chases, taking a significant part."
+    },
+    {
+        "name": "Crime",
+        "description": "Crime is a genre of film that focuses on criminals and their illicit activities."
+    }
+]

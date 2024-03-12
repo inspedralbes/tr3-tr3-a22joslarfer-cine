@@ -1,0 +1,6 @@
+INSERT INTO movies (title, year, rating, poster, synopsis, genre_id, showing_date) VALUES
+('Suspiria 2', 2018, 6.8, '../public/suspiria2.jpg', 'A darkness swirls at the center of a world-renowned dance company, one that will engulf the artistic director, an ambitious young dancer, and a grieving psychotherapist.', 2, 2024-05-01),
+('The Shining', 1980, 8.4, '../public/theshining.jpg', 'A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.', 3 2024-05-02),
+('The Lighthouse', 2019, 7.5, '../public/thelighthouse.jpg', 'Two lighthouse keepers try to maintain their sanity while living on a remote and mysterious New England island in the 1890s.', 4 2024-05-03),
+('Alien', 1979, 8.4, '../public/alien.jpg', 'After a space merchant vessel perceives an unknown transmission as a distress call, its landing on the source moon finds one of the crew attacked by a mysterious lifeform.', 5 2024-05-04),
+('Pulp Fiction', 1994, 8.9, '../public/pulpfiction.jpg', 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 6 2024-05-05);
