@@ -1,6 +1,8 @@
 <template>
-
+  
+  
     <div class="container">
+        
         <div class="div-movie-cont" v-if="fetch_is_done">
             <h2 class="title">{{ movie_session.title }}</h2>
             <p class="year">{{ movie_session.year }}</p>
@@ -15,8 +17,7 @@
             <div v-for="seat in  seats" :key="seat.id" class="div-seat-cont"
             :class="{ 'div-seat-cont--clicked': isSelected(seat.id) }"
             @click="seat_selected(seat.id)"
-            @double-click="seat_selected(seat.id)"
-            >
+            @double-click="seat_selected(seat.id)">
 
                 <img src="../public/seat.svg" alt="" srcset=""
                 class="seat-icon"               
@@ -27,7 +28,9 @@
                 v-if="seat.status === 'unavailable'">
 
             </div>
+            <button class="btn-buy">COMPRAR</button>
         </div>
+     
     </div>
 
 
@@ -114,6 +117,16 @@ export default {
     grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
     grid-template-areas: ". div-movie-cont div-seats-cont .";
     height: auto;
+}
+.btn-buy{
+   
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #dddddd62;
+    font-size: 2.5em;
+    cursor: pointer;
+    width: 100%;
+    
 }
 
 .div-movie-cont {
