@@ -3,15 +3,21 @@
   
     <div class="container">
         
-        <div class="div-movie-cont" v-if="fetch_is_done">
-            <h2 class="title">{{ movie_session.title }}</h2>
-            <p class="year">{{ movie_session.year }}</p>
-            <p class="rating">{{ movie_session.rating }}</p>
-            <img :src="movie_session.poster" alt="" class="poster">
-            <p class="synopsis">{{ movie_session.synopsis }}</p>
-            <p class="date">{{ movie_session.showing_date }}</p>
-            <p class="genreId">{{ movie_session.genre_id }}</p>
+        <div class="div-movie-cont" v-if="fetch_is_done" :style="{ backgroundImage: `url(${movie_session.poster_bg1})` }">
+            <div class="div-info-cont" >
+
+                <h2 class="title">{{ movie_session.title }}</h2>
+                <p class="year">{{ movie_session.year }}</p>
+                <p class="rating">{{ movie_session.rating }}</p>
+                <p class="synopsis">{{ movie_session.synopsis }}</p>
+                <p class="date">{{ movie_session.showing_date }}</p>
+                <p class="genreId">{{ movie_session.genre_id }}</p>
+            </div>
         </div>
+      
+
+
+
 
         <div class="div-seats-cont">
             <div v-for="seat in  seats" :key="seat.id" class="div-seat-cont"
@@ -30,6 +36,8 @@
             </div>
             <button class="btn-buy">COMPRAR</button>
         </div>
+
+        
      
     </div>
 
@@ -107,6 +115,7 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
     display: grid;
     justify-content: center;
@@ -123,9 +132,7 @@ export default {
     width: 100%;
     
 }
-.btn-buy:hover{
-    
-}
+
 
 .div-movie-cont {
     grid-area: div-movie-cont;
@@ -137,7 +144,6 @@ export default {
     border: 2px solid black;
     border-radius: 10px;
     max-width: 600px;
-    background-color: #fff;
     align-items: center;
     text-align: center;
 
@@ -218,9 +224,7 @@ export default {
     font-size: 1.5em;
     margin: 10px;
 }
-.poster{
-    border-radius: 16px;
-}
+
 
 nuxt-link {
     text-decoration: none;

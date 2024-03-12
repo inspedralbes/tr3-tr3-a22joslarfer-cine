@@ -5,9 +5,6 @@
                 <li><nuxt-link to="/" class="nav-link">HOME</nuxt-link></li>
                 <li><nuxt-link to="/estrenos" class="nav-link">ESTRENOS</nuxt-link></li>
                 <li><a href="" class="nav-link">ABOUT</a></li>
-                <li>
-                    <input class="searchbar" type="search" name="" id="" placeholder="search" />
-                </li>
                 <li><nuxt-link to="/login" class="nav-link">LOGIN</nuxt-link></li>
                 <li><nuxt-link to="/register" class="nav-link">SIGN UP</nuxt-link></li>
             </ul>
@@ -49,16 +46,17 @@ nav,
 footer {
     background-color: #FAFAFA;
     padding: 50px;
-    height: 150px;
     font-weight: 900;
-
 }
 
 nav ul {
     list-style-type: none;
-    display: flex;
     justify-content: space-evenly;
-    font-size: 50px
+    font-size: 50px;
+    display: flex;
+}
+nav ul li {
+    margin-left: 50px;
 }
 
 
@@ -115,12 +113,12 @@ section:hover::before {
 }
 
 section:nth-of-type(1) {
-    background: url(../public/sillasrojas.jpg) no-repeat center center;
+    background: url(../public/sillas/sillasrojas.jpg) no-repeat center center;
 
 }
 
 section:nth-of-type(2) {
-    background: url(../public/sillasverdes4.jpg) no-repeat center center;
+    background: url(../public/sillas/sillasverdes4.jpg) no-repeat center center;
 
 }
 
