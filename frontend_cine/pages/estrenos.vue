@@ -1,17 +1,15 @@
 <template>
     <div class="container">
-       
 
-        <div v-for="estreno in  estrenos " :key="estreno.id" class="div-movie-cont">
-            <nuxt-link :to="'/' + '{{ estreno.id }}'">
-                <h2 class="title">{{ estreno.title }}</h2>
-                <p class="year">{{ estreno.year }}</p>
-                <p class="rating">{{ estreno.rating }}</p>
-                <img :src="estreno.poster" alt="" class="poster">
-                <p class="synopsis">{{ estreno.synopsis }}</p>
-                <p class="date">{{ estreno.showing_date }}</p>
-                <p class="genreId">{{ estreno.genre_id }}</p>
-            </nuxt-link>
+        <div v-for="estreno in  estrenos " :key="estreno.id" class="div-movie-cont"
+            @click="navigate_to_session(estreno.id)">
+            <h2 class="title">{{ estreno.title }}</h2>
+            <p class="year">{{ estreno.year }}</p>
+            <p class="rating">{{ estreno.rating }}</p>
+            <img :src="estreno.poster" alt="" class="poster">
+            <p class="synopsis">{{ estreno.synopsis }}</p>
+            <p class="date">{{ estreno.showing_date }}</p>
+            <p class="genreId">{{ estreno.genre_id }}</p>
         </div>
 
     </div>
@@ -41,6 +39,11 @@ export default {
                     console.error(error);
                 });
         },
+        navigate_to_session(id) {
+            console.log('yendo a la sesión', id)
+            navigateTo(`/${id}`);
+            
+        }
     },
     mounted() {
         this.fetchData();
@@ -53,14 +56,14 @@ export default {
 <style lang="scss" scoped>
 /* Custom Bootstrap-like CSS */
 
-.container{
+.container {
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
- 
+    justify-content: center;
+
 }
 
-.div-movie-cont{
+.div-movie-cont {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,43 +76,40 @@ export default {
     text-align: center;
 }
 
-.title{
+.title {
     font-size: 3em;
     margin: 10px;
 }
 
-.year{
+.year {
     font-size: 1.5em;
     margin: 10px;
 }
 
-.rating{
+.rating {
     font-size: 1.5em;
     margin: 10px;
 }
 
 
 
-.synopsis{
+.synopsis {
     font-size: 1.5em;
     margin: 10px;
 }
 
-.date{
+.date {
     font-size: 1.5em;
     margin: 10px;
 }
 
-nuxt-link{
+nuxt-link {
     text-decoration: none;
     color: black;
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
-
-    
-
 </style>

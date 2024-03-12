@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class Seat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'year', 'rating', 'poster', 'synopsis', 'genre_id', 'showing_date'];
+    protected $fillable = ['status', 'movie_id'];
 
    
 }
