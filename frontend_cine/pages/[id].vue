@@ -8,15 +8,16 @@
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
-        }" @click="open_seats_panel()">
+        }" @click="open_seats_panel()" @double-click="open_seats_panel()">
             <div class="div-info-cont title fade-in">
-                <span id="typed-text">{{ textTyped }}</span><span class="cursor">|</span>
+                <span id="typed-text">{{ textTyped }}</span><span class="cursor" id="cursor">|</span>
             </div>
         </div>
 
-        <div class="div-seats-cont">
-            <div v-for="seat in  seats" :key="seat.id" class="div-seat-cont"
-                :class="{ 'div-seat-cont--clicked': isSelected(seat.id) }" @click="seat_selected(seat.id)"
+        <div class="div-seats-cont" id="div-seats-cont">
+            <div class="div-seat-cont">
+                <div v-for="seat in  seats" :key="seat.id" class="div-seat"
+                :class="{ 'div-seat--clicked': isSelected(seat.id) }" @click="seat_selected(seat.id)"
                 @double-click="seat_selected(seat.id)">
 
                 <img src="/icons/seat.svg" alt="" srcset="" class="seat-icon" v-if="seat.status === 'available'">
@@ -24,11 +25,18 @@
                 <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
                     v-if="seat.status === 'unavailable'">
 
+
             </div>
-            <!-- <button class="btn-buy" id="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
-                COMPRAR
-            </button> -->
+            </div>
+           
+            <div class="div-btn-buy-cont">
+                <button class="btn-buy" id="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
+                    COMPRAR
+                </button>
+            </div>
+
         </div>
+
 
         <div v-if="!fetch_is_done || !fetchSeats_is_done" class="loading-container">
             <img src="/icons/loading.svg" alt="" srcset="" class="spinner-icon">
@@ -39,12 +47,8 @@
 </template>
 
 
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Germania+One&display=swap');
-
-
-
 
 @keyframes slideIn {
     0% {
@@ -57,8 +61,6 @@
     }
 }
 
-
-
 .title {
     font-family: "Germania One", system-ui;
     font-weight: 00;
@@ -68,10 +70,8 @@
     text-shadow: 1px 1px 1px #adbd22ad;
     animation: slideIn 0.5s forwards;
     opacity: 0;
+    margin: 300px;
 }
-
-
-
 
 .container {
     display: grid;
@@ -80,66 +80,92 @@
 
     grid-template-rows: 1fr;
     height: 100vh;
-
     background-color: black;
 }
 
 .div-movie-cont {
-    display: flex;
+
     border-radius: 30px;
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin: 30px;
+    display: inline-block;
+    cursor: pointer;
+
 }
 
+.div-movie-cont::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(black, transparent, transparent, black);
+    /* Adjust 'black' to your background color */
 
 
+}
 
 
 .div-seats-cont {
-
     display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    background-color: #000000cc;
+    border-radius: 40px;
+}
+.div-seat-cont{
     grid-template-columns: repeat(10, 55px);
     grid-template-rows: repeat(12, 55px);
-    padding: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 10px;
-    background-color: #ffffffbb;
-    width: 50%;
-    height: 100%;
-
-}
-
-.div-seat-cont {
-    display: flex;
+    height: auto;
+    padding: 40px;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
-    margin: 5px;
-    border-radius: 10px;
-    background-color: #ffffffbb;
-
+    animation: appear 0.5s ease-in-out;
+    display: grid;
 }
 
-.div-seat-cont:hover {
-    box-shadow: 0 0 2px 0 #000000d7;
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.div-seat {
+    display: flex;
+    margin: 5px;
+    border-radius: 8px;
+    background-color: #adbd22c0;
+    border: 2px solid #d1d8d2d2;
+    transition: background-color 0.1s ease;
+}
+
+.div-seat:hover {
+    background-color: #adbd22;
     cursor: pointer;
+    padding: 0px;
 }
 
 
 .seat-icon {
     width: 40px;
     height: 40px;
+    color: white;
 
 }
 
-.div-seat-cont--clicked {
+.div-seat--clicked {
     background-color: #81b3c0d7;
 
 }
-
 
 .spinner-icon {
     height: 100px;
@@ -148,7 +174,6 @@
     border: 4px solid #81b3c0d7;
     border-radius: 50%;
     border-top: 4px solid transparent;
-    /* Create a circular shape */
     position: absolute;
     top: 40%;
     left: 50%;
@@ -165,20 +190,38 @@
     }
 }
 
+.div-btn-buy-cont{
+    position: relative;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+  
+   
+}
 
 .btn-buy {
-    border: 2px solid black;
-    border-radius: 12px;
-    background-color: #dddddd62;
-    font-size: 2.5em;
-    cursor: pointer;
+ 
+    background-color: #131312;
+    border-bottom: none;
+    border-right: none;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    width: 30%;
+    font-size: 1.7em;
 
 }
 
 .btn-buy:hover {
-    box-shadow: 0 0 4px 0 #000000d7;
+    background-color: #0e0d0d;
 }
 </style>
+
 
 <script>
 
@@ -201,9 +244,9 @@ export default {
     },
     head() {
         return {
-         
+
             link: [
-               
+
             ]
         }
     },
@@ -297,16 +340,11 @@ export default {
             document.getElementById('btn-buy').disabled = true;
             document.getElementById('div-seats-cont').style.pointerEvents = 'none';
         },
-        purchase_seats() {
-            if (this.selected_seats.length === 0) {
-                alert('No has seleccionat cap seient');
-                return;
-            }
+        open_seats_panel() {
 
-            //this.fetchPurchaseSeats();
-
-            console.log('Selected seats:', this.selected_seats);
-
+            document.getElementById('div-seats-cont').style.display = 'grid';
+            document.getElementById('typed-text').style.display = 'none';
+            document.getElementById('cursor').style.display = 'none';
 
 
         }
@@ -318,6 +356,7 @@ export default {
 
     },
     mounted() {
+
         setInterval(() => {
             this.typeText();
         }, 130);

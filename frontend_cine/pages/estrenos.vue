@@ -120,8 +120,8 @@
 
 
 .poster {
-    width: 550px;
-    height: 800px;
+    width: 100%;
+    max-height: 780px;
     border-radius: 8px;
 }
 
