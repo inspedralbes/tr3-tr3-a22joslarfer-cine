@@ -12,8 +12,7 @@
 nav,
 footer {
     background-color: #c93d3d;
-    padding: 50px;
-    margin-top: 50px;
+    padding: 100px;
     font-weight: 900;
 }
 

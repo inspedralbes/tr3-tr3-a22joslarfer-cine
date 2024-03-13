@@ -15,9 +15,11 @@
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Germania+One&display=swap');
+
 * {
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+    /*use imported font*/
     padding: 0px;
     overflow: hidden;
     overflow-y: hidden;

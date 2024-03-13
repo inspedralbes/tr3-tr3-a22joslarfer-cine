@@ -33,10 +33,11 @@
 
 
 <style scoped>
-/* CSS GLOBAL */
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Germania+One&display=swap');
+
 * {
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+    font-family: "Antonio", sans-serif;
     margin: 0;
     padding: 0px;
 
@@ -64,13 +65,12 @@
 }
 
 .div-movie-cont {
-    margin: 5px;
+    margin: 20px;
     padding: 20px;
     display: grid;
     height: 900px;
     color: #eeeeee;
     text-align: center;
-    position: relative;
     border-radius: 10px;
     max-width: 600px;
     grid-template-rows: auto;
@@ -79,6 +79,7 @@
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
+ 
 
 }
 
@@ -103,8 +104,9 @@
 
 
 .title {
-    font-size: 3em;
-
+    font-size: 4em;
+    font-family: "Germania One", system-ui;
+    font-weight: 900;
 }
 
 .year,

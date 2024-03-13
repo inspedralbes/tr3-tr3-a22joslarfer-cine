@@ -3,6 +3,9 @@
 
     <div class="container">
 
+        <NavBar />
+        <Nuxt />
+
         <div class="div-movie-cont" v-if="fetch_is_done" :style="{
             backgroundImage: `url(${movie_session.poster_bg1})`,
             backgroundSize: 'cover',
@@ -17,30 +20,33 @@
         <div class="div-seats-cont" id="div-seats-cont">
             <div class="div-seat-cont">
                 <div v-for="seat in  seats" :key="seat.id" class="div-seat"
-                :class="{ 'div-seat--clicked': isSelected(seat.id) }" @click="seat_selected(seat.id)"
-                @double-click="seat_selected(seat.id)">
+                    :class="{ 'div-seat--clicked': isSelected(seat.id) }" @click="seat_selected(seat.id)"
+                    @double-click="seat_selected(seat.id)">
 
-                <img src="/icons/seat.svg" alt="" srcset="" class="seat-icon" v-if="seat.status === 'available'">
+                    <img src="/icons/white-seat.png" alt="" srcset="" class="seat-icon" v-if="seat.status === 'available'">
 
-                <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
-                    v-if="seat.status === 'unavailable'">
+                    <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
+                        v-if="seat.status === 'unavailable'">
 
 
+                </div>
             </div>
-            </div>
-           
+
             <div class="div-btn-buy-cont">
                 <button class="btn-buy" id="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
                     COMPRAR
+                </button>
+                <button id="cancel_purchase" class="btn-buy-cancel">
+                    <img src="/icons/cancel.svg" alt="">
                 </button>
             </div>
 
         </div>
 
+        <Footer />
+        <Nuxt />
 
-        <div v-if="!fetch_is_done || !fetchSeats_is_done" class="loading-container">
-            <img src="/icons/loading.svg" alt="" srcset="" class="spinner-icon">
-        </div>
+
 
     </div>
 
@@ -71,27 +77,30 @@
     animation: slideIn 0.5s forwards;
     opacity: 0;
     margin: 300px;
+
 }
 
 .container {
     display: grid;
     grid-template-areas:
+        "nav"
         "movie";
-
     grid-template-rows: 1fr;
-    height: 100vh;
-    background-color: black;
+    height: auto;
+    background-color: #0e0d0d;
+
 }
 
 .div-movie-cont {
-
-    border-radius: 30px;
+    background-color: #0e0d0d;
+    height: 80vh;
     align-items: center;
     text-align: center;
     justify-content: center;
     display: inline-block;
     cursor: pointer;
-
+    z-index: 99;
+    grid-area: movie;
 }
 
 .div-movie-cont::after {
@@ -101,32 +110,31 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(black, transparent, transparent, black);
-    /* Adjust 'black' to your background color */
-
-
 }
 
 
 .div-seats-cont {
     display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1200px;
+    width: 100%;
     background-color: #000000cc;
-    border-radius: 40px;
-}
-.div-seat-cont{
-    grid-template-columns: repeat(10, 55px);
-    grid-template-rows: repeat(12, 55px);
-    height: auto;
-    padding: 40px;
+    z-index: 101;
+    align-items: center;
     justify-content: center;
     align-items: center;
+    grid-area: movie;
+
+
+}
+
+.div-seat-cont {
+
+    grid-template-columns: repeat(10, 60px);
+    grid-template-rows: repeat(12, 60px);
+    height: auto;
+    margin: 12px;
     animation: appear 0.5s ease-in-out;
     display: grid;
+
 }
 
 @keyframes appear {
@@ -141,84 +149,66 @@
 
 .div-seat {
     display: flex;
-    margin: 5px;
-    border-radius: 8px;
-    background-color: #adbd22c0;
-    border: 2px solid #d1d8d2d2;
-    transition: background-color 0.1s ease;
+    border-radius: 40px;
+    justify-content: center;
 }
 
 .div-seat:hover {
-    background-color: #adbd22;
     cursor: pointer;
-    padding: 0px;
 }
 
 
 .seat-icon {
-    width: 40px;
-    height: 40px;
-    color: white;
-
+    width: 50px;
+    height: 50px;
+    margin:auto;
 }
+
 
 .div-seat--clicked {
-    background-color: #81b3c0d7;
-
+    background-color: #421a1a;
 }
 
-.spinner-icon {
-    height: 100px;
-    border-top: 4px solid transparent;
-    animation: spin 1s linear infinite;
-    border: 4px solid #81b3c0d7;
-    border-radius: 50%;
-    border-top: 4px solid transparent;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
 
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.div-btn-buy-cont{
-    position: relative;
-    bottom: 0;
-    left: 50%;
-    right: 50%;
-    transform: translate(-50%, -50%);
+.div-btn-buy-cont {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    margin-top: 40px;
-  
-   
+    margin: 10px;
 }
 
 .btn-buy {
- 
     background-color: #131312;
     border-bottom: none;
     border-right: none;
     padding: 20px;
     border-radius: 10px;
-    color: white;
-    width: 30%;
-    font-size: 1.7em;
+    color: #d1d8d2d2;
+    width: 50%;
+    font-size: 1.9em;
+    transition: color 0.1s ease;
+}
+
+.btn-buy-cancel {
+    height: 60px;
+    width: 60px;
+    /* remove button default decoration */
+    border: none;
+    background-color: #191a19d2;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color 0.1s ease;
+    border-top: 2px solid rgb(80, 78, 78);
+ 
 
 }
 
 .btn-buy:hover {
-    background-color: #0e0d0d;
+    color: white;
+}
+.btn-buy-cancel:hover{
+    background-color:  #d1d8d257;
 }
 </style>
 
