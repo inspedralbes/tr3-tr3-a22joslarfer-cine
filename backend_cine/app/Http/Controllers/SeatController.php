@@ -22,6 +22,8 @@ class SeatController extends Controller
             Seat::create([
                 'movie_id' => $seat['movie_id'],
                 'status' => $seat['status'],
+                'row' => $seat['row'],
+                'column' => $seat['column'],
             ]);
         }
         // return response with message if positive
@@ -33,5 +35,18 @@ class SeatController extends Controller
     public function show($id)
     {
         return Seat::where('movie_id', $id)->get();
+    }
+
+    public function buyPurchasedSeats(Request $request)
+    {
+        $seats = $request->json()->all();
+
+        foreach ($seats as $seat) {
+            Seat::where('id', $seat['id'])->update([
+                'status' => 'unavailable',
+            ]);
+        }
+        // return response with message if positive
+        return response()->json(['message' => 'seats updated'], 201);
     }
 }

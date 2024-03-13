@@ -13,7 +13,7 @@
             <p class="genreId">{{ movie_session.genre_id }}</p>
         </div>
 
-        <div class="div-seats-cont" v-if="fetch_is_done && fetchSeats_is_done">
+        <div class="div-seats-cont" id="div-seats-cont" v-if="fetch_is_done && fetchSeats_is_done">
             <div v-for="seat in  seats" :key="seat.id" class="div-seat-cont"
                 :class="{ 'div-seat-cont--clicked': isSelected(seat.id) }" @click="seat_selected(seat.id)"
                 @double-click="seat_selected(seat.id)">
@@ -24,7 +24,7 @@
                     v-if="seat.status === 'unavailable'">
 
             </div>
-            <button class="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
+            <button class="btn-buy" id="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
                 COMPRAR
             </button>
         </div>
@@ -97,8 +97,47 @@ export default {
         isSelected(id) {
             return this.selected_seats.includes(id);
         },
+        fetchPurchaseSeats() {
+            fetch('http://localhost:8000/api/purchase-seats', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    movie_session_id: this.movie_session_id,
+                    selected_seats: this.selected_seats,
+                }),
+            })
+                .then(response => {
+                    if (response.ok) {
+
+                        document.getElementById('btn-buy').disabled = false;
+                        document.getElementById('div-seats-cont').style.pointerEvents = 'auto';
+
+
+                    } else {
+
+
+                    }
+                })
+                .catch(error => {
+                    console.error('Error purchasing seats:', error);
+                });
+
+            document.getElementById('btn-buy').disabled = true;
+            document.getElementById('div-seats-cont').style.pointerEvents = 'none';
+        },
         purchase_seats() {
-            
+            if (this.selected_seats.length === 0) {
+                alert('No has seleccionat cap seient');
+                return;
+            }
+
+            //this.fetchPurchaseSeats();
+
+            console.log('Selected seats:', this.selected_seats);
+
+
 
         }
     },
