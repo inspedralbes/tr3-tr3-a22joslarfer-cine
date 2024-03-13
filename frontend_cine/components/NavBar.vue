@@ -17,11 +17,11 @@
 <style scoped>
 
 
-nav,
-footer {
-    background-color: #FAFAFA;
-    padding: 50px;
+nav {
+    background-color: #c93d3d;
+
     font-weight: 900;
+    margin-bottom: 50px;
 }
 
 nav ul {
@@ -32,16 +32,17 @@ nav ul {
 }
 nav ul li {
     margin-left: 50px;
+   
 }
 
 
 .nav-link {
     text-decoration: none;
-    color: #110101c0;
+    color: #1c1c1c;
 }
 
 .nav-link:hover {
-    color: #579E60;
+    color: #d1d8d2;
     transition: color 0.1s ease-in-out;
 }
 </style>

@@ -4,18 +4,20 @@
         <Nuxt />
 
 
-        <div v-for="estreno in  estrenos " :key="estreno.id" class="div-movie-cont"
-            @click="navigate_to_session(estreno.id)">
-            <h2 class="title">{{ estreno.title }}</h2>
+        <div class="div-movies-cont">
+            <div class="div-movie-cont" v-for="estreno in  estrenos " :key="estreno.id"
+                @click="navigate_to_session(estreno.id)">
 
+                <h2 class="title">{{ estreno.title }}</h2>
+                <img :src="`${estreno.poster}`" alt="" class="poster">
+                <div class="div-summary-date-genre-cont">
+                    <p class="synopsis">{{ estreno.synopsis }}</p>
+                    <p class="date">{{ estreno.showing_date }}</p>
 
-            <img :src="`${estreno.poster}`" alt="" class="poster">
-            <div class="div-summary-date-genre-cont">
-                <p class="synopsis">{{ estreno.synopsis }}</p>
-                <p class="date">{{ estreno.showing_date }}</p>
+                    <p class="year">{{ estreno.year }}</p>
+                    <p class="rating">{{ estreno.rating }}</p>
+                </div>
 
-                <p class="year">{{ estreno.year }}</p>
-                <p class="rating">{{ estreno.rating }}</p>
             </div>
 
 
@@ -27,6 +29,109 @@
 
     </div>
 </template>
+
+
+
+<style scoped>
+/* CSS GLOBAL */
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0px;
+
+}
+
+
+.container {
+    height: auto;
+    background-color: #d1d8d2;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "nav"
+        "div-movies-cont"
+    ;
+
+}
+
+.div-movies-cont {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+
+}
+
+.div-movie-cont {
+    margin: 5px;
+    padding: 20px;
+    display: grid;
+    height: 900px;
+    color: #eeeeee;
+    text-align: center;
+    position: relative;
+    border-radius: 10px;
+    max-width: 600px;
+    grid-template-rows: auto;
+    background-color: black;
+    grid-gap: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+}
+
+.div-summary-date-genre-cont {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.836);
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+}
+
+.div-movie-cont:hover .div-summary-date-genre-cont {
+    opacity: 1;
+    transform: translateY(0px);
+    border-radius: 12px;
+    height: 400px;
+}
+
+
+.title {
+    font-size: 3em;
+
+}
+
+.year,
+.rating,
+.synopsis,
+.date,
+.genreId {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #eeeeee;
+}
+
+
+
+.poster {
+    width: 550px;
+    height: 800px;
+    border-radius: 8px;
+}
+
+.synopsis {
+
+    margin: 50px;
+
+    font-variant: small-caps;
+}
+</style>
 
 <script>
 export default {
@@ -65,155 +170,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-/* CSS GLOBAL */
-* {
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
-    margin: 0;
-    padding: 0px;
-    overflow: hidden;
-    overflow-y: hidden;
-}
-
-nav,
-footer {
-    background-color: #FAFAFA;
-    padding: 50px;
-    font-weight: 900;
-    justify-content: space-evenly;
-    width: 100%;
-    display: flex;
-}
-
-.searchbar {
-    display: block;
-    padding: 15px 30px;
-    font-size: 25px;
-    line-height: 1.5;
-    color: #110101c0;
-    background-color: #fff;
-    border: 2px solid #110101c0;
-    border-radius: .25rem;
-
-}
-
-.searchbar::placeholder {
-    color: #110101c0;
-    font-size: 25px;
-}
-
-nav ul {
-    list-style-type: none;
-    display: flex;
-    font-size: 50px
-}
-
-nav ul li {
-    margin-left: 50px;
-}
-
-
-.nav-link {
-    text-decoration: none;
-    color: #110101c0;
-}
-
-.nav-link:hover {
-    color: #579E60;
-    transition: color 0.1s ease-in-out;
-}
-
-/* EMPIEZA EL CSS PROPIO DE ESTRENOS */
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    background-color: #FAFAFA;
-    overflow: hidden;
-
-}
-
-.div-movie-cont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 5px;
-    padding: 20px;
-    border: 2px solid black;
-    border-radius: 10px;
-    max-width: 600px;
-    height: 900px;
-    color: #eeeeee;
-    text-align: center;
-    position: relative;
-    background-color: black;
-
-
-}
-
-.div-summary-date-genre-cont {
-    opacity: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.836);
-    padding: 10px;
-    transform: translateY(100%);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-
-}
-
-.div-movie-cont:hover .div-summary-date-genre-cont {
-    opacity: 1;
-    transform: translateY(0px);
-    height: 400px;
-}
-
-
-.title {
-    font-size: 3em;
-
-}
-
-.year,
-.rating,
-.synopsis,
-.date,
-.genreId {
-    font-size: 1.5em;
-    margin-top: 20px;
-    color: #eeeeee;
-}
-
-
-
-.poster {
-    width: 100%;
-    max-height: 850px;
-    margin: 10px;
-    border-radius: 8px;
-}
-
-.synopsis {
-
-    margin: 50px;
-
-    font-variant: small-caps;
-}
-
-
-
-nuxt-link {
-    text-decoration: none;
-    color: black;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
-</style>

@@ -26,7 +26,7 @@
 
 .lp-container {
     height: 100vh;
-    background-color: #eeeeee;
+    background-color: #d1d8d2;
 }
 </style>
 
