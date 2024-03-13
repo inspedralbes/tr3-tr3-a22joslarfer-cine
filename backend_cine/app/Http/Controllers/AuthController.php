@@ -8,9 +8,28 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use App\Http\Requests\LoginRequest;
+use App\Support\Exceptions\OAuthException;
+use App\Support\Traits\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthAuthenticatable;
+use Illuminate\Http\JsonResponse;
+
 
 class AuthController extends Controller
 {
+
+    use AuthAuthenticatable;
+
+
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+
+
     public function register(Request $request)
     {
         // Validation logic here
@@ -26,12 +45,23 @@ class AuthController extends Controller
         return response()->json(compact('token'));
     }
 
+
+    protected function createNewToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => 144000,
+            'user' => auth()->user()
+        ]);
+    }
+
     public function login(Request $request)
     {
         // Validation logic here
 
         $credentials = $request->only('email', 'password');
-        
+
         $user = User::where('email', $credentials['email'])->first();
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
@@ -41,5 +71,29 @@ class AuthController extends Controller
         $token = JWTAuth::fromUser($user);
 
         return response()->json(compact('token'));
+    }
+
+    public function logout()
+    {
+        // logout using json web tokens
+        JWTAuth::invalidate(JWTAuth::getToken());
+    }
+    // function to check if the user is authenticated
+
+    public function checkAuth()
+    {
+        try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+        } catch (TokenExpiredException $e) {
+            return response()->json(['token_expired'], $e->getCode());
+        } catch (TokenInvalidException $e) {
+            return response()->json(['token_invalid'], $e->getCode());
+        } catch (JWTException $e) {
+            return response()->json(['token_absent'], $e->getCode());
+        }
+
+        return response()->json(compact('user'));
     }
 }

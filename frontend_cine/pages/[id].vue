@@ -1,6 +1,6 @@
 <template>
-  
-  
+
+
     <div class="container">
         
         <div class="div-movie-cont" v-if="fetch_is_done" :style="{ backgroundImage: `url(${movie_session.poster_bg1})` }">
@@ -14,30 +14,26 @@
                 <p class="genreId">{{ movie_session.genre_id }}</p>
             </div>
         </div>
-      
-
-
-
 
         <div class="div-seats-cont">
             <div v-for="seat in  seats" :key="seat.id" class="div-seat-cont"
-            :class="{ 'div-seat-cont--clicked': isSelected(seat.id) }"
-            @click="seat_selected(seat.id)"
-            @double-click="seat_selected(seat.id)">
+                :class="{ 'div-seat-cont--clicked': isSelected(seat.id) }" @click="seat_selected(seat.id)"
+                @double-click="seat_selected(seat.id)">
 
-                <img src="../public/seat.svg" alt="" srcset=""
-                class="seat-icon"               
-                v-if="seat.status === 'available'">
+                <img src="../public/seat.svg" alt="" srcset="" class="seat-icon" v-if="seat.status === 'available'">
 
-                <img src="../public/seat_unavaliable.png" alt="" srcset=""
-                class="seat-icon"
-                v-if="seat.status === 'unavailable'">
+                <img src="../public/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
+                    v-if="seat.status === 'unavailable'">
 
             </div>
-            <button class="btn-buy">COMPRAR</button>
+            <!-- <button class="btn-buy" id="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
+                COMPRAR
+            </button> -->
         </div>
 
-        
+        <div v-if="!fetch_is_done || !fetchSeats_is_done" class="loading-container">
+            <img src="../public/loading.svg" alt="" srcset="" class="spinner-icon">
+        </div>
      
     </div>
 
@@ -103,6 +99,49 @@ export default {
         isSelected(id) {
             return this.selected_seats.includes(id);
         },
+        fetchPurchaseSeats() {
+            fetch('http://localhost:8000/api/purchase-seats', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    movie_session_id: this.movie_session_id,
+                    selected_seats: this.selected_seats,
+                }),
+            })
+                .then(response => {
+                    if (response.ok) {
+
+                        document.getElementById('btn-buy').disabled = false;
+                        document.getElementById('div-seats-cont').style.pointerEvents = 'auto';
+
+
+                    } else {
+
+
+                    }
+                })
+                .catch(error => {
+                    console.error('Error purchasing seats:', error);
+                });
+
+            document.getElementById('btn-buy').disabled = true;
+            document.getElementById('div-seats-cont').style.pointerEvents = 'none';
+        },
+        purchase_seats() {
+            if (this.selected_seats.length === 0) {
+                alert('No has seleccionat cap seient');
+                return;
+            }
+
+            //this.fetchPurchaseSeats();
+
+            console.log('Selected seats:', this.selected_seats);
+
+
+
+        }
     },
     created() {
         this.movie_session_id = this.$route.params.id;
@@ -115,35 +154,60 @@ export default {
 </script>
 
 <style scoped>
+.spinner-icon {
+    height: 100px;
+    border-top: 4px solid transparent;
+    animation: spin 1s linear infinite;
+    border: 4px solid #81b3c0d7;
+    border-radius: 50%;
+    border-top: 4px solid transparent;
+    /* Create a circular shape */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 .container {
     display: grid;
     justify-content: center;
-    grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
-    grid-template-areas: ". div-movie-cont div-seats-cont .";
-    height: auto;
+    grid-template-columns: 0.5fr 1fr 3fr;
+    grid-template-areas: "div-movie-cont div-movie-cont div-seats-cont";
+    height: 50vh;
+    margin: 10vh;
 }
-.btn-buy{
+
+.btn-buy {
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 12px;
     background-color: #dddddd62;
     font-size: 2.5em;
     cursor: pointer;
-    width: 100%;
-    
+
 }
 
+.btn-buy:hover {
+    box-shadow: 0 0 4px 0 #000000d7;
+}
 
 .div-movie-cont {
     grid-area: div-movie-cont;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    margin: 5px;
-    padding: 20px;
-    border: 2px solid black;
     border-radius: 10px;
     max-width: 600px;
+    background-color: #fff;
     align-items: center;
     text-align: center;
 
@@ -153,14 +217,13 @@ export default {
 
 .div-seats-cont {
     grid-area: div-seats-cont;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 5px;
+    display: grid;
+    grid-template-columns: repeat(10, 55px);
+    grid-template-rows: repeat(12, 55px);
     padding: 30px;
-    border: 2px solid black;
+
     border-radius: 10px;
-    max-width: 600px;
+    max-height: 700px;
     background-color: #ffffffbe;
     text-align: center;
 }
@@ -170,31 +233,26 @@ export default {
     flex-direction: column;
     align-items: center;
     margin: 5px;
-    padding: 20px;
-    height: 60px;
-    border: 2px solid black;
     border-radius: 20px;
-    max-width: 30px;
     background-color: #fff;
-    text-align: center;
+   
 }
 
 .div-seat-cont:hover {
-   
-    box-shadow: 0px 1px 1px 1px #000000d7;
+    box-shadow: 0 0 2px 0 #000000d7;
     cursor: pointer;
 }
 
 
 
 .seat-icon {
-    width: 50px;
-    height: 50px;
-    margin: 10px;
+    width: 40px;
+    height: 40px;
+
 }
 
-.div-seat-cont--clicked{
-    background-color: rgba(218, 206, 206, 0.87);
+.div-seat-cont--clicked {
+    background-color: #81b3c0d7;
 
 }
 
@@ -225,6 +283,12 @@ export default {
     margin: 10px;
 }
 
+.poster {
+    border-radius: 16px;
+    width: 400px;
+    height: 600px;
+
+}
 
 nuxt-link {
     text-decoration: none;
