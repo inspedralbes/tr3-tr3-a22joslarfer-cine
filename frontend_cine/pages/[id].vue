@@ -180,8 +180,8 @@ export default {
 .container {
     display: grid;
     justify-content: center;
-    grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
-    grid-template-areas: ". div-movie-cont div-seats-cont .";
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "div-movie-cont div-seats-cont";
     height: auto;
 }
 
@@ -192,7 +192,7 @@ export default {
     font-size: 2.5em;
     cursor: pointer;
     width: 100%;
-    ;
+    padding: 10px;
 
 }
 
@@ -222,28 +222,26 @@ export default {
     grid-area: div-seats-cont;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     margin: 5px;
-    padding: 30px;
+    padding: 50px;
     border: 2px solid black;
     border-radius: 10px;
-    max-width: 600px;
+    
     background-color: #ffffffbe;
     text-align: center;
 }
 
 .div-seat-cont {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    
     margin: 5px;
-    padding: 20px;
-    height: 60px;
-    border: 2px solid black;
-    border-radius: 20px;
-    max-width: 30px;
+    padding: 10px;
+    height: 30px;
+    border-radius: 50%;
+ 
     background-color: #fff;
-    text-align: center;
+   
 }
 
 .div-seat-cont:hover {
@@ -254,9 +252,9 @@ export default {
 
 
 .seat-icon {
-    width: 50px;
-    height: 50px;
-    margin: 10px;
+    width: 30px;
+    height: 30px;
+    
 }
 
 .div-seat-cont--clicked {

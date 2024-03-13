@@ -1,64 +1,64 @@
 [
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 5
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 6
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 7
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 8
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 1,
         "column": 10
@@ -76,66 +76,66 @@
    
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 5
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 6
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 7
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 8
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 2,
+        "row":9,
         "column": 10
     },
 
@@ -149,66 +149,66 @@
 
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 5
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 6
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 7
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 8
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 3,
+        "row": 9,
         "column": 10
     },
 
@@ -221,67 +221,67 @@
 
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 5
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 6
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 7
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 8
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 4,
+        "row": 9,
         "column": 10
     },
 
@@ -292,277 +292,66 @@
 
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 5
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 6
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 7
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 8
     }
     ,
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
+        "row": 9,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
-        "row": 5,
-        "column": 10
-    },
-
-
-
-
-
-
-
-
-
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 1
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 2
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 3
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 4
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 5
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 6
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 7
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 8
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 9
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 6,
-        "column": 10
-    },
-
-
-
-
-
-
-
-
-
-
-
-
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 1
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 2
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 3
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 4
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 5
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 6
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 7
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 8
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 9
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 7,
-        "column": 10
-    },
-
-
-
-
-
-
-
-
-
-
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 1
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 2
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 3
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 4
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 5
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 6
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 7
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 8
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
-        "column": 9
-    },
-    {
-        "movie_session": 2,
-        "status": "available",
-        "row": 8,
+        "row": 9,
         "column": 10
     },
 
@@ -575,61 +364,272 @@
 
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 5
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 6
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 7
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 8
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 10
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 1
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 2
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 3
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 4
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 5
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 6
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 7
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 8
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 9
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 10
+    },
+
+
+
+
+
+
+
+
+
+
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 1
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 2
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 3
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 4
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 5
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 6
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 7
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 8
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 9
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 10
+    },
+
+
+
+
+
+
+
+
+
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 1
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 2
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 3
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 4
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 5
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 6
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 7
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 8
+    },
+    {
+        "movie_id":9,
+        "status": "available",
+        "row": 9,
+        "column": 9
+    },
+    {
+        "movie_id":9,
         "status": "available",
         "row": 9,
         "column": 10
@@ -646,61 +646,61 @@
 
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 5
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 6
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 7
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 8
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 10,
         "column": 10
@@ -713,61 +713,61 @@
 
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 5
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 6
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 7
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 8
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 11,
         "column": 10
@@ -783,61 +783,61 @@
 
 
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 1
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 2
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 3
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 4
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 5
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 6
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 7
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 8
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 9
     },
     {
-        "movie_session": 2,
+        "movie_id":9,
         "status": "available",
         "row": 12,
         "column": 10
