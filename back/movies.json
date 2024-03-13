@@ -1,0 +1,58 @@
+[
+    {
+        "title": "The Matrix",
+        "year": 1999,
+        "rating": 8.7,
+        "poster": "../public/thematrix.jpg",
+        "synopsis": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+        "genre_id": 1
+    },
+    {
+        "title": "Suspiria 1",
+        "year": 1977,
+        "rating": 7.4,
+        "poster": "../public/suspiria1.jpg",
+        "synopsis": "An American newcomer to a prestigious German ballet academy comes to realize that the school is a front for something sinister amid a series of grisly murders.",
+        "genre_id": 2
+    },
+    {
+        "title": "Suspiria 2",
+        "year": 2018,
+        "rating": 6.8,
+        "poster": "../public/suspiria2.jpg",
+        "synopsis": "A darkness swirls at the center of a world-renowned dance company, one that will engulf the artistic director, an ambitious young dancer, and a grieving psychotherapist.",
+        "genre_id": 2
+    },
+    {
+        "title": "The Shining",
+        "year": 1980,
+        "rating": 8.4,
+        "poster": "../public/theshining.jpg",
+        "synopsis": "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.",
+        "genre_id": 3
+    },
+    {
+        "title": "The Lighthouse",
+        "year": 2019,
+        "rating": 7.5,
+        "poster": "../public/thelighthouse.jpg",
+        "synopsis": "Two lighthouse keepers try to maintain their sanity while living on a remote and mysterious New England island in the 1890s.",
+        "genre_id": 4
+    },
+    {
+        "title": "Alien",
+        "year": 1979,
+        "rating": 8.4,
+        "poster": "../public/alien.jpg",
+        "synopsis": "After a space merchant vessel perceives an unknown transmission as a distress call, its landing on the source moon finds one of the crew attacked by a mysterious lifeform.",
+        "genre_id": 5
+    },
+    {
+        "title": "Pulp Fiction",
+        "year": 1994,
+        "rating": 8.9,
+        "poster": "../public/pulpfiction.jpg",
+        "synopsis": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        "genre_id": 6
+    }
+]
