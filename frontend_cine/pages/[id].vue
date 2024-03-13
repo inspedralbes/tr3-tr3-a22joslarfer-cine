@@ -5,12 +5,8 @@
 
         <div class="div-movie-cont" v-if="fetch_is_done && fetchSeats_is_done">
             <h2 class="title">{{ movie_session.title }}</h2>
-            <p class="year">{{ movie_session.year }}</p>
-            <p class="rating">{{ movie_session.rating }}</p>
             <img :src="movie_session.poster" alt="" class="poster">
-            <p class="synopsis">{{ movie_session.synopsis }}</p>
-            <p class="date">{{ movie_session.showing_date }}</p>
-            <p class="genreId">{{ movie_session.genre_id }}</p>
+            
         </div>
 
         <div class="div-seats-cont" id="div-seats-cont" v-if="fetch_is_done && fetchSeats_is_done">
@@ -24,9 +20,9 @@
                     v-if="seat.status === 'unavailable'">
 
             </div>
-            <button class="btn-buy" id="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
+            <!-- <button class="btn-buy" id="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
                 COMPRAR
-            </button>
+            </button> -->
         </div>
 
         <div v-if="!fetch_is_done || !fetchSeats_is_done" class="loading-container">
@@ -180,9 +176,10 @@ export default {
 .container {
     display: grid;
     justify-content: center;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "div-movie-cont div-seats-cont";
-    height: auto;
+    grid-template-columns: 0.5fr 1fr 3fr;
+    grid-template-areas: "div-movie-cont div-movie-cont div-seats-cont";
+    height: 50vh;
+    margin: 10vh;
 }
 
 .btn-buy {
@@ -191,8 +188,6 @@ export default {
     background-color: #dddddd62;
     font-size: 2.5em;
     cursor: pointer;
-    width: 100%;
-    padding: 10px;
 
 }
 
@@ -204,12 +199,8 @@ export default {
     grid-area: div-movie-cont;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    margin: 5px;
-    padding: 20px;
-    border: 2px solid black;
     border-radius: 10px;
-    max-width: 600px;
+    max-height: 700px;
     background-color: #fff;
     align-items: center;
     text-align: center;
@@ -220,41 +211,38 @@ export default {
 
 .div-seats-cont {
     grid-area: div-seats-cont;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 5px;
-    padding: 50px;
-    border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(10, 55px);
+    grid-template-rows: repeat(12, 55px);
+    padding: 30px;
+
     border-radius: 10px;
-    
+    max-height: 700px;
     background-color: #ffffffbe;
     text-align: center;
 }
 
 .div-seat-cont {
     display: flex;
-    
+    flex-direction: column;
+    align-items: center;
     margin: 5px;
-    padding: 10px;
-    height: 30px;
-    border-radius: 50%;
- 
+    border-radius: 20px;
     background-color: #fff;
    
 }
 
 .div-seat-cont:hover {
-    box-shadow: 0 0 4px 0 #000000d7;
+    box-shadow: 0 0 2px 0 #000000d7;
     cursor: pointer;
 }
 
 
 
 .seat-icon {
-    width: 30px;
-    height: 30px;
-    
+    width: 40px;
+    height: 40px;
+
 }
 
 .div-seat-cont--clicked {
@@ -291,6 +279,9 @@ export default {
 
 .poster {
     border-radius: 16px;
+    width: 400px;
+    height: 600px;
+
 }
 
 nuxt-link {
