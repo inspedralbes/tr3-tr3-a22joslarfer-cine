@@ -1,34 +1,29 @@
 <template>
     <div class="container">
+        <NavBar />
+        <Nuxt />
 
-        <nav>
-            <ul>
-                <li><nuxt-link to="/" class="nav-link">HOME</nuxt-link></li>
-                <li><nuxt-link to="/estrenos" class="nav-link">ESTRENOS</nuxt-link></li>
-                <li><a href="" class="nav-link">ABOUT</a></li>
-                <li><nuxt-link to="/login" class="nav-link">LOGIN</nuxt-link></li>
-                <li><nuxt-link to="/register" class="nav-link">SIGN UP</nuxt-link></li>
-            </ul>
-        </nav>
 
         <div v-for="estreno in  estrenos " :key="estreno.id" class="div-movie-cont"
             @click="navigate_to_session(estreno.id)">
             <h2 class="title">{{ estreno.title }}</h2>
-            <p class="year">{{ estreno.year }}</p>
-            <p class="rating">{{ estreno.rating }}</p>
+
 
             <img :src="`${estreno.poster}`" alt="" class="poster">
             <div class="div-summary-date-genre-cont">
                 <p class="synopsis">{{ estreno.synopsis }}</p>
                 <p class="date">{{ estreno.showing_date }}</p>
-                <p class="genreId">{{ estreno.genre_id }}</p>
+
+                <p class="year">{{ estreno.year }}</p>
+                <p class="rating">{{ estreno.rating }}</p>
             </div>
-        
-       
+
+
         </div>
-      
-       
-        <footer></footer>
+
+
+        <Footer />
+        <Nuxt />
 
     </div>
 </template>
@@ -76,7 +71,7 @@ export default {
 * {
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
-    margin: 0;  
+    margin: 0;
     padding: 0px;
     overflow: hidden;
     overflow-y: hidden;
@@ -113,8 +108,8 @@ nav ul {
     list-style-type: none;
     display: flex;
     font-size: 50px
-
 }
+
 nav ul li {
     margin-left: 50px;
 }
@@ -138,7 +133,7 @@ nav ul li {
     justify-content: center;
     background-color: #FAFAFA;
     overflow: hidden;
-    
+
 }
 
 .div-movie-cont {
@@ -150,14 +145,16 @@ nav ul li {
     border: 2px solid black;
     border-radius: 10px;
     max-width: 600px;
+    height: 900px;
     color: #eeeeee;
     text-align: center;
     position: relative;
     background-color: black;
-  
+
 
 }
-.div-summary-date-genre-cont{
+
+.div-summary-date-genre-cont {
     opacity: 0;
     position: absolute;
     bottom: 0;
@@ -169,27 +166,29 @@ nav ul li {
     transition: opacity 0.3s ease, transform 0.3s ease;
 
 }
-.div-movie-cont:hover .div-summary-date-genre-cont{
+
+.div-movie-cont:hover .div-summary-date-genre-cont {
     opacity: 1;
     transform: translateY(0px);
-    height: 300px;
+    height: 400px;
 }
 
 
 .title {
     font-size: 3em;
-    margin: 10px;
+
 }
 
-.year {
+.year,
+.rating,
+.synopsis,
+.date,
+.genreId {
     font-size: 1.5em;
-    margin: 10px;
+    margin-top: 20px;
+    color: #eeeeee;
 }
 
-.rating {
-    font-size: 1.5em;
-    margin: 10px;
-}
 
 
 .poster {
@@ -200,18 +199,13 @@ nav ul li {
 }
 
 .synopsis {
-    font-size: 1.5em;
-    margin: 40px;
-    white-space: normal;
+
+    margin: 50px;
+
     font-variant: small-caps;
-    overflow: hidden;
-
 }
 
-.date {
-    font-size: 1.5em;
-    margin: 10px;
-}
+
 
 nuxt-link {
     text-decoration: none;

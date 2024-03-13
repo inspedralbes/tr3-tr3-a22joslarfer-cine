@@ -40,20 +40,20 @@ UPDATE movies SET poster = 'https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAt
 UPDATE movies SET poster = 'https://m.media-amazon.com/images/M/MV5BMGExOGExM2UtNWM5ZS00OWEzLTllNzYtM2NlMTJlYjBlZTJkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg' WHERE title = 'Dark City';
 
 
-UPDATE movies SET poster_bg1 = '../public/posters-large/suspiria1.jpg' WHERE title = 'Suspiria 2';
-UPDATE movies SET poster_bg2 = '../public/posters-large/suspiria2.jpg' WHERE title = 'Suspiria 2';
+UPDATE movies SET poster_bg1 = 'posters-large/suspiria1.jpg' WHERE title = 'Suspiria 2';
+UPDATE movies SET poster_bg2 = 'posters-large/suspiria2.jpg' WHERE title = 'Suspiria 2';
 
-UPDATE movies SET poster_bg1 = '../public/posters-large/thelighthouse1.jpg' WHERE title = 'The Lighthouse';
-UPDATE movies SET poster_bg2 = '../public/posters-large/thelighthouse2.jpg' WHERE title = 'The Lighthouse';
+UPDATE movies SET poster_bg1 = 'posters-large/thelighthouse1.jpg' WHERE title = 'The Lighthouse';
+UPDATE movies SET poster_bg2 = 'posters-large/thelighthouse2.jpg' WHERE title = 'The Lighthouse';
 
-UPDATE movies SET poster_bg1 = '../public/posters-large/alien1.jpg' WHERE title = 'Alien';
-UPDATE movies SET poster_bg2 = '../public/posters-large/alien2.jpg' WHERE title = 'Alien';
+UPDATE movies SET poster_bg1 = 'posters-large/alien1.jpg' WHERE title = 'Alien';
+UPDATE movies SET poster_bg2 = 'posters-large/alien2.jpg' WHERE title = 'Alien';
 
-UPDATE movies SET poster_bg1 = '../public/posters-large/pulpfiction1.jpg' WHERE title = 'Pulp Fiction';
-UPDATE movies SET poster_bg2 = '../public/posters-large/pulpfiction2.jpg' WHERE title = 'Pulp Fiction';
+UPDATE movies SET poster_bg1 = 'posters-large/pulpfiction1.jpg' WHERE title = 'Pulp Fiction';
+UPDATE movies SET poster_bg2 = 'posters-large/pulpfiction2.jpg' WHERE title = 'Pulp Fiction';
 
-UPDATE movies SET poster_bg1 = '../public/posters-large/thematrix1.jpg' WHERE title = 'The Matrix';
-UPDATE movies SET poster_bg2 = '../public/posters-large/thematrix2.jpg' WHERE title = 'The Matrix';
+UPDATE movies SET poster_bg1 = 'posters-large/thematrix1.jpg' WHERE title = 'The Matrix';
+UPDATE movies SET poster_bg2 = 'posters-large/thematrix2.jpg' WHERE title = 'The Matrix';
 
-UPDATE movies SET poster_bg1 = '../public/posters-large/darkcity1.jgp' WHERE title = 'Dark City';
-UPDATE movies SET poster_bg2 = '../public/posters-large/darkcity2.jpg' WHERE title = 'Dark City';
+UPDATE movies SET poster_bg1 = 'posters-large/darkcity1.jgp' WHERE title = 'Dark City';
+UPDATE movies SET poster_bg2 = 'posters-large/darkcity2.jpg' WHERE title = 'Dark City';

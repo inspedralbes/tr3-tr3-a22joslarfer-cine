@@ -2,16 +2,15 @@
 
 
     <div class="container">
-        
-        <div class="div-movie-cont" v-if="fetch_is_done" :style="{ backgroundImage: `url(${movie_session.poster_bg1})` }">
-            <div class="div-info-cont" >
 
-                <h2 class="title">{{ movie_session.title }}</h2>
-                <p class="year">{{ movie_session.year }}</p>
-                <p class="rating">{{ movie_session.rating }}</p>
-                <p class="synopsis">{{ movie_session.synopsis }}</p>
-                <p class="date">{{ movie_session.showing_date }}</p>
-                <p class="genreId">{{ movie_session.genre_id }}</p>
+        <div class="div-movie-cont" v-if="fetch_is_done" :style="{
+            backgroundImage: `url(${movie_session.poster_bg1})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+        }" @click="open_seats_panel()">
+            <div class="div-info-cont title fade-in">
+                <span id="typed-text">{{ textTyped }}</span><span class="cursor">|</span>
             </div>
         </div>
 
@@ -20,9 +19,9 @@
                 :class="{ 'div-seat-cont--clicked': isSelected(seat.id) }" @click="seat_selected(seat.id)"
                 @double-click="seat_selected(seat.id)">
 
-                <img src="../public/seat.svg" alt="" srcset="" class="seat-icon" v-if="seat.status === 'available'">
+                <img src="/icons/seat.svg" alt="" srcset="" class="seat-icon" v-if="seat.status === 'available'">
 
-                <img src="../public/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
+                <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
                     v-if="seat.status === 'unavailable'">
 
             </div>
@@ -32,14 +31,158 @@
         </div>
 
         <div v-if="!fetch_is_done || !fetchSeats_is_done" class="loading-container">
-            <img src="../public/loading.svg" alt="" srcset="" class="spinner-icon">
+            <img src="/icons/loading.svg" alt="" srcset="" class="spinner-icon">
         </div>
-     
+
     </div>
 
 </template>
 
+
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Germania+One&display=swap');
+
+
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+
+.title {
+    font-family: "Germania One", system-ui;
+    font-weight: 00;
+    font-style: normal;
+    font-size: 200px;
+    color: #86c01bad;
+    text-shadow: 1px 1px 1px #adbd22ad;
+    animation: slideIn 0.5s forwards;
+    opacity: 0;
+}
+
+
+
+
+.container {
+    display: grid;
+    grid-template-areas:
+        "movie";
+
+    grid-template-rows: 1fr;
+    height: 100vh;
+
+    background-color: black;
+}
+
+.div-movie-cont {
+    display: flex;
+    border-radius: 30px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+
+
+
+
+.div-seats-cont {
+
+    display: none;
+    grid-template-columns: repeat(10, 55px);
+    grid-template-rows: repeat(12, 55px);
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    background-color: #ffffffbb;
+    width: 50%;
+    height: 100%;
+
+}
+
+.div-seat-cont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #ffffffbb;
+
+}
+
+.div-seat-cont:hover {
+    box-shadow: 0 0 2px 0 #000000d7;
+    cursor: pointer;
+}
+
+
+.seat-icon {
+    width: 40px;
+    height: 40px;
+
+}
+
+.div-seat-cont--clicked {
+    background-color: #81b3c0d7;
+
+}
+
+
+.spinner-icon {
+    height: 100px;
+    border-top: 4px solid transparent;
+    animation: spin 1s linear infinite;
+    border: 4px solid #81b3c0d7;
+    border-radius: 50%;
+    border-top: 4px solid transparent;
+    /* Create a circular shape */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.btn-buy {
+    border: 2px solid black;
+    border-radius: 12px;
+    background-color: #dddddd62;
+    font-size: 2.5em;
+    cursor: pointer;
+
+}
+
+.btn-buy:hover {
+    box-shadow: 0 0 4px 0 #000000d7;
+}
+</style>
+
 <script>
+
+
 export default {
     data() {
         return {
@@ -49,6 +192,19 @@ export default {
             seats: [],
             fetchSeats_is_done: false,
             selected_seats: [],
+            index: 0,
+            text: "Click i compra!",
+            textTyped: "",
+            isDeleting: false
+        }
+
+    },
+    head() {
+        return {
+         
+            link: [
+               
+            ]
         }
     },
     methods: {
@@ -99,6 +255,18 @@ export default {
         isSelected(id) {
             return this.selected_seats.includes(id);
         },
+        typeText() {
+            if (!this.isDeleting && this.index < this.text.length) {
+                this.textTyped += this.text.charAt(this.index);
+                this.index++;
+            } else if (this.index > 0) {
+                this.isDeleting = true;
+                this.textTyped = this.text.substring(0, this.index - 1);
+                this.index--;
+            } else {
+                this.isDeleting = false;
+            }
+        },
         fetchPurchaseSeats() {
             fetch('http://localhost:8000/api/purchase-seats', {
                 method: 'POST',
@@ -147,156 +315,14 @@ export default {
         this.movie_session_id = this.$route.params.id;
         this.fetchData();
         this.fetchDataSeats();
+
+    },
+    mounted() {
+        setInterval(() => {
+            this.typeText();
+        }, 130);
     },
 
 }
 
 </script>
-
-<style scoped>
-.spinner-icon {
-    height: 100px;
-    border-top: 4px solid transparent;
-    animation: spin 1s linear infinite;
-    border: 4px solid #81b3c0d7;
-    border-radius: 50%;
-    border-top: 4px solid transparent;
-    /* Create a circular shape */
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-
-.container {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 0.5fr 1fr 3fr;
-    grid-template-areas: "div-movie-cont div-movie-cont div-seats-cont";
-    height: 50vh;
-    margin: 10vh;
-}
-
-.btn-buy {
-    border: 2px solid black;
-    border-radius: 12px;
-    background-color: #dddddd62;
-    font-size: 2.5em;
-    cursor: pointer;
-
-}
-
-.btn-buy:hover {
-    box-shadow: 0 0 4px 0 #000000d7;
-}
-
-.div-movie-cont {
-    grid-area: div-movie-cont;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    max-width: 600px;
-    background-color: #fff;
-    align-items: center;
-    text-align: center;
-
-}
-
-
-
-.div-seats-cont {
-    grid-area: div-seats-cont;
-    display: grid;
-    grid-template-columns: repeat(10, 55px);
-    grid-template-rows: repeat(12, 55px);
-    padding: 30px;
-
-    border-radius: 10px;
-    max-height: 700px;
-    background-color: #ffffffbe;
-    text-align: center;
-}
-
-.div-seat-cont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 5px;
-    border-radius: 20px;
-    background-color: #fff;
-   
-}
-
-.div-seat-cont:hover {
-    box-shadow: 0 0 2px 0 #000000d7;
-    cursor: pointer;
-}
-
-
-
-.seat-icon {
-    width: 40px;
-    height: 40px;
-
-}
-
-.div-seat-cont--clicked {
-    background-color: #81b3c0d7;
-
-}
-
-
-
-.title {
-    font-size: 3em;
-    margin: 10px;
-}
-
-.year {
-    font-size: 1.5em;
-    margin: 10px;
-}
-
-.rating {
-    font-size: 1.5em;
-    margin: 10px;
-}
-
-.synopsis {
-    font-size: 1.5em;
-    margin: 10px;
-}
-
-.date {
-    font-size: 1.5em;
-    margin: 10px;
-}
-
-.poster {
-    border-radius: 16px;
-    width: 400px;
-    height: 600px;
-
-}
-
-nuxt-link {
-    text-decoration: none;
-    color: black;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
-</style>
