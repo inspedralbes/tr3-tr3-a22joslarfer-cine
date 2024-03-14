@@ -3,28 +3,30 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| AUTH ROUTES
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
 */
-
-//rutas autenticadas
 Route::group(['middleware' => 'jwt'], function () {
     Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout']);
     Route::post('buyPurchasedSeats', [App\Http\Controllers\SeatController::class, 'buyPurchasedSeats']);
 });
-//rutas para usuarios
+/*
+|--------------------------------------------------------------------------
+| USER ROUTES
+|--------------------------------------------------------------------------
+*/
 Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 
 
-// rutas para movies
+/*
+|--------------------------------------------------------------------------
+| MOVIE ROUTES
+|--------------------------------------------------------------------------
+*/
 Route::post('movies', [App\Http\Controllers\MovieController::class, 'insert']);
 Route::get('movies', [App\Http\Controllers\MovieController::class, 'index']);
 Route::get('movies/{id}', [App\Http\Controllers\MovieController::class, 'show']);
@@ -33,7 +35,11 @@ Route::delete('movies/{id}', [App\Http\Controllers\MovieController::class, 'dest
 Route::get('estrenos', [App\Http\Controllers\MovieController::class, 'getEstrenos']);
 
 
-// rutas para géneros
+/*
+|--------------------------------------------------------------------------
+| GENRE ROUTES
+|--------------------------------------------------------------------------
+*/
 Route::post('genres', [App\Http\Controllers\GenreController::class, 'insert']);
 Route::get('genres', [App\Http\Controllers\GenreController::class, 'index']);
 Route::get('genres/{id}', [App\Http\Controllers\GenreController::class, 'show']);
@@ -41,8 +47,21 @@ Route::put('genres/{id}', [App\Http\Controllers\GenreController::class, 'update'
 Route::delete('genres/{id}', [App\Http\Controllers\GenreController::class, 'destroy']);
 
 
-// rutas para asientos
+/*
+|--------------------------------------------------------------------------
+| SEAT ROUTES
+|--------------------------------------------------------------------------
+*/
 Route::get('seats', [App\Http\Controllers\SeatController::class, 'index']);
 Route::get('seats/{id}', [App\Http\Controllers\SeatController::class, 'show']);
 Route::post('seats', [App\Http\Controllers\SeatController::class, 'insert']);
 
+
+/*
+|--------------------------------------------------------------------------
+| CECKOUT ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::get('checkout', [App\Http\Controllers\CheckoutController::class, 'index']);
+Route::get('checkout/{id}', [App\Http\Controllers\CheckoutController::class, 'showBasedOnUser']);
+Route::post('checkout', [App\Http\Controllers\CheckoutController::class, 'store']);

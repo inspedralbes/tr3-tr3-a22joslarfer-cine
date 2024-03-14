@@ -163,7 +163,7 @@ export default {
             }
             const userStore = useStore();
             userStore.save_seats(this.selected_seats);
-            
+            userStore.save_movie_id(this.$route.params.id);
             navigateTo('/checkout');
 
         },
