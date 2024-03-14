@@ -20,7 +20,7 @@ nav {
     background-color: #c93d3d;
     font-weight: 900;
     z-index: 100;
-    max-height: 150px;
+    height: 150px;
 }
 
 nav ul {
