@@ -2,7 +2,7 @@
     <div>
 
         <NavBar />
-        <Nuxt />
+       
         <form @submit.prevent="formPost">
 
             <div>
@@ -26,7 +26,7 @@
 
         </form>
         <Footer />
-        <Nuxt />
+       
     </div>
 </template>
 

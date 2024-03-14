@@ -4,4 +4,9 @@ export default defineNuxtConfig({
   css: [
     'normalize.css'
   ],
+  modules: [
+    
+    '@pinia/nuxt',
+  ],
+  
 })

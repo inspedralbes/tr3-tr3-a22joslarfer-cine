@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <NavBar />
-        <Nuxt />
+        
 
 
         <div class="div-movies-cont">
@@ -25,7 +25,7 @@
 
 
         <Footer />
-        <Nuxt />
+       
 
     </div>
 </template>

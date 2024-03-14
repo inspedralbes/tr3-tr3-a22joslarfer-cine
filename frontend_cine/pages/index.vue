@@ -1,16 +1,16 @@
 <template>
     <div class="lp-container">
         <NavBar />
-        <Nuxt />
+        
 
         <SectionOurMovies />
-        <Nuxt />
+     
        
         <SectionUpComing />
-        <Nuxt />
+       
 
         <Footer />
-        <Nuxt />
+      
     </div>
 </template>
 
