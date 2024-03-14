@@ -1,36 +1,42 @@
 <template>
     <div>
         <NavBar />
-        <Nuxt />
-        <form @submit.prevent="formPost">
 
-            <div>
-                <label for="username">Nom Usuari</label>
-                <input type="text" id="username" v-model="username">
-            </div>
+        <div class="container">
 
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" v-model="email">
-            </div>
+            <form @submit.prevent="formPost">
 
-            <div>
-                <label for="password">Contrasenya</label>
-                <input type="password" id="password" v-model="password">
-            </div>
+                <div>
+                    <label for="username">Nom Usuari</label>
+                    <input type="text" id="username" v-model="username">
+                </div>
 
-           
-            <div>
-                <nuxt-link to="/login">Tens compte? Inicia Sessió!</nuxt-link>
-            </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" v-model="email">
+                </div>
 
-            <button type="submit">Registrarse</button>
+                <div>
+                    <label for="password">Contrasenya</label>
+                    <input type="password" id="password" v-model="password">
+                </div>
 
 
-        </form>
+                <div>
+                    <nuxt-link to="/login">Tens compte? Inicia Sessió!</nuxt-link>
+                </div>
+
+                <button type="submit">Registrarse</button>
+
+
+            </form>
+
+        </div>
+
+
 
         <Footer />
-        <Nuxt />
+
     </div>
 </template>
 
@@ -74,4 +80,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+    display: grid;
+    background-color: #d1d8d2;
+}
+</style>

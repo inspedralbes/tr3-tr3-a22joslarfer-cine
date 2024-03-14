@@ -20,7 +20,10 @@ nav {
     background-color: #c93d3d;
     font-weight: 900;
     z-index: 100;
-    max-height: 150px;
+    height: auto;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
 }
 
 nav ul {

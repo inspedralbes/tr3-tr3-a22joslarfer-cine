@@ -23,7 +23,7 @@
     padding: 0px;
     overflow: hidden;
     overflow-y: hidden;
-
+    text-align: center;
 }
 
 .lp-container {

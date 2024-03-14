@@ -25,7 +25,7 @@
     position: relative;
     transform: translateZ(0);
     transition: color 1000ms;
-    background: url(sillas/sillasrojas.jpg) no-repeat;
+    background: url(/sillas/sillasrojas.jpg) no-repeat;
     cursor: pointer;
     margin-top: 50px;
 }
@@ -64,7 +64,7 @@
 .upComing h1 {
     font-size: 100px;
     color: #ffffff;
-    font-family: "Germania One", system-ui;
+    font-family: "Antonio, sans-serif";
     text-shadow: 4px 4px 0px #adbd22ad;
 }
 </style>

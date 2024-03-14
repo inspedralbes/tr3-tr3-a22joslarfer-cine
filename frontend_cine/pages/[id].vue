@@ -20,13 +20,15 @@
         <div class="div-seats-movie-cont" id="div-seats-movie-cont">
             <div class="div-seat-cont">
                 <div v-for="seat in  seats" :key="seat.id" class="div-seat"
-                    :class="{ 'div-seat--clicked': isSelected(seat.id) }" @click="seat_selected(seat)"
+                     @click="seat_selected(seat)"
                     @double-click="seat_selected(seat)">
 
                     <img src="/icons/white-seat.png" alt="" srcset="" class="seat-icon"
+                    :class="{ 'seat--clicked': isSelected(seat.id) }"
                         v-if="seat.status === 'available'">
 
                     <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
+                    :class="{ 'seat--clicked': isSelected(seat.id) }"
                         v-if="seat.status === 'unavailable'">
 
                 </div>
@@ -277,8 +279,9 @@ export default {
         ". seats movie-info ."
         ". btn btn ."
     ;
+    
     grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
-    grid-template-rows: 1fr 0.1fr;
+    grid-template-rows: 1fr 0.3fr;
 
 }
 
@@ -293,7 +296,7 @@ export default {
     font-weight: 900;
     font-style: normal;
     color: #adbd22ad;
-    text-shadow: 4px 2px 0px #89fd053d;
+   
 
 }
 
@@ -311,8 +314,28 @@ export default {
     margin: 12px;
     animation: appear 0.5s ease-in-out;
     display: grid;
+    align-items: end;
+    height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
 
 }
+/* css for scrollbars */
+
+::-webkit-scrollbar {
+    grid-area: scroll;
+    background-color: #272626;
+    width: 10px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background:#eb0000cb;
+    border-radius: 10px;
+}
+
+
+
 
 @keyframes appear {
     0% {
@@ -326,8 +349,7 @@ export default {
 
 .div-seat {
     display: flex;
-    border-radius: 40px;
-    justify-content: center;
+    margin-right: 40px;
 }
 
 .div-seat:hover {
@@ -338,12 +360,17 @@ export default {
     width: 40px;
     height: 40px;
     margin: auto;
+    background-color: #4440408f;
+    border-radius: 40px;
+    padding: 20%;
+}
+.seat--clicked{
+    background-color: #c9c9c996;
+    transition: background-color 0.3s ease;
 }
 
 
-.div-seat--clicked {
-    background-color: #9ebd16c4;
-}
+
 
 
 .div-btn-buy-cont {

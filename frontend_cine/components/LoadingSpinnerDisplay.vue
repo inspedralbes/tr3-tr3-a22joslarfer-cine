@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+
 
 const props = defineProps({
-  fetchIsDone: Boolean,
-  fetchSeatsIsDone: Boolean
+    fetch_is_done: Boolean,
+    fetchSeats_is_done: Boolean
 });
 </script>
 

@@ -2,31 +2,37 @@
     <div>
 
         <NavBar />
-       
-        <form @submit.prevent="formPost">
 
-            <div>
-                <label for="email">Email</label>
-                <input type="text" id="email" v-model="email">
-            </div>
+        <div class="container">
 
-            <div>
-                <label for="password">Contrasenya</label>
-                <input type="password" id="password" v-model="password">
-            </div>
+            <form @submit.prevent="formPost">
 
+                <div>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" v-model="email">
+                </div>
 
-
-            <div>
-                <nuxt-link to="/register">No tens compte? Registra't</nuxt-link>
-            </div>
-
-            <button type="submit">Login</button>
+                <div>
+                    <label for="password">Contrasenya</label>
+                    <input type="password" id="password" v-model="password">
+                </div>
 
 
-        </form>
+
+                <div>
+                    <nuxt-link to="/register">No tens compte? Registra't</nuxt-link>
+                </div>
+
+                <button type="submit">Login</button>
+
+
+            </form>
+            
+        </div>
+
+
         <Footer />
-       
+
     </div>
 </template>
 
@@ -58,7 +64,7 @@ export default {
                         // guardar el token que es rep a data a localStorage
                         localStorage.setItem('token', data.token);
                         navigateTo('perfil')
-                        
+
                     } else {
                         alert('Has iniciat sessió INCORRECTAMENT!');
                     }
@@ -72,5 +78,8 @@ export default {
 </script>
 
 <style scoped>
-
+.container {
+    display: grid;
+    background-color: #d1d8d2;
+}
 </style>

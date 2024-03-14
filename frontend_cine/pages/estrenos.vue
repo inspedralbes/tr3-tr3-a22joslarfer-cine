@@ -8,14 +8,13 @@
             <div class="div-movie-cont" v-for="estreno in  estrenos " :key="estreno.id"
                 @click="navigate_to_session(estreno.id)">
 
-                <h2 class="title">{{ estreno.title }}</h2>
                 <img :src="`${estreno.poster}`" alt="" class="poster">
                 <div class="div-summary-date-genre-cont">
                     <p class="synopsis">{{ estreno.synopsis }}</p>
                     <p class="date">{{ estreno.showing_date }}</p>
-
                     <p class="year">{{ estreno.year }}</p>
                     <p class="rating">{{ estreno.rating }}</p>
+                    <h2 class="title">{{ estreno.title }}</h2>
                 </div>
 
             </div>
@@ -66,14 +65,13 @@
 }
 
 .div-movie-cont {
-    margin: 20px;
+    margin: 30px;
     padding: 20px;
     display: grid;
-    height: 900px;
+    height: auto;
     color: #eeeeee;
     text-align: center;
-    border-radius: 10px;
-    max-width: 600px;
+    border-radius: 20px;
     grid-template-rows: auto;
     background-color: black;
     grid-gap: 20px;
@@ -106,8 +104,9 @@
 
 .title {
     font-size: 3.5em;
-    font-family: "Germania One", system-ui;
+    overflow: visible;
     font-weight: 900;
+    margin: 10px;
 }
 
 .year,
@@ -123,17 +122,19 @@
 
 
 .poster {
-    width: 100%;
-    max-height: 780px;
-    border-radius: 8px;
-
+    width: auto;
+    margin: auto;
+    max-height: 750px;
+    object-fit: contain;
+    border-radius: 10px;
 }
 
 .synopsis {
-
-    margin: 50px;
-
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
     font-variant: small-caps;
+    font-size: 25px;
 }
 </style>
 
