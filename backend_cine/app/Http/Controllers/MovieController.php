@@ -67,6 +67,7 @@ class MovieController extends Controller
                 'poster' => $movie['poster'],
                 'synopsis' => $movie['synopsis'],
                 'genre_id' => $movie['genre_id'],
+                'showing_date' => $movie['showing_date'],
             ]);
         }
         // return response with message if positive

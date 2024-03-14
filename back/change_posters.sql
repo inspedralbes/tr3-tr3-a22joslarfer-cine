@@ -57,3 +57,5 @@ UPDATE movies SET poster_bg2 = 'posters-large/thematrix2.jpg' WHERE title = 'The
 
 UPDATE movies SET poster_bg1 = 'posters-large/darkcity1.jgp' WHERE title = 'Dark City';
 UPDATE movies SET poster_bg2 = 'posters-large/darkcity2.jpg' WHERE title = 'Dark City';
+
+UPDATE movies SET poster_bg1 = 'posters-large/theshining1.jpg' WHERE title = 'The Shining';

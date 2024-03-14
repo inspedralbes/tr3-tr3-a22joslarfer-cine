@@ -40,6 +40,7 @@
     font-family: "Antonio", sans-serif;
     margin: 0;
     padding: 0px;
+    overflow: hidden;
 
 }
 
@@ -104,7 +105,7 @@
 
 
 .title {
-    font-size: 4em;
+    font-size: 3.5em;
     font-family: "Germania One", system-ui;
     font-weight: 900;
 }
@@ -125,6 +126,7 @@
     width: 100%;
     max-height: 780px;
     border-radius: 8px;
+
 }
 
 .synopsis {
