@@ -152,8 +152,7 @@ export default {
                 .then(data => {
                     if (data) {
                         this.estrenos = data;
-                        console.log('Estrenos', this.estrenos);
-                        console.log('Data', data);
+                       
                     } else {
                         console.log('ERROR FETCHING DATA');
                     }
@@ -163,9 +162,7 @@ export default {
                 });
         },
         navigate_to_session(id) {
-            console.log('yendo a la sesión', id)
             navigateTo(`/${id}`);
-
         },
     },
     mounted() {

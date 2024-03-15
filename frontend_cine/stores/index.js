@@ -10,7 +10,7 @@ export const useStore = defineStore({
     user_id: null,
     email: null,
     username: null,
-    movie_id: null,
+    movie_id: 0,
     date: null,
   }),
   actions: {
@@ -19,6 +19,9 @@ export const useStore = defineStore({
     },
     save_movie_id(id) {
       this.movie_id = id;
+    },
+    save_movie_date(date) {
+      this.date = date;
     },
     save_user_info(username, email, id) {
       this.username = username;
@@ -43,7 +46,7 @@ export const useStore = defineStore({
     return_movie_id() {
       return this.movie_id;
     },
-    return_date() {
+    return_movie_date() {
       return this.date;
     },
     reset_booking_info(){

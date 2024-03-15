@@ -93,10 +93,11 @@ footer {
     background-color: #1c1c1c;
     text-align: center;
 }
-.div-selected_seats_to_purchase:hover{
+
+.div-selected_seats_to_purchase:hover {
     color: #ffffff;
     box-shadow: 0 1px 7px 0px #000000d2;
-   
+
 }
 
 
@@ -121,10 +122,10 @@ button {
 button:hover {
     color: white;
     box-shadow: 0 9px 1px 1px #000000;
-    border-bottom: 2px solid #d1d8d2;
+    border-bottom: 4px solid #d1d8d2;
     border-left: 2px solid #d1d8d2;
     border-right: 2px solid #d1d8d2;
-    
+
 }
 
 p {
@@ -146,58 +147,80 @@ export default {
             vip_seat_price: 8,
             non_vip_seat_price: 6,
             total: null,
+            movie_id: null,
+            user_id: null,
+            date: null,
+            url: 'http://localhost:8000/api/checkout'
         }
     },
     methods: {
-        return_selected_seats_to_purchase() {
+        return_pinia_data() {
             const userStore = useStore();
             this.selected_seats_to_purchase = userStore.return_selected_seats();
-            console.log('pinia data', this.selected_seats_to_purchase);
+            this.movie_id = userStore.return_movie_id();
+            this.calcTotal();
+            this.date = userStore.return_movie_date();
+            //this.checkout_data.user_id = userStore.return_user_id();
+            this.user_id = 1;
+
+
+            console.log('asientos a comprar', this.selected_seats_to_purchase);
+            console.log('movie_id', this.movie_id);
+            console.log('user_id', this.user_id);
+            console.log('date', this.date);
+            console.log('total', this.total);
         },
         confirm_purchase() {
+            // transaction en el laravel
+            let checkout_data = this.selected_seats_to_purchase.map(seat => ({
+                seat_id: seat.id,
+                unit_seat_price: seat.vip ? 8 : 6,
+                total: this.total,
+                movie_id: this.movie_id,
+                user_id: this.user_id,
+                date: this.date
+            }));
+            console.log('enviado post de compra', checkout_data);
+            this.fetchSavePurchase(checkout_data);
+
             const userStore = useStore();
-            this.checkout_data.user_id = userStore.return_user_id();
-            this.checkout_data.movie_id = userStore.return_movie_id();
-            this.checkout_data.seat_unit_price = selected_seats_to_purchase[this.index].vip ? 8 : 6;
-            this.checkout_data.total = this.total;
-            this.fetchSavePurchase(this.checkoutData);
-
             userStore.reset_booking_info();
-            navigateTo('/');
 
+            navigateTo('/')
         },
         calcTotal() {
             this.total = this.selected_seats_to_purchase.reduce((acc, seat) => {
                 return acc + (seat.vip ? 8 : 6);
             }, 0);
         },
-        fetchSavePurchase(checkoutData) {
-            fetch(URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(checkoutData)
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('POST 201', data);
-                })
-                .catch(error => {
-                    console.error('POST ERROR', error);
+        async fetchSavePurchase(checkoutData) {
+            try {
+                let response = await fetch('http://localhost:8000/api/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(checkoutData),
                 });
-        },
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                let data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation: ', error);
+            }
+        },
     },
     mounted() {
-        this.return_selected_seats_to_purchase();
-        this.calcTotal();
-    }
+        this.return_pinia_data();
+        if (this.selected_seats_to_purchase.length === 0) {
+            navigateTo('/estrenos')
+        }
+    },
+    
 };
 
 </script>

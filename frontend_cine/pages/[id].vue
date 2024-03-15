@@ -4,7 +4,7 @@
     <div class="container">
 
         <NavBar />
-       
+
 
         <div class="div-movie-cont" v-if="fetch_is_done" :style="{
             backgroundImage: `url(${movie_session.poster_bg1})`,
@@ -19,17 +19,14 @@
 
         <div class="div-seats-movie-cont" id="div-seats-movie-cont">
             <div class="div-seat-cont">
-                <div v-for="seat in  seats" :key="seat.id" class="div-seat"
-                     @click="seat_selected(seat)"
+                <div v-for="seat in  seats" :key="seat.id" class="div-seat" @click="seat_selected(seat)"
                     @double-click="seat_selected(seat)">
 
                     <img src="/icons/white-seat.png" alt="" srcset="" class="seat-icon"
-                    :class="{ 'seat--clicked': isSelected(seat.id) }"
-                        v-if="seat.status === 'available'">
+                        :class="{ 'seat--clicked': isSelected(seat.id) }" v-if="seat.status === 'available'">
 
                     <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
-                    :class="{ 'seat--clicked': isSelected(seat.id) }"
-                        v-if="seat.status === 'unavailable'">
+                        :class="{ 'seat--clicked': isSelected(seat.id) }" v-if="seat.status === 'unavailable'">
 
                 </div>
             </div>
@@ -44,14 +41,14 @@
                     COMPRAR
                 </button>
                 <button id="cancel_purchase" class="btn-buy-cancel">
-                    <img src="/icons/cancel.svg" alt="">
+                    <img src="/icons/cancel-white.png" alt="">
                 </button>
             </div>
 
         </div>
 
         <Footer />
-       
+
 
 
 
@@ -97,9 +94,6 @@ export default {
                 .then(data => {
                     if (data) {
                         this.movie_session = data;
-                        console.log('SESSION', this.movie_session);
-                        console.log('DATA', data);
-                        console.log('ID', this.movie_session_id)
                         this.fetch_is_done = true;
                     } else {
                         console.log('ERROR FETCHING DATA');
@@ -115,8 +109,6 @@ export default {
                 .then(data => {
                     if (data) {
                         this.seats = data;
-                        console.log('SESSION', this.seats);
-                        console.log('DATA', data);
                         this.fetchSeats_is_done = true;
                     } else {
                         console.log('ERROR FETCHING DATA');
@@ -159,13 +151,14 @@ export default {
 
         },
         purchase_seats() {
-            if(this.selected_seats.length === 0){
+            if (this.selected_seats.length === 0) {
                 alert('Selecciona alguna butaca')
                 return;
             }
             const userStore = useStore();
             userStore.save_seats(this.selected_seats);
             userStore.save_movie_id(this.$route.params.id);
+            userStore.save_movie_date(this.movie_session.showing_date);
             navigateTo('/checkout');
 
         },
@@ -277,9 +270,9 @@ export default {
     grid-area: movie;
     grid-template-areas:
         ". seats movie-info ."
-        ". btn btn ."
+        ". btn . ."
     ;
-    
+
     grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
     grid-template-rows: 1fr 0.3fr;
 
@@ -296,7 +289,7 @@ export default {
     font-weight: 900;
     font-style: normal;
     color: #adbd22ad;
-   
+
 
 }
 
@@ -320,6 +313,7 @@ export default {
     overflow-y: scroll;
 
 }
+
 /* css for scrollbars */
 
 ::-webkit-scrollbar {
@@ -330,7 +324,7 @@ export default {
 }
 
 ::-webkit-scrollbar-thumb {
-    background:#eb0000cb;
+    background: #eb0000cb;
     border-radius: 10px;
 }
 
@@ -364,7 +358,8 @@ export default {
     border-radius: 40px;
     padding: 20%;
 }
-.seat--clicked{
+
+.seat--clicked {
     background-color: #c9c9c996;
     transition: background-color 0.3s ease;
 }
@@ -381,37 +376,37 @@ export default {
     grid-area: btn;
 }
 
+
 .btn-buy {
-    background-color: #2c2c2cd2;
-    border-bottom: none;
-    border-right: none;
-    padding: 20px;
-    border-radius: 10px;
-    color: #fff;
-    width: 50%;
-    font-size: 1.9em;
-    transition: color 0.1s ease;
-    cursor: pointer;
-}
-
-.btn-buy-cancel {
-    height: 60px;
-    width: 60px;
     border: none;
-    background-color: #191a19d2;
-    border-radius: 50%;
+    border-color: #000000;
+    padding: 15px 40px;
+    border-radius: 10px;
+    background-color: #4440408f;
+    color: #d1d8d2;
+    font-size: 3rem;
+    font-weight: 900;
     cursor: pointer;
-    transition: color 0.1s ease;
-    border-top: 2px solid rgb(80, 78, 78);
-
+    transition: color 0.2s ease-in-out;
 
 }
 
-.btn-buy:hover {
-    color: rgb(145, 194, 30);
+.btn-buy-cancel{
+    display: flex;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    border: none;
 }
 
-.btn-buy-cancel:hover {
-    background-color: #d1d8d257;
+.btn-buy-cancel img {
+    width: 70px;
 }
+
+button:hover {
+    color: white;
+ 
+
+}
+
 </style>
