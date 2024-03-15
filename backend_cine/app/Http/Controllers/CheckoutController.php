@@ -28,6 +28,7 @@ class CheckoutController extends Controller
             'user_id' => $request->user_id,
             'seat_id' => $request->seat_id,
             'date' => $request->date,
+            'total' => $request->total,
             'seat_unit_price' => $request->unit_seat_price,
         ]);
 

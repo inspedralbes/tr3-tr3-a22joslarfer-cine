@@ -5,15 +5,18 @@
         <NavBar />
 
         <div class="seat-info-cont">
-           
+
             <div v-for="(selected_seat) in selected_seats_to_purchase" class="div-selected_seats_to_purchase">
-                <img src="/icons/seat.svg" alt="" srcset="">
-                <p>Fila {{ selected_seat.row }}</p>
-                <p>Columna {{ selected_seat.column }}</p>
-                <div v-if="!selected_seat.vip">
-                    <p>Seient VIP</p>
+                <div class="div-selected-seat-to-purchase">
+                    <img src="/icons/seat.svg" alt="" srcset="">
+                    <p>Fila {{ selected_seat.row }}</p>
+                    <p>Columna {{ selected_seat.column }}</p>
+                    <div v-if="!selected_seat.vip">
+                        <p>Seient VIP</p>
+                    </div>
+                    <p v-if="selected_seat.vip">Preu {{ vip_seat_price }}€</p>
                 </div>
-                <p v-if="selected_seat.vip">Preu {{ vip_seat_price }}€</p>
+
             </div>
 
         </div>
@@ -31,8 +34,7 @@
 
 
 <style scoped>
-
-img{
+img {
     width: 150px;
     height: 150px;
     margin: 5px;
@@ -40,16 +42,16 @@ img{
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
-    background-color:#d1d8d2;
-    padding: 20px;
-   
+    background-color: #d1d8d2;
+    padding: 10px;
+
 
 }
 
 
 .container {
     display: grid;
-    height: 140vh;
+    height: auto;
     background-color: #d1d8d2;
     grid-template-areas:
         "nav"
@@ -58,16 +60,18 @@ img{
         "footer";
     ;
     color: #d1d8d2;
-    
+
 }
 
 
 nav {
     grid-area: nav;
+    margin-bottom: 50px;
 }
 
 footer {
     grid-area: footer;
+    margin-top: 50px;
 }
 
 .seat-info-cont {
@@ -76,7 +80,6 @@ footer {
     flex-wrap: wrap;
     margin: auto;
     justify-content: center;
-    
 
 }
 
@@ -85,12 +88,16 @@ footer {
     justify-items: center;
     margin: 10px;
     padding: 20px 60px;
-    box-shadow: 2px 2px 2px 2px #000000;
+    transition: color 0.1s ease-in-out, box-shadow 0.1s ease-in-out, border 0.1s ease-in-out;
     border-radius: 16px;
     background-color: #1c1c1c;
-  
+    text-align: center;
 }
-
+.div-selected_seats_to_purchase:hover{
+    color: #ffffff;
+    box-shadow: 0 1px 7px 0px #000000d2;
+   
+}
 
 
 
@@ -99,7 +106,7 @@ footer {
     margin: auto;
 }
 
-button{
+button {
     padding: 15px 40px;
     border-radius: 10px;
     background-color: #000000;
@@ -107,8 +114,18 @@ button{
     font-size: 3rem;
     font-weight: 900;
     cursor: pointer;
+    margin: 40px;
+    transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 
+button:hover {
+    color: white;
+    box-shadow: 0 9px 1px 1px #000000;
+    border-bottom: 2px solid #d1d8d2;
+    border-left: 2px solid #d1d8d2;
+    border-right: 2px solid #d1d8d2;
+    
+}
 
 p {
     font-size: 1.5rem;
@@ -137,15 +154,16 @@ export default {
             this.selected_seats_to_purchase = userStore.return_selected_seats();
             console.log('pinia data', this.selected_seats_to_purchase);
         },
-        comfirm_purchase() {
+        confirm_purchase() {
             const userStore = useStore();
             this.checkout_data.user_id = userStore.return_user_id();
             this.checkout_data.movie_id = userStore.return_movie_id();
             this.checkout_data.seat_unit_price = selected_seats_to_purchase[this.index].vip ? 8 : 6;
-            this.fetchSavePurchase(checkoutData);
+            this.checkout_data.total = this.total;
+            this.fetchSavePurchase(this.checkoutData);
 
             userStore.reset_booking_info();
-
+            navigateTo('/');
 
         },
         calcTotal() {

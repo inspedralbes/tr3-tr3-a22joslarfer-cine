@@ -15,5 +15,6 @@ class Checkout extends Model
         'seat_id',
         'date',
         'unit_seat_price',
+        'total'
     ];
 }
