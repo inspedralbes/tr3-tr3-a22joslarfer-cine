@@ -25,8 +25,9 @@
                     <img src="/icons/white-seat.png" alt="" srcset="" class="seat-icon"
                         :class="{ 'seat--clicked': isSelected(seat.id) }" v-if="seat.status === 'available'">
 
-                    <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="seat-icon"
-                        :class="{ 'seat--clicked': isSelected(seat.id) }" v-if="seat.status === 'unavailable'">
+
+                    <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="booked"
+                     v-if="seat.status === 'booked'">
 
                 </div>
             </div>
@@ -119,6 +120,9 @@ export default {
                 });
         },
         seat_selected(seat) {
+            if (seat.status === 'booked') {
+                return
+            }
             const index = this.selected_seats.findIndex(s => s.id === seat.id);
 
             if (index === -1) {
@@ -350,7 +354,7 @@ export default {
     cursor: pointer;
 }
 
-.seat-icon {
+.seat-icon, .booked {
     width: 40px;
     height: 40px;
     margin: auto;
@@ -358,6 +362,8 @@ export default {
     border-radius: 40px;
     padding: 20%;
 }
+
+
 
 .seat--clicked {
     background-color: #c9c9c996;
@@ -391,7 +397,7 @@ export default {
 
 }
 
-.btn-buy-cancel{
+.btn-buy-cancel {
     display: flex;
     width: auto;
     height: auto;
@@ -405,8 +411,7 @@ export default {
 
 button:hover {
     color: white;
- 
+
 
 }
-
 </style>

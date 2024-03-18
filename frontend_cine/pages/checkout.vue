@@ -210,6 +210,7 @@ export default {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
+
                 let data = await response.json();
                 console.log(data);
             } catch (error) {

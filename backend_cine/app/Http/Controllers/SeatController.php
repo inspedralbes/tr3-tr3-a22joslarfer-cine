@@ -38,5 +38,4 @@ class SeatController extends Controller
         return Seat::where('movie_id', $id)->get();
     }
 
-  
 }

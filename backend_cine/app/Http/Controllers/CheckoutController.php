@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Checkout;
+use App\Models\Seat;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -26,16 +27,27 @@ class CheckoutController extends Controller
         try {
             DB::beginTransaction();
 
-            foreach ($request->all() as $seat) {
+            foreach ($request->all() as $seatData) {
+                $seat = Seat::find($seatData['seat_id']);
+    
+                if (!$seat) {
+                    return response()->json(['error' => 'Seat not found'], 404);
+                }
+    
+                $seat->status = 'booked';
+                $seat->save();
+    
                 Checkout::create([
-                    'movie_id' => (int)$seat['movie_id'],
-                    'user_id' => $seat['user_id'],
-                    'seat_id' => $seat['seat_id'],
-                    'date' => $seat['date'],
-                    'total' => $seat['total'],
-                    'unit_seat_price' => $seat['unit_seat_price'],
+                    'movie_id' => (int)$seatData['movie_id'],
+                    'user_id' => $seatData['user_id'],
+                    'seat_id' => $seatData['seat_id'],
+                    'date' => $seatData['date'],
+                    'total' => $seatData['total'],
+                    'unit_seat_price' => $seatData['unit_seat_price'],
                 ]);
             }
+
+
 
             DB::commit();
 
