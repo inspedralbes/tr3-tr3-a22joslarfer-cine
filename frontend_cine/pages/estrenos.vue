@@ -129,12 +129,15 @@
     border-radius: 10px;
 }
 
+
+
 .synopsis {
     margin-top: 50px;
     margin-left: 100px;
     margin-right: 100px;
     font-variant: small-caps;
     font-size: 25px;
+
 }
 </style>
 
