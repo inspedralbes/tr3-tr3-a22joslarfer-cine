@@ -51,7 +51,8 @@ export default {
                 body: JSON.stringify({
                     name: this.username,
                     email: this.email,
-                    password: this.password
+                    password: this.password,
+                    password_confirmation: this.password
                 })
             })
                 .then(response => response.json())
@@ -93,7 +94,7 @@ export default {
         "form"
         "footer"
     ;
-    height: 90vh;
+    height: auto;
     
 
 }
@@ -113,10 +114,10 @@ form {
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    gap: 50px;
+    gap: 40px;
     height: auto;
-    padding: 0 100px;
-    margin: 0 auto;
+    padding: 10px 80px;
+    margin: 30px auto;
     border-radius: 25px;
     text-align: center;
     background-color: #c93d3d;
@@ -129,7 +130,7 @@ input {
     display: flex;
     width: 100%;
     height: 50px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-radius: 10px;
     border: none;
     color: #1c1c1c;
@@ -153,6 +154,7 @@ button {
     color: #1c1c1c;
     background-color: #d1d8d2;
     transition: background-color 0.1s ease-in-out;
+    cursor: pointer;
    
 }
 button:hover{
