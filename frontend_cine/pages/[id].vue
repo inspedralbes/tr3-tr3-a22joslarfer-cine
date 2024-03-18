@@ -42,7 +42,7 @@
                     COMPRAR
                 </button>
                 <button id="cancel_purchase" class="btn-buy-cancel">
-                    <img src="/icons/cancel-white.png" alt="">
+                    <img src="/icons/cancel.svg" alt="">
                 </button>
             </div>
 
@@ -194,6 +194,15 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Germania+One&display=swap');
 
+* {
+    box-sizing: border-box;
+    font-family: "Antonio", sans-serif;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+
+}
+
 @keyframes slideIn {
     0% {
         transform: translateX(-100%);
@@ -311,12 +320,11 @@ export default {
     grid-template-columns: repeat(10, 60px);
     grid-template-rows: repeat(12, 60px);
     height: auto;
-    margin: 12px;
     animation: appear 0.5s ease-in-out;
     display: grid;
     align-items: end;
     height: 500px;
-    overflow: hidden;
+   
     overflow-y: scroll;
 
 }
@@ -348,22 +356,17 @@ export default {
     }
 }
 
-.div-seat {
-    display: flex;
-    margin-right: 40px;
-}
 
 .div-seat:hover {
     cursor: pointer;
 }
 
 .seat-icon, .booked {
-    width: 40px;
-    height: 40px;
-    margin: auto;
+    width: 50px;
+    height: 50px;
     background-color: #4440408f;
-    border-radius: 40px;
-    padding: 20%;
+    border-radius: 50%;
+    padding: 6px;
 }
 
 
@@ -391,21 +394,26 @@ export default {
     border-color: #000000;
     padding: 15px 40px;
     border-radius: 10px;
-    background-color: #4440408f;
+    background-color: #e06a6a9a;
     color: #d1d8d2;
     font-size: 3rem;
     font-weight: 900;
     cursor: pointer;
     transition: color 0.2s ease-in-out;
-
+   
+   
 }
 
 .btn-buy-cancel {
     display: flex;
     width: auto;
     height: auto;
+    
     background-color: transparent;
     border: none;
+    background-color: #e06a6a9a;
+    border-radius: 50%;
+    padding: 4px;
 }
 
 .btn-buy-cancel img {
@@ -413,7 +421,7 @@ export default {
 }
 
 button:hover {
-    color: white;
+    color: rgb(0, 0, 0);
 
 
 }
