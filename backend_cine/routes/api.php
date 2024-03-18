@@ -20,6 +20,7 @@ Route::group(['middleware' => 'jwt'], function () {
 */
 Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
+Route::get('get-user-id', [App\Http\Controllers\AuthController::class, 'getUserId']);
 
 
 /*

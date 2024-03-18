@@ -4,10 +4,10 @@
 
         <div class="container">
 
-            <form @submit.prevent="formPost">
+            <form @submit.prevent="fetchRegister">
 
-                <label for="username">Nom Usuari</label>
-                <input type="text" id="username" v-model="username">
+                <label for="name">Nom Usuari</label>
+                <input type="text" id="name" v-model="name">
 
                 <label for="email">Email</label>
                 <input type="email" id="email" v-model="email">
@@ -36,39 +36,85 @@
 export default {
     data() {
         return {
-            username: '',
+            name: '',
             email: '',
-            password: ''
+            password: '',
+            user_id: null,
+            token: null,
         }
     },
     methods: {
-        formPost() {
+        fetchRegister() {
             fetch('http://localhost:8000/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name: this.username,
+                    name: this.name,
                     email: this.email,
                     password: this.password,
-                    password_confirmation: this.password
                 })
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    if (data && data.success) {
+                    if (data.token) {
+                        localStorage.setItem('auth-token', data.token);
+                        this.token = data.token;
+                        this.fetchUserId();
                         alert('Has iniciat sessió correctament!');
-                        navigateTo('/login')
+                        navigateTo('/estrenos');
                     } else {
                         alert('Has iniciat sessió INCORRECTAMENT!');
+
                     }
                 })
                 .catch(error => {
                     alert('Has iniciat sessió INCORRECTAMENT!');
                     console.log(error)
                 });
-        }
+        },
+        fetchUserId() {
+            const userStore = useStore();
+
+            fetch(`http://localhost:8000/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        this.user_id = data.user.id;
+                        console.log('data', data)
+                        console.log('data.user.id', data.user.id)
+                        if (this.user_id == null) {
+                            alert('ERROR FETCHING DATA');
+                        }
+                        // COMPROBAR QUE SE GUARDA BIEN LA INFO EN EL PINIA ---------------
+                        userStore.save_user_info(this.name, this.email, this.user_id);
+                        const usuarioId = userStore.return_user_id();
+                        console.log('tu id', usuarioId);
+                        const usuarioName = userStore.return_user_username();
+                        console.log('tu username', usuarioName);
+                        const usuarioEmail = userStore.return_user_email();
+                        console.log('tu email', usuarioEmail);
+                        // COMPROBAR QUE SE GUARDA BIEN LA INFO EN EL PINIA ---------------
+
+                    } else {
+                        console.log('ERROR FETCHING DATA');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+
     }
 }
 </script>
@@ -95,13 +141,13 @@ export default {
         "footer"
     ;
     height: auto;
-    
+
 
 }
 
 nav {
     grid-area: nav;
-    
+
 }
 
 footer {
@@ -123,7 +169,7 @@ form {
     background-color: #c93d3d;
     font-weight: 900;
     box-shadow: 0 0 4px 0px #1c1c1c;
-  
+
 }
 
 input {
@@ -155,16 +201,18 @@ button {
     background-color: #d1d8d2;
     transition: background-color 0.1s ease-in-out;
     cursor: pointer;
-   
+
 }
-button:hover{
+
+button:hover {
     background: #e2e7e3;
-    
+
 }
+
 label {
     font-size: 35px;
     color: #d1d8d2;
-    
+
 }
 
 .nuxt-link {

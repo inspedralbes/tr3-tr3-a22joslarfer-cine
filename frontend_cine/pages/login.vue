@@ -5,7 +5,7 @@
 
         <div class="container">
 
-            <form @submit.prevent="formPost">
+            <form @submit.prevent="fetchLogin">
 
                 <label for="email">Email</label>
                 <input type="text" id="email" v-model="email">
@@ -36,11 +36,13 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            user_id: null,
+            token: null,
         }
     },
     methods: {
-        formPost() {
+        fetchLogin() {
             fetch('http://localhost:8000/api/login', {
                 method: 'POST',
                 headers: {
@@ -51,22 +53,64 @@ export default {
                     password: this.password
                 })
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    if (data && data.token) {
+                    if (data.token) {
+                        localStorage.setItem('auth-token', data.token);
+                        this.token = data.token;
+                        this.fetchUserId();
                         alert('Has iniciat sessió correctament!');
-                        // guardar el token que es rep a data a localStorage
-                        localStorage.setItem('token', data.token);
-                        navigateTo('perfil')
-
+                        navigateTo('/estrenos');
                     } else {
                         alert('Has iniciat sessió INCORRECTAMENT!');
+
+                    }
+                })
+                .catch(error => {
+                    alert('Has iniciat sessió INCORRECTAMENT!');
+                    console.log(error)
+                });
+        },
+        fetchUserId() {
+            const userStore = useStore();
+
+            fetch(`http://localhost:8000/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        this.user_id = data.user.id;
+                        console.log('data', data)
+                        console.log('data.user.id', data.user.id)
+                        if (this.user_id == null) {
+                            alert('ERROR FETCHING DATA');
+                        }
+                        // COMPROBAR QUE SE GUARDA BIEN LA INFO EN EL PINIA ---------------
+                        userStore.save_user_info(data.user.name, this.email, this.user_id);
+                        const usuarioId = userStore.return_user_id();
+                        console.log('tu id', usuarioId);
+                        const usuarioName = userStore.return_user_username();
+                        console.log('tu username', usuarioName);
+                        const usuarioEmail = userStore.return_user_email();
+                        console.log('tu email', usuarioEmail);
+                        // COMPROBAR QUE SE GUARDA BIEN LA INFO EN EL PINIA ---------------
+
+                    } else {
+                        console.log('ERROR FETCHING DATA');
                     }
                 })
                 .catch(error => {
                     console.error(error);
                 });
-        }
+        },
     }
 }
 </script>
@@ -92,7 +136,7 @@ export default {
         "form"
         "footer"
     ;
-    height: 100vh;
+    height: auto;
 
 }
 
@@ -113,8 +157,8 @@ form {
     align-content: center;
     gap: 50px;
     height: 620px;
-    padding: 0 100px;
-    margin: 0 auto;
+    padding: 30px 100px;
+    margin: 50px auto;
     border-radius: 25px;
     text-align: center;
     background-color: #c93d3d;
@@ -127,7 +171,7 @@ input {
     display: flex;
     width: 100%;
     height: 50px;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border-radius: 10px;
     border: none;
     color: #1c1c1c;

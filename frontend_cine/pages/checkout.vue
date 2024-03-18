@@ -150,7 +150,8 @@ export default {
             movie_id: null,
             user_id: null,
             date: null,
-            url: 'http://localhost:8000/api/checkout'
+            url: 'http://localhost:8000/api/checkout',
+            token: null,
         }
     },
     methods: {
@@ -160,9 +161,8 @@ export default {
             this.movie_id = userStore.return_movie_id();
             this.calcTotal();
             this.date = userStore.return_movie_date();
-            //this.checkout_data.user_id = userStore.return_user_id();
-            this.user_id = 1;
-
+            this.user_id = userStore.return_user_id();
+            this.token = localStorage.getItem('auth-token')
 
             console.log('asientos a comprar', this.selected_seats_to_purchase);
             console.log('movie_id', this.movie_id);
@@ -196,9 +196,12 @@ export default {
         async fetchSavePurchase(checkoutData) {
             try {
                 let response = await fetch('http://localhost:8000/api/checkout', {
+                
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${this.token}`
+                        
                     },
                     body: JSON.stringify(checkoutData),
                 });

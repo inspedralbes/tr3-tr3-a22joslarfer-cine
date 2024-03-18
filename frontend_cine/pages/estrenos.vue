@@ -142,7 +142,9 @@
 export default {
     data() {
         return {
-            estrenos: []
+            estrenos: [],
+            user_id: null,
+            
         }
     },
     methods: {
@@ -168,6 +170,11 @@ export default {
     mounted() {
         this.fetchData();
     },
+    created(){
+        // check if user is auth
+        const userStore = useStore();
+        
+    }
 
 }
 

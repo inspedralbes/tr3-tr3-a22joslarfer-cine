@@ -26,7 +26,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register',]]);
     }
 
 
@@ -41,8 +41,20 @@ class AuthController extends Controller
         ]);
 
         $token = JWTAuth::fromUser($user);
-
+        
         return response()->json(compact('token'));
+    }
+
+    public function getUserId(Request $request)
+    {
+        $email = $request->query('email');
+        $user = User::where('email', $email)->first();
+    
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    
+        return response()->json(compact('user'));
     }
 
 
