@@ -12,7 +12,7 @@ INSERT INTO movies (title, year, rating, poster, synopsis, genre_id, showing_dat
 'posters-large/suspiria1.jpg', 'posters-large/suspiria2.jpg'
 ),
 
-('The Shining', 1980, 8.4, 'https://m.media-amazon.com/images/M/MV5BZWFlYmY2MGEtZjVkYS00YzU4LTg0YjQtYzY1ZGE3NTA5NGQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg', 'A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.', 3, '2024-05-02,'
+('The Shining', 1980, 8.4, 'https://m.media-amazon.com/images/M/MV5BZWFlYmY2MGEtZjVkYS00YzU4LTg0YjQtYzY1ZGE3NTA5NGQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg', 'A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.', 3, '2024-05-02',
 'posters-large/theshining1.webp', 'posters-large/theshining2.webp'
 ),
 

@@ -1,8 +1,7 @@
 <template>
     <div class="container">
         <NavBar />
-        
-
+    
 
         <div class="div-movies-cont">
             <div class="div-movie-cont" v-for="estreno in  estrenos " :key="estreno.id"
@@ -21,6 +20,8 @@
 
 
         </div>
+
+        <Loading :isLoading="!fetchSessionsIsDone" />
 
 
         <Footer />
@@ -147,6 +148,7 @@ export default {
         return {
             estrenos: [],
             user_id: null,
+            fetchSessionsIsDone: false,
             
         }
     },
@@ -157,7 +159,7 @@ export default {
                 .then(data => {
                     if (data) {
                         this.estrenos = data;
-                       
+                        this.fetchSessionsIsDone = true;
                     } else {
                         console.log('ERROR FETCHING DATA');
                     }
@@ -173,11 +175,6 @@ export default {
     mounted() {
         this.fetchData();
     },
-    created(){
-        // check if user is auth
-        const userStore = useStore();
-        
-    }
 
 }
 

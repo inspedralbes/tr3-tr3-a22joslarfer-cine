@@ -6,7 +6,7 @@
         <NavBar />
 
 
-        <div class="div-movie-cont" v-if="fetch_is_done" :style="{
+        <div class="div-movie-cont" v-if="fetchMovieIsDone" :style="{
             backgroundImage: `url(${movie_session.poster_bg1})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="div-movie-info-cont" v-if="fetch_is_done && seatPanelOpened">
+            <div class="div-movie-info-cont" v-if="fetchMovieIsDone && seatPanelOpened">
                 <h1 class="title-minor">{{ movie_session.title }} {{ movie_session.showing_date }}</h1>
                 <img :src="`${movie_session.poster}`" alt="" class="poster">
             </div>
@@ -47,6 +47,9 @@
             </div>
 
         </div>
+
+        <Loading :isLoading="!fetchSeatsOfMovieIsDone || !fetchMovieIsDone" />
+
 
         <Footer />
 
@@ -68,9 +71,9 @@ export default {
         return {
             movie_session_id: null,
             movie_session: null,
-            fetch_is_done: false,
+            fetchMovieIsDone: false,
             seats: [],
-            fetchSeats_is_done: false,
+            fetchSeatsOfMovieIsDone: false,
             selected_seats: [],
             index: 0,
             text: "Click i compra!",
@@ -95,7 +98,7 @@ export default {
                 .then(data => {
                     if (data) {
                         this.movie_session = data;
-                        this.fetch_is_done = true;
+                        this.fetchMovieIsDone = true;
                     } else {
                         console.log('ERROR FETCHING DATA');
                     }
@@ -110,7 +113,7 @@ export default {
                 .then(data => {
                     if (data) {
                         this.seats = data;
-                        this.fetchSeats_is_done = true;
+                        this.fetchSeatsOfMovieIsDone = true;
                     } else {
                         console.log('ERROR FETCHING DATA');
                     }

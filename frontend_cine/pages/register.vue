@@ -7,13 +7,13 @@
             <form @submit.prevent="fetchRegister">
 
                 <label for="name">Nom Usuari</label>
-                <input type="text" id="name" v-model="name">
+                <input type="text" id="name" v-model="name" placeholder="John">
 
                 <label for="email">Email</label>
-                <input type="email" id="email" v-model="email">
+                <input type="email" id="email" v-model="email" placeholder="john@gmail.com">
 
                 <label for="password">Contrasenya</label>
-                <input type="password" id="password" v-model="password">
+                <input type="password" id="password" v-model="password" placeholder="************">
 
                 <nuxt-link to="/login" class="nuxt-link">Tens compte? Inicia Sessió!</nuxt-link>
 
@@ -162,8 +162,8 @@ form {
     align-content: center;
     gap: 40px;
     height: auto;
-    padding: 10px 80px;
-    margin: 30px auto;
+    padding: 30px 80px;
+    margin: 40px auto;
     border-radius: 25px;
     text-align: center;
     background-color: #c93d3d;
@@ -176,9 +176,10 @@ input {
     display: flex;
     width: 100%;
     height: 50px;
-    font-size: 1.5rem;
+    font-size: 2rem;
     border-radius: 10px;
     border: none;
+
     color: #1c1c1c;
     background-color: #d1d8d2;
     ;
@@ -190,6 +191,7 @@ input:focus {
     outline: none;
     border-bottom: 3px solid #1c1c1c;
 }
+
 
 button {
     width: 100%;

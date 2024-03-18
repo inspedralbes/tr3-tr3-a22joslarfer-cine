@@ -8,10 +8,10 @@
             <form @submit.prevent="fetchLogin">
 
                 <label for="email">Email</label>
-                <input type="text" id="email" v-model="email">
+                <input type="text" id="email" v-model="email" placeholder="exemple@gmail.com">
 
                 <label for="password">Contrasenya</label>
-                <input type="password" id="password" v-model="password">
+                <input type="password" id="password" v-model="password" placeholder="************">
 
 
                 <nuxt-link to="/register" class="nuxt-link">No tens compte? Registra't</nuxt-link>
@@ -171,7 +171,7 @@ input {
     display: flex;
     width: 100%;
     height: 50px;
-    font-size: 1.5rem;
+    font-size: 2rem;
     border-radius: 10px;
     border: none;
     color: #1c1c1c;
