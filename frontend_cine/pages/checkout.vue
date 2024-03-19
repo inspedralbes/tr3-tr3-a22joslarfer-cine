@@ -157,12 +157,20 @@ export default {
     methods: {
         return_pinia_data() {
             const userStore = useStore();
+
+            if (userStore.return_user_id() === null) {
+                alert('CHECKOUT - PER A COMPRAR FES LOGIN PRIMER');
+                navigateTo('/login');
+            }
+            this.user_id = userStore.return_user_id();
+            this.token = localStorage.getItem('auth-token');
+
+
             this.selected_seats_to_purchase = userStore.return_selected_seats();
             this.movie_id = userStore.return_movie_id();
             this.calcTotal();
             this.date = userStore.return_movie_date();
-            this.user_id = userStore.return_user_id();
-            this.token = localStorage.getItem('auth-token')
+
 
             console.log('asientos a comprar', this.selected_seats_to_purchase);
             console.log('movie_id', this.movie_id);
@@ -196,12 +204,12 @@ export default {
         async fetchSavePurchase(checkoutData) {
             try {
                 let response = await fetch('http://localhost:8000/api/checkout', {
-                
+
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${this.token}`
-                        
+
                     },
                     body: JSON.stringify(checkoutData),
                 });
@@ -219,12 +227,13 @@ export default {
         },
     },
     mounted() {
+
         this.return_pinia_data();
         if (this.selected_seats_to_purchase.length === 0) {
             navigateTo('/estrenos')
         }
     },
-    
+
 };
 
 </script>

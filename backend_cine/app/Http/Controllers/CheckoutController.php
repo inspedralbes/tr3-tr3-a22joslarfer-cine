@@ -17,10 +17,7 @@ class CheckoutController extends Controller
         return Checkout::all();
     }
 
-    public function showBasedOnUser($id)
-    {
-        return Checkout::where('user_id', $id)->get();
-    }
+
 
     public function store(Request $request)
     {
@@ -67,5 +64,31 @@ class CheckoutController extends Controller
 
             return response()->json(['error' => 'An unexpected error occurred while storing the checkout.'], 500);
         }
+    }
+
+    public function destroy($id)
+    {
+        $checkout = Checkout::find($id);
+
+        if (!$checkout) {
+            return response()->json(['error' => 'Checkout not found'], 404);
+        }
+
+        $seat = Seat::find($checkout->seat_id);
+        $seat->status = 'available';
+        $seat->save();
+
+        $checkout->delete();
+
+        return response()->json(['message' => 'Checkout deleted'], 200);
+    }
+
+    public function showBasedOnUserId($id)
+    {
+        $checkouts = Checkout::where('user_id', $id)->get();
+        if(!$checkouts) {
+            return response()->json(['error' => 'Checkout not found'], 404);
+        }
+        return $checkouts;
     }
 }

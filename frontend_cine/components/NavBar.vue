@@ -3,6 +3,7 @@
         <ul>
             <li><nuxt-link to="/" class="nav-link">HOME</nuxt-link></li>
             <li><nuxt-link to="/estrenos" class="nav-link">ESTRENOS</nuxt-link></li>
+            <li><nuxt-link to="/perfil" class="nav-link">PERFIL</nuxt-link></li>
             <li><nuxt-link to="/login" class="nav-link">LOGIN</nuxt-link></li>
             <li><nuxt-link to="/register" class="nav-link">SIGN UP</nuxt-link></li>
         </ul>

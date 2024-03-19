@@ -177,7 +177,6 @@ export default {
 
     },
     mounted() {
-
         setInterval(() => {
             this.typeText();
         }, 130);
@@ -196,7 +195,6 @@ export default {
 
 * {
     box-sizing: border-box;
-    font-family: "Antonio", sans-serif;
     margin: 0;
     padding: 0px;
     overflow: hidden;
