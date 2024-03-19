@@ -15,14 +15,12 @@
 </script>
 
 <style scoped>
-
-
 nav {
     background-color: #c93d3d;
     font-weight: 900;
     z-index: 100;
     height: 150px;
-  
+
 }
 
 nav ul {
@@ -30,8 +28,9 @@ nav ul {
     justify-content: space-evenly;
     font-size: 50px;
     display: flex;
-    
+
 }
+
 nav ul li {
     margin-left: 50px;
 }
@@ -46,6 +45,72 @@ nav ul li {
 .nav-link:hover {
     color: #d1d8d2;
     transition: color 0.1s ease-in-out;
+
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) {
+    /* Styles for smartphones */
+
+    nav ul {
+        font-size: 20px;
+        height: auto;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 10px;
+        height: auto;
+
+    }
+
+    nav {
+        height: auto;
+    }
+
+
+}
+
+@media only screen and (min-device-width: 500px) and (max-device-width: 650px) {
+    /* Styles for smartphones */
+
+    nav ul {
+        font-size: 30px;
+        height: auto;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 10px;
+        height: auto;
+
+    }
+
+    nav {
+        height: auto;
+    }
+
+
+}
+
+@media only screen and (min-device-width: 650px) and (max-device-width: 900px) {
+    /* Styles for smartphones */
+
+    nav ul {
+        font-size: 40px;
+        height: auto;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 10px;
+        height: auto;
+
+    }
+
+    nav {
+        height: auto;
+    }
+
 
 }
 </style>

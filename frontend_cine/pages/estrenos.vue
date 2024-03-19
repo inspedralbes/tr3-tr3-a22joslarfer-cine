@@ -1,13 +1,16 @@
 <template>
     <div class="container">
         <NavBar />
-    
+
 
         <div class="container--moviesContainer">
             <div class="moviesContainer--item" v-for="estreno in  estrenos " :key="estreno.id"
                 @click="navigate_to_session(estreno.id)">
 
-                <img :src="`${estreno.poster}`" alt="" class="item--poster">
+
+                <nuxt-img :src="`${estreno.poster}`" alt="Description of image" class="item--poster" width="500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 500px" placeholder="blur"
+                    layout="responsive" height="750" format="'webp'" quality="85" loading="'lazy'" />
                 <div class="item--infoContainer">
                     <p class="infoContainer--synopsis">{{ estreno.synopsis }}</p>
                     <p class="infoContainer--date">{{ estreno.showing_date }}</p>
@@ -25,7 +28,7 @@
 
 
         <Footer />
-       
+
 
     </div>
 </template>
@@ -34,6 +37,8 @@
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Germania+One&display=swap');
+
+
 
 * {
     box-sizing: border-box;
@@ -55,7 +60,7 @@
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
-    
+
 
 }
 
@@ -73,7 +78,7 @@
     position: relative;
     cursor: pointer;
     transition: transform 0.3s ease;
- 
+
 
 }
 
@@ -107,7 +112,7 @@
 .infoContainer--year,
 .infoContainer--rating,
 .infoContainer--synopsis,
-.infoContainer--date{
+.infoContainer--date {
     font-size: 1.5em;
     margin-top: 20px;
     color: #eeeeee;
@@ -116,10 +121,8 @@
 
 
 .item--poster {
-    
+
     margin: auto;
-    max-height: 750px;
-    object-fit: cover/contain;
     border-radius: 30px;
 }
 
@@ -133,6 +136,54 @@
     font-size: 25px;
 
 }
+
+
+/* media querys */
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) {
+    /* Styles for smartphones */
+    .container--moviesContainer {
+        grid-template-columns: 1fr;
+
+        
+    }
+    .moviesContainer--item{
+        margin: 10px;
+       
+    }
+    .item--poster{
+        width: 100%;
+        height: 100%;
+    }
+
+
+}
+@media only screen and (min-device-width: 500px) and (max-device-width: 1250px) {
+    .container--moviesContainer {
+        grid-template-columns: 1fr 1fr;
+        gap: 0px;
+    }
+    .moviesContainer--item{
+        margin: 10px;
+       
+    }
+    .item--poster{
+        width: 100%;
+        height: 100%;
+    }
+}
+@media only screen and (min-device-width: 1250px) and (max-device-width: 1880px) {
+    /* Styles for smartphones */
+    .container--moviesContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+        
+    }
+    .item--poster{
+        width: 100%;
+        height: 100%;
+    }
+
+
+}
 </style>
 
 <script>
@@ -142,7 +193,7 @@ export default {
             estrenos: [],
             user_id: null,
             fetchSessionsIsDone: false,
-            
+
         }
     },
     methods: {
