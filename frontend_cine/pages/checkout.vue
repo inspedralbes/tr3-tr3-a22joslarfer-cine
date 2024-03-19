@@ -158,10 +158,6 @@ export default {
         return_pinia_data() {
             const userStore = useStore();
 
-            if (userStore.return_user_id() === null) {
-                alert('CHECKOUT - PER A COMPRAR FES LOGIN PRIMER');
-                navigateTo('/login');
-            }
             this.user_id = userStore.return_user_id();
             this.token = localStorage.getItem('auth-token');
 
@@ -232,7 +228,15 @@ export default {
         if (this.selected_seats_to_purchase.length === 0) {
             navigateTo('/estrenos')
         }
+        const userStore = useStore();
+        if (userStore.return_user_id() === null) {
+            alert('CHECKOUT - PER A COMPRAR FES LOGIN PRIMER');
+            navigateTo('/login');
+        }
     },
+    created() {
+
+    }
 
 };
 

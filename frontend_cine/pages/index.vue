@@ -1,5 +1,5 @@
 <template>
-    <div class="lp-container">
+    <div class="container">
         <NavBar />
         
 
@@ -19,17 +19,18 @@
 
 * {
     box-sizing: border-box;
-    /*use imported font*/
     padding: 0px;
     overflow: hidden;
     overflow-y: hidden;
     text-align: center;
 }
 
-.lp-container {
+.container {
     height: 100vh;
     background-color: #d1d8d2;
 }
+
+
 </style>
 
 <script></script>

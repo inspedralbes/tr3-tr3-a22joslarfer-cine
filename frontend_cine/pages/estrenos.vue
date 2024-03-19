@@ -48,13 +48,6 @@
 .container {
     height: auto;
     background-color: #d1d8d2;
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-        "nav"
-        "div-movies-cont"
-    ;
-
 }
 
 .div-movies-cont {
@@ -62,6 +55,7 @@
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
+    
 
 }
 

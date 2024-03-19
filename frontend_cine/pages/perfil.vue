@@ -3,21 +3,18 @@
 
         <NavBar />
 
-        <div class="div-perfil-info-cont" v-if="user_logged">
-            <div class="div-perfil-info-cont--userDetails">
-                <h3>Detalls del teu compte</h3>
-                <p>Nom d'usuari:{{ user_username }}</p>
-                <p>Email: {{ user_email }}</p>
+
+        <h3>Les teves sessions</h3>
+
+        <div class="container--checkout" v-if="fetchUserCheckoutsIsDone">
+            <div class="checkout--details" v-for="checkout in user_checkouts" :key="checkout.id">
+                <p>Id {{ checkout.id }}</p>
+                <p>Total {{ checkout.total }}</p>
+                <p>Data {{ checkout.date }}</p>
             </div>
-            <div class="div-perfil-info-cont--checkouts">
-                <h3>Les teves sessions</h3>
-                <div v-if="fetchUserCheckoutsIsDone">
-                    <div v-for="checkout in user_checkouts" :key="checkout.id">
-                        <p>{{ checkout.id }}</p>
-                        <p>{{ checkout.total }}</p>
-                    </div>
-                </div>
-            </div>
+
+
+
         </div>
 
 
@@ -58,6 +55,9 @@ export default {
             this.user_id = store.return_user_id();
             this.user_username = store.return_user_username();
             this.user_email = store.return_user_email();
+            if (this.user_id) {
+                this.user_logged = true;
+            }
         },
 
     },
@@ -73,24 +73,18 @@ export default {
 <style scoped>
 * {
     box-sizing: border-box;
-    font-family: "Antonio", sans-serif;
-    margin: 0;
     padding: 0px;
     overflow: hidden;
+    overflow-y: hidden;
+    text-align: center;
+    font-family: "Antonio", system-ui;
 }
 
 .container {
-    display: grid;
-    height: 100vh;
+    height: auto;
     background-color: #d1d8d2;
-    grid-template-areas:
-        "nav"
-        "div-perfil-info-cont"
-        "footer";
-    ;
-    grid-template-rows: auto 1fr auto;
-    color: #1c1c1c;
 }
+
 
 nav {
     grid-area: nav;
@@ -100,13 +94,39 @@ footer {
     grid-area: footer;
 }
 
-.div-perfil-info-cont {
-    grid-area: div-perfil-info-cont;
-    display: flex;
 
-    justify-content: center;
-    align-items: center;
-    margin: 40px;
 
+h3{
+    margin: 0px;
+    margin-bottom: 50px;
+    font-size: 4rem;
+    font-family: "Germania One", system-ui;
+    background-color: #1c1c1c;
+    color: #d1d8d2;
+    padding: 30px;
+    letter-spacing: 5px;
+}
+
+
+
+.container--checkout {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    color: #1c1c1c;
+    font-size: 1.5rem;
+    text-align: center;
+   
+}
+
+.checkout--details {
+    padding: 40px;
+    margin: 18px;
+    width: 300px;
+    border-radius: 16px;
+    background-color: #1c1c1c1c;
+    color: #1c1c1c;
+    box-shadow: 0 1px 7px 0px #000000d2;
 }
 </style>
