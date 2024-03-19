@@ -22,6 +22,7 @@ nav {
     font-weight: 900;
     z-index: 100;
     height: 150px;
+  
 }
 
 nav ul {
@@ -29,6 +30,7 @@ nav ul {
     justify-content: space-evenly;
     font-size: 50px;
     display: flex;
+    
 }
 nav ul li {
     margin-left: 50px;

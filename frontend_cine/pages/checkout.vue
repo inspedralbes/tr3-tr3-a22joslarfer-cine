@@ -4,24 +4,26 @@
 
         <NavBar />
 
-        <div class="seat-info-cont">
+        <div class="container--seatInfoContainer">
 
-            <div v-for="(selected_seat) in selected_seats_to_purchase" class="div-selected_seats_to_purchase">
-                <div class="div-selected-seat-to-purchase">
+            <div v-for="(selected_seat) in selected_seats_to_purchase" class="seatInfoContainer--selectedSeatsToPurchaseContainer">
+                <div class="selectedSeatsToPurchaseContainer--seatInfoPanelContainer">
                     <img src="/icons/seat.svg" alt="" srcset="">
                     <p>Fila {{ selected_seat.row }}</p>
                     <p>Columna {{ selected_seat.column }}</p>
                     <div v-if="!selected_seat.vip">
                         <p>Seient VIP</p>
                     </div>
-                    <p v-if="selected_seat.vip">Preu {{ vip_seat_price }}€</p>
+                    <p v-if="selected_seat.vip === 'true'">Preu {{ vip_seat_price }}€</p>
+                    <p v-if="selected_seat.vip === 'false'">Preu {{ non_vip_seat_price }}€</p>
+
                 </div>
 
             </div>
 
         </div>
 
-        <div class="btn-confirm-cont">
+        <div class="container--buttonContainer">
             <button @click="confirm_purchase()">CONFIRMAR ({{ total }}€)</button>
         </div>
 
@@ -74,7 +76,7 @@ footer {
     margin-top: 50px;
 }
 
-.seat-info-cont {
+.container--seatInfoContainer {
     grid-area: checkout-info;
     display: flex;
     flex-wrap: wrap;
@@ -83,7 +85,7 @@ footer {
 
 }
 
-.div-selected_seats_to_purchase {
+.seatInfoContainer--selectedSeatsToPurchaseContainer {
     display: grid;
     justify-items: center;
     margin: 10px;
@@ -94,7 +96,7 @@ footer {
     text-align: center;
 }
 
-.div-selected_seats_to_purchase:hover {
+.seatInfoContainer--selectedSeatsToPurchaseContainer:hover {
     color: #ffffff;
     box-shadow: 0 1px 7px 0px #000000d2;
 
@@ -102,7 +104,7 @@ footer {
 
 
 
-.btn-confirm-cont {
+.container--buttonContainer {
     grid-area: btn-confirm;
     margin: auto;
 }
@@ -167,15 +169,9 @@ export default {
             this.calcTotal();
             this.date = userStore.return_movie_date();
 
-
-            console.log('asientos a comprar', this.selected_seats_to_purchase);
-            console.log('movie_id', this.movie_id);
-            console.log('user_id', this.user_id);
-            console.log('date', this.date);
-            console.log('total', this.total);
         },
         confirm_purchase() {
-            // transaction en el laravel
+           
             let checkout_data = this.selected_seats_to_purchase.map(seat => ({
                 seat_id: seat.id,
                 unit_seat_price: seat.vip ? 8 : 6,
@@ -200,7 +196,6 @@ export default {
         async fetchSavePurchase(checkoutData) {
             try {
                 let response = await fetch('http://localhost:8000/api/checkout', {
-
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -209,12 +204,9 @@ export default {
                     },
                     body: JSON.stringify(checkoutData),
                 });
-
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
-
                 let data = await response.json();
                 console.log(data);
             } catch (error) {
@@ -234,10 +226,7 @@ export default {
             navigateTo('/login');
         }
     },
-    created() {
-
-    }
-
+   
 };
 
 </script>

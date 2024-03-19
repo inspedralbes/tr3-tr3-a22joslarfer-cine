@@ -4,7 +4,7 @@
         <input type="text" id="email" v-model="email" placeholder="example@gmail.com">
 
         <label for="password">Contraseña</label>
-        <input type="password" id="password" v-model="password" placeholder="************">
+        <input type="password" id="password" v-model="password" placeholder="contrasenya actual">
 
         <button type="submit">Login</button>
     </form>

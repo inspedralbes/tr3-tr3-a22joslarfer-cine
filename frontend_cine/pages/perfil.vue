@@ -3,17 +3,17 @@
 
         <NavBar />
 
+        <div class="container--main">
+            <h3>Les teves sessions</h3>
 
-        <h3>Les teves sessions</h3>
+            <div class="container--checkout" v-if="fetchUserCheckoutsIsDone">
+                <div class="checkout--details" v-for="checkout in user_checkouts" :key="checkout.id">
+                    <p>Id {{ checkout.id }}</p>
+                    <p>Total {{ checkout.total }}</p>
+                    <p>Data {{ checkout.date }}</p>
+                </div>
 
-        <div class="container--checkout" v-if="fetchUserCheckoutsIsDone">
-            <div class="checkout--details" v-for="checkout in user_checkouts" :key="checkout.id">
-                <p>Id {{ checkout.id }}</p>
-                <p>Total {{ checkout.total }}</p>
-                <p>Data {{ checkout.date }}</p>
             </div>
-
-
 
         </div>
 
@@ -74,20 +74,28 @@ export default {
 * {
     box-sizing: border-box;
     padding: 0px;
-    overflow: hidden;
-    overflow-y: hidden;
-    text-align: center;
-    font-family: "Antonio", system-ui;
+
 }
 
 .container {
+    display: grid;
+    grid-template-areas:
+        "nav"
+        "main"
+        "footer";
+    ;
     height: auto;
     background-color: #d1d8d2;
+}
+
+.container--main{
+    grid-area: main;
 }
 
 
 nav {
     grid-area: nav;
+
 }
 
 footer {
@@ -96,7 +104,12 @@ footer {
 
 
 
-h3{
+h3 {
+    text-align: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
     margin: 0px;
     margin-bottom: 50px;
     font-size: 4rem;
@@ -117,7 +130,7 @@ h3{
     color: #1c1c1c;
     font-size: 1.5rem;
     text-align: center;
-   
+
 }
 
 .checkout--details {

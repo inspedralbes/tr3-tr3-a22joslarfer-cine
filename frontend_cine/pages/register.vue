@@ -4,7 +4,7 @@
 
         <div class="container">
 
-            <form @submit.prevent="fetchRegister">
+            <form @submit.prevent="fetchRegister"> 
 
                 <label for="name">Nom Usuari</label>
                 <input type="text" id="name" v-model="name" placeholder="John">
@@ -13,7 +13,7 @@
                 <input type="email" id="email" v-model="email" placeholder="john@gmail.com">
 
                 <label for="password">Contrasenya</label>
-                <input type="password" id="password" v-model="password" placeholder="************">
+                <input type="password" id="password" v-model="password" placeholder="contrasenya actual">
 
                 <nuxt-link to="/login" class="nuxt-link">Tens compte? Inicia Sessió!</nuxt-link>
 

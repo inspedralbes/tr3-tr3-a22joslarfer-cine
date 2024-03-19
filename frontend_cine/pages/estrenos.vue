@@ -3,17 +3,17 @@
         <NavBar />
     
 
-        <div class="div-movies-cont">
-            <div class="div-movie-cont" v-for="estreno in  estrenos " :key="estreno.id"
+        <div class="container--moviesContainer">
+            <div class="moviesContainer--item" v-for="estreno in  estrenos " :key="estreno.id"
                 @click="navigate_to_session(estreno.id)">
 
-                <img :src="`${estreno.poster}`" alt="" class="poster">
-                <div class="div-summary-date-genre-cont">
-                    <p class="synopsis">{{ estreno.synopsis }}</p>
-                    <p class="date">{{ estreno.showing_date }}</p>
-                    <p class="year">{{ estreno.year }}</p>
-                    <p class="rating">{{ estreno.rating }}</p>
-                    <h2 class="title">{{ estreno.title }}</h2>
+                <img :src="`${estreno.poster}`" alt="" class="item--poster">
+                <div class="item--infoContainer">
+                    <p class="infoContainer--synopsis">{{ estreno.synopsis }}</p>
+                    <p class="infoContainer--date">{{ estreno.showing_date }}</p>
+                    <p class="infoContainer--year">{{ estreno.year }}</p>
+                    <p class="infoContainer--rating">{{ estreno.rating }}</p>
+                    <h2 class="infoContainer--title">{{ estreno.title }}</h2>
                 </div>
 
             </div>
@@ -50,7 +50,7 @@
     background-color: #d1d8d2;
 }
 
-.div-movies-cont {
+.container--moviesContainer {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
@@ -59,7 +59,7 @@
 
 }
 
-.div-movie-cont {
+.moviesContainer--item {
     margin: 30px;
     padding: 20px;
     display: grid;
@@ -77,7 +77,7 @@
 
 }
 
-.div-summary-date-genre-cont {
+.item--infoContainer {
     opacity: 0;
     position: absolute;
     bottom: 0;
@@ -89,7 +89,7 @@
 
 }
 
-.div-movie-cont:hover .div-summary-date-genre-cont {
+.moviesContainer--item:hover .item--infoContainer {
     opacity: 1;
     transform: translateY(0px);
     border-radius: 12px;
@@ -97,18 +97,17 @@
 }
 
 
-.title {
+.infoContainer--title {
     font-size: 3.5em;
     overflow: visible;
     font-weight: 900;
     margin: 10px;
 }
 
-.year,
-.rating,
-.synopsis,
-.date,
-.genreId {
+.infoContainer--year,
+.infoContainer--rating,
+.infoContainer--synopsis,
+.infoContainer--date{
     font-size: 1.5em;
     margin-top: 20px;
     color: #eeeeee;
@@ -116,17 +115,17 @@
 
 
 
-.poster {
-    width: auto;
+.item--poster {
+    
     margin: auto;
     max-height: 750px;
-    object-fit: contain;
-    border-radius: 10px;
+    object-fit: cover/contain;
+    border-radius: 30px;
 }
 
 
 
-.synopsis {
+.infoContainer--synopsis {
     margin-top: 50px;
     margin-left: 100px;
     margin-right: 100px;

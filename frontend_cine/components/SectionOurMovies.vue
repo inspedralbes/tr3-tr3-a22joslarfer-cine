@@ -1,7 +1,7 @@
 <template>
     <section class="upComing">
         <div>
-            <li><nuxt-link to="/estrenos" class="nav-link"><h1>NUESTRAS PELÍCULAS</h1></nuxt-link></li>
+            <li><nuxt-link to="/estrenos" class="nav-link"><li><h1>NUESTRAS PELÍCULAS</h1></li></nuxt-link></li>
         </div>
     </section>
 </template>
@@ -28,17 +28,15 @@
     background: url(/sillas/sillasrojas.jpg) no-repeat;
     cursor: pointer;
     margin-top: 50px;
+    list-style: none;
 }
 
 .nav-link {
     text-decoration: none;
-    color: #1c1c1c;
+    color: #eeeeee;
 }
 
-.nav-link:hover {
-    color: #d1d8d2;
-    transition: color 0.1s ease-in-out;
-}
+
 
 
 
@@ -55,6 +53,7 @@
     transform-origin: 50% 100%;
     transition-property: transform;
     transition: 300ms ease-out;
+    
 }
 
 .upComing:hover::before {

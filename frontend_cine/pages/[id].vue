@@ -6,42 +6,62 @@
         <NavBar />
 
 
-        <div class="div-movie-cont" v-if="fetchMovieIsDone" :style="{
+        <div class="container--movie" v-if="fetchMovieIsDone" :style="{
             backgroundImage: `url(${movie_session.poster_bg1})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
         }" @click="open_seats_panel()" @double-click="open_seats_panel()">
-            <div class="div-typedText-cont title fade-in">
+            <div class="movie--typedText title fade-in">
                 <span id="typed-text">{{ textTyped }}</span><span class="cursor" id="cursor">|</span>
             </div>
         </div>
 
-        <div class="div-seats-movie-cont" id="div-seats-movie-cont">
-            <div class="div-seat-cont">
-                <div v-for="seat in  seats" :key="seat.id" class="div-seat" @click="seat_selected(seat)"
+        <div class="container--seats" id="container--seats">
+            <div class="seats--cont">
+                <div v-for="seat in  seats" :key="seat.id" class="seat--cont" @click="seat_selected(seat)"
                     @double-click="seat_selected(seat)">
 
-                    <img src="/icons/white-seat.png" alt="" srcset="" class="seat-icon"
-                        :class="{ 'seat--clicked': isSelected(seat.id) }" v-if="seat.status === 'available'">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                        class="seat--icon available" :class="{ 'seat--clicked': isSelected(seat.id) }"
+                        v-if="seat.status === 'available' && seat.vip === 'false'">
+                        <path
+                            d="M160-120v-240h640v240h-80v-160H240v160h-80Zm20-280q-25 0-42.5-17.5T120-460q0-25 17.5-42.5T180-520q25 0 42.5 17.5T240-460q0 25-17.5 42.5T180-400Zm100 0v-360q0-33 23.5-56.5T360-840h240q33 0 56.5 23.5T680-760v360H280Zm500 0q-25 0-42.5-17.5T720-460q0-25 17.5-42.5T780-520q25 0 42.5 17.5T840-460q0 25-17.5 42.5T780-400Zm-420-80h240v-280H360v280Zm0 0h240-240Z" />
+                    </svg>
 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                        class="seat--icon booked" v-if="seat.status === 'booked' && seat.vip === 'false'">
+                        <path
+                            d="M160-120v-240h640v240h-80v-160H240v160h-80Zm20-280q-25 0-42.5-17.5T120-460q0-25 17.5-42.5T180-520q25 0 42.5 17.5T240-460q0 25-17.5 42.5T180-400Zm100 0v-360q0-33 23.5-56.5T360-840h240q33 0 56.5 23.5T680-760v360H280Zm500 0q-25 0-42.5-17.5T720-460q0-25 17.5-42.5T780-520q25 0 42.5 17.5T840-460q0 25-17.5 42.5T780-400Zm-420-80h240v-280H360v280Zm0 0h240-240Z" />
+                    </svg>
 
-                    <img src="/icons/seat_unavaliable.png" alt="" srcset="" class="booked"
-                     v-if="seat.status === 'booked'">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                        v-if="seat.status === 'available' && seat.vip === 'true'" class="seat--icon available"
+                        :class="{ 'seat--clicked': isSelected(seat.id) }">
+                        <path
+                            d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z" />
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                        v-if="seat.status === 'booked' && seat.vip === 'true'" class="seat--icon booked">
+                        <path
+                            d="M200-120q-17 0-28.5-11.5T160-160v-40q-50 0-85-35t-35-85v-200q0-50 35-85t85-35v-80q0-50 35-85t85-35h400q50 0 85 35t35 85v80q50 0 85 35t35 85v200q0 50-35 85t-85 35v40q0 17-11.5 28.5T760-120q-17 0-28.5-11.5T720-160v-40H240v40q0 17-11.5 28.5T200-120Zm-40-160h640q17 0 28.5-11.5T840-320v-200q0-17-11.5-28.5T800-560q-17 0-28.5 11.5T760-520v160H200v-160q0-17-11.5-28.5T160-560q-17 0-28.5 11.5T120-520v200q0 17 11.5 28.5T160-280Zm120-160h400v-80q0-27 11-49t29-39v-112q0-17-11.5-28.5T680-760H280q-17 0-28.5 11.5T240-720v112q18 17 29 39t11 49v80Zm200 0Zm0 160Zm0-80Z" />
+                    </svg>
 
                 </div>
             </div>
 
-            <div class="div-movie-info-cont" v-if="fetchMovieIsDone && seatPanelOpened">
-                <h1 class="title-minor">{{ movie_session.title }} {{ movie_session.showing_date }}</h1>
+            <div class="container--movieInfoPanel" v-if="fetchMovieIsDone && seatPanelOpened">
+                <h1 class="movieInfoPanel--title">{{ movie_session.title }} {{ movie_session.showing_date }}</h1>
                 <img :src="`${movie_session.poster}`" alt="" class="poster">
             </div>
 
-            <div class="div-btn-buy-cont">
-                <button class="btn-buy" id="btn-buy" @click="purchase_seats()" @double-click="purchase_seats()">
+            <div class="container--buttonContainer">
+                <button class="buttonContainer--button" id="buttonContainer--button" @click="purchase_seats()"
+                    @double-click="purchase_seats()">
                     COMPRAR
                 </button>
-                <button id="cancel_purchase" class="btn-buy-cancel">
+                <button id="cancel_purchase" class="buttonContainer--button-cancel">
                     <img src="/icons/cancel.svg" alt="">
                 </button>
             </div>
@@ -151,7 +171,7 @@ export default {
         },
         open_seats_panel() {
             this.seatPanelOpened = true;
-            document.getElementById('div-seats-movie-cont').style.display = 'grid';
+            document.getElementById('container--seats').style.display = 'grid';
             document.getElementById('typed-text').style.display = 'none';
             document.getElementById('cursor').style.display = 'none';
 
@@ -237,7 +257,7 @@ export default {
 }
 
 
-.div-movie-cont {
+.container--movie {
     background-color: #0e0d0d;
     height: 80vh;
     align-items: center;
@@ -249,7 +269,7 @@ export default {
     grid-area: movie;
 }
 
-.div-movie-cont::after {
+.container--movie::after {
     content: "";
     position: absolute;
     top: 0;
@@ -265,7 +285,7 @@ export default {
     margin: 10px;
 }
 
-.title-minor {
+.movieInfoPanel--title {
     font-size: 3.5em;
     font-family: "Germania One", system-ui;
     font-style: normal;
@@ -273,7 +293,7 @@ export default {
     margin: 10px;
 }
 
-.div-seats-movie-cont {
+.container--seats {
     display: none;
     width: 100%;
     background-color: #000000cc;
@@ -292,7 +312,7 @@ export default {
 
 }
 
-.div-movie-info-cont {
+.container--movieInfoPanel {
     grid-area: movie-info;
     display: flex;
     flex-direction: column;
@@ -313,7 +333,7 @@ export default {
 
 
 
-.div-seat-cont {
+.seats--cont {
     grid-area: seats;
     grid-template-columns: repeat(10, 60px);
     grid-template-rows: repeat(12, 60px);
@@ -322,7 +342,7 @@ export default {
     display: grid;
     align-items: end;
     height: 500px;
-   
+
     overflow-y: scroll;
 
 }
@@ -355,30 +375,40 @@ export default {
 }
 
 
-.div-seat:hover {
+.seat--cont:hover {
     cursor: pointer;
 }
 
-.seat-icon, .booked {
+.seat--icon {
     width: 50px;
     height: 50px;
     background-color: #4440408f;
     border-radius: 50%;
     padding: 6px;
+
 }
+
+.booked {
+    fill: #eb0000cb;
+}
+
+.available {
+    fill: #eeeeeec7;
+}
+
 
 
 
 .seat--clicked {
-    background-color: #c9c9c996;
-    transition: background-color 0.3s ease;
+    background-color: #7dd38f93;
+    transition: background-color 0.3s ease-out;
 }
 
 
 
 
 
-.div-btn-buy-cont {
+.container--buttonContainer {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -387,7 +417,7 @@ export default {
 }
 
 
-.btn-buy {
+.buttonContainer--button {
     border: none;
     border-color: #000000;
     padding: 15px 40px;
@@ -398,15 +428,15 @@ export default {
     font-weight: 900;
     cursor: pointer;
     transition: color 0.2s ease-in-out;
-   
-   
+
+
 }
 
-.btn-buy-cancel {
+.buttonContainer--button-cancel {
     display: flex;
     width: auto;
     height: auto;
-    
+
     background-color: transparent;
     border: none;
     background-color: #e06a6a9a;
@@ -414,7 +444,7 @@ export default {
     padding: 4px;
 }
 
-.btn-buy-cancel img {
+.buttonContainer--button-cancel img {
     width: 70px;
 }
 

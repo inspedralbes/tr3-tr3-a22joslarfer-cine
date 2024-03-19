@@ -11,7 +11,7 @@
                 <input type="text" id="email" v-model="email" placeholder="exemple@gmail.com">
 
                 <label for="password">Contrasenya</label>
-                <input type="password" id="password" v-model="password" placeholder="************">
+                <input type="password" id="password" v-model="password" placeholder="contrasenya actual">
 
 
                 <nuxt-link to="/register" class="nuxt-link">No tens compte? Registra't</nuxt-link>
@@ -42,89 +42,88 @@ export default {
         }
     },
     methods: {
-        fetchLogin() {
-            fetch('http://localhost:8000/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: this.email,
-                    password: this.password
-                })
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
+        async fetchLogin() {
+            try {
+                let response = await fetch('http://localhost:8000/api/login', {
 
-                    if (data.token) {
-
-                        localStorage.setItem('auth-token', data.token);
-                        this.token = data.token;
-                        alert('Has iniciat sessió correctament!');
-                        this.fetchUserId();
-                        const store = useStore();
-                        if (store.return_selected_seats().length > 0) {
-                            console.log('entrando en store.return_selected_seats().length > 0');
-                            navigateTo('/checkout');
-                            console.log('despues de /checkout');
-                        } else {
-                            console.log('yendo a /estrenos');
-                            navigateTo('/estrenos');
-                        }
-
-
-
-                    } else {
-                        alert('Has iniciat sessió INCORRECTAMENT!');
-
-                    }
-                })
-                .catch(error => {
-                    alert('Has iniciat sessió INCORRECTAMENT!');
-                    console.log(error)
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: this.email,
+                        password: this.password
+                    }),
                 });
-        },
-        fetchUserId() {
-            const userStore = useStore();
 
-            fetch(`http://localhost:8000/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
-                headers: {
-                    'Authorization': `Bearer ${this.token}`
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data) {
-                        this.user_id = data.user.id;
-                        if (this.user_id == null) {
-                            alert('ERROR FETCHING DATA USER.ID');
-                        }
-                        // COMPROBAR QUE SE GUARDA BIEN LA INFO EN EL PINIA ---------------
-                        userStore.save_user_info(data.user.name, this.email, this.user_id);
-                        const usuarioId = userStore.return_user_id();
-                        console.log('tu id', usuarioId);
-                        const usuarioName = userStore.return_user_username();
-                        console.log('tu username', usuarioName);
-                        const usuarioEmail = userStore.return_user_email();
-                        console.log('tu email', usuarioEmail);
+                let data = await response.json();
 
-                        // COMPROBAR QUE SE GUARDA BIEN LA INFO EN EL PINIA ---------------
+                localStorage.setItem('auth-token', data.token);
+                this.token = data.token;
+                alert('Has iniciat sessió correctament!');
+                this.fetchUserId();
+               
 
 
-                    } else {
-                        console.log('ERROR FETCHING DATA');
-                    }
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+
+                // -------------- PROBLEMA -------------------------------------------------
+                const store = useStore();
+                if (store.return_selected_seats().length > 0) {
+                    console.log('entrando en store.return_selected_seats().length > 0');
+                    navigateTo('/checkout');
+                    console.log('despues de /checkout');
+                } else {
+                    console.log('yendo a /estrenos');
+                    navigateTo('/estrenos');
+                }
+                // -------------- PROBLEMA -------------------------------------------------
+
+
+
+
+            } catch (error) {
+                console.error('ERROR ERROR ERROR: ', error);
+            }
         },
-    }
+        async fetchUserId() {
+          
+            try {
+                let response = await fetch(`http://localhost:8000/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
+                    headers: {
+                        'Authorization': `Bearer ${this.token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                let data = await response.json();
+
+                this.user_id = data.user.id;
+                if (this.user_id == null) {
+                    alert('ERROR FETCHING DATA USER.ID');
+                }
+                const userStore = useStore();
+                userStore.save_user_info(data.user.name, this.email, this.user_id);
+                const usuarioId = userStore.return_user_id();
+                console.log('tu id', usuarioId);
+                const usuarioName = userStore.return_user_username();
+                console.log('tu username', usuarioName);
+                const usuarioEmail = userStore.return_user_email();
+                console.log('tu email', usuarioEmail);
+                const pinia_selected_seats = userStore.return_selected_seats();
+                console.log('tus asientos', pinia_selected_seats);
+
+
+            } catch (error) {
+                console.error('There was a problem with the fetch operation: ', error);
+            }
+        },
+    },
 }
 </script>
 
@@ -184,7 +183,7 @@ input {
     display: flex;
     width: 100%;
     height: 50px;
-    font-size: 2rem;
+    font-size: 1.3rem;
     border-radius: 10px;
     border: none;
     color: #1c1c1c;
@@ -198,6 +197,21 @@ input:focus {
     outline: none;
     border-bottom: 3px solid #1c1c1c;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #d1d8d2 inset !important;
+    -webkit-text-fill-color: #1c1c1c !important;
+    -webkit-text-size-adjust: 2rem !important;
+    transition: background-color 5000s ease-in-out 0s;
+    font-family: "Antonio", sans-serif;
+  
+
+}
+
+
 
 button {
     width: 100%;
