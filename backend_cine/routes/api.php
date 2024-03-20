@@ -28,11 +28,12 @@ Route::get('get-user-id', [App\Http\Controllers\AuthController::class, 'getUserI
 | MOVIE ROUTES
 |--------------------------------------------------------------------------
 */
+Route::post('movie', [App\Http\Controllers\MovieController::class, 'store']);
 Route::post('movies', [App\Http\Controllers\MovieController::class, 'insert']);
 Route::get('movies', [App\Http\Controllers\MovieController::class, 'index']);
 Route::get('movies/{id}', [App\Http\Controllers\MovieController::class, 'show']);
 Route::put('movies/{id}', [App\Http\Controllers\MovieController::class, 'update']);
-Route::delete('movies/{id}', [App\Http\Controllers\MovieController::class, 'destroy']);
+Route::delete('movie/{id}', [App\Http\Controllers\MovieController::class, 'delete']);
 Route::get('estrenos', [App\Http\Controllers\MovieController::class, 'getEstrenos']);
 
 

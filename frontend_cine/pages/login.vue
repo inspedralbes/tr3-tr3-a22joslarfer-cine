@@ -93,7 +93,7 @@ export default {
                 }
 
 
-                alert('Has iniciat sessió correctament!');
+
                 const store = useStore();
 
                 console.log('abans dels ifs');
@@ -101,15 +101,9 @@ export default {
                     console.log('estrenos amb profile false i seients buits');
                     navigateTo('/estrenos');
 
-
-                    // -------------- PROBLEMA -------------------------------------------------
                 } else if (store.return_is_navigating_to_profile() === true && store.return_selected_seats().length > 0) {
                     console.log('perfil amb profile true i seients plens');
                     navigateTo('/perfil');
-
-                    // -------------- PROBLEMA -------------------------------------------------
-
-
 
                 } else if (store.return_is_navigating_to_profile() === true && store.return_selected_seats().length === 0) {
                     console.log('perfil amb profile true i seients buits');
@@ -133,7 +127,7 @@ export default {
                 console.log('tus asientos', pinia_selected_seats);
 
 
-
+                alert('Has iniciat sessió correctament!');
 
 
             } catch (error) {
@@ -159,13 +153,13 @@ export default {
     height: auto;
     background-color: #d1d8d2;
     display: grid;
-    grid-template-rows: auto auto;
+  
     grid-template-areas:
         "nav"
         "form"
         "footer"
     ;
-    height: auto;
+ 
 
 }
 
@@ -200,7 +194,7 @@ input {
     display: flex;
     width: 100%;
     height: 50px;
-    font-size: 1.3rem;
+    font-size: 2rem;
     border-radius: 10px;
     border: none;
     color: #1c1c1c;

@@ -9,7 +9,7 @@
 <style scoped>
 
 
-nav,
+
 footer {
     background-color: #c93d3d;
     padding: 100px;

@@ -9,8 +9,9 @@
 
 
                 <nuxt-img :src="`${estreno.poster}`" alt="Description of image" class="item--poster" width="500"
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 500px" placeholder
-                    layout="responsive" height="750" format="'webp'" quality="85" loading="'lazy'" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 500px" placeholder fit="contain"
+                    preload
+                    layout="responsive" height="750" format="'webp'" quality="85"  />
 
 
                 <div class="item--infoContainer">
@@ -25,8 +26,8 @@
 
 
         </div>
-
-        <Loading :isLoading="!fetchSessionsIsDone" />
+        
+        <Loading :isLoading="!fetchSessionsIsDone" /> 
         
 
         <Footer />
@@ -55,14 +56,22 @@
 .container {
     height: auto;
     background-color: #d1d8d2;
+  
+ 
+}
+nav{
+    grid-area: nav;
+}
+footer{
+    grid-area: footer;
 }
 
 .container--moviesContainer {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto auto;
     grid-gap: 20px;
-
+    grid-area: moviesPanel;
 
 }
 
@@ -195,12 +204,13 @@ export default {
             estrenos: [],
             user_id: null,
             fetchSessionsIsDone: false,
+            url_sessions: 'http://localhost:8000/api/estrenos',
 
         }
     },
     methods: {
-        fetchData() {
-            fetch('http://localhost:8000/api/estrenos')
+        fetchDataSessions() {
+            fetch(this.url_sessions)
                 .then(response => response.json())
                 .then(data => {
                     if (data) {
@@ -219,7 +229,7 @@ export default {
         },
     },
     mounted() {
-        this.fetchData();
+        this.fetchDataSessions();
     },
 
 }

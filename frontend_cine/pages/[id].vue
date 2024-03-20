@@ -68,6 +68,7 @@
 
         </div>
 
+     
         <Loading :isLoading="!fetchSeatsOfMovieIsDone || !fetchMovieIsDone" />
 
 
@@ -84,12 +85,9 @@
 
 <script>
 
-
-
 export default {
     data() {
         return {
-            movie_session_id: null,
             movie_session: null,
             fetchMovieIsDone: false,
             seats: [],
@@ -100,6 +98,8 @@ export default {
             textTyped: "",
             isDeleting: false,
             seatPanelOpened: false,
+            url_movies: `http://localhost:8000/api/movies/${this.$route.params.id}`,
+            url_seats: `http://localhost:8000/api/seats/${this.$route.params.id}`,
         }
 
     },
@@ -112,8 +112,8 @@ export default {
         }
     },
     methods: {
-        fetchData() {
-            fetch(`http://localhost:8000/api/movies/${this.movie_session_id}`)
+        fetchDataMovies() {
+            fetch(this.url_movies)
                 .then(response => response.json())
                 .then(data => {
                     if (data) {
@@ -128,7 +128,7 @@ export default {
                 });
         },
         fetchDataSeats() {
-            fetch(`http://localhost:8000/api/seats/${this.movie_session_id}`)
+            fetch(this.url_seats)
                 .then(response => response.json())
                 .then(data => {
                     if (data) {
@@ -191,8 +191,7 @@ export default {
         },
     },
     created() {
-        this.movie_session_id = this.$route.params.id;
-        this.fetchData();
+        this.fetchDataMovies();
         this.fetchDataSeats();
 
     },

@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   modules: ['@pinia/nuxt', '@nuxt/image'],
   app: {
     head: {
-      title: 'Cine',
+      title: 'A22JLF',
       htmlAttrs: {
         lang: 'es ca en',
        

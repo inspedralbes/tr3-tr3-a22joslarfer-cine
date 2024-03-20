@@ -152,7 +152,7 @@ export default {
             movie_id: null,
             user_id: null,
             date: null,
-            url: 'http://localhost:8000/api/checkout',
+            url_checkouts: 'http://localhost:8000/api/checkout',
             token: null,
         }
     },
@@ -195,7 +195,7 @@ export default {
         },
         async fetchSavePurchase(checkoutData) {
             try {
-                let response = await fetch('http://localhost:8000/api/checkout', {
+                let response = await fetch(url_checkouts, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

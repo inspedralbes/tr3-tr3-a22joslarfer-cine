@@ -19,7 +19,7 @@ nav {
     background-color: #c93d3d;
     font-weight: 900;
     z-index: 100;
-    height: 150px;
+    max-height: 150px;
 
 }
 

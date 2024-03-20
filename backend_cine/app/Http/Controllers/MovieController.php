@@ -12,19 +12,24 @@ class MovieController extends Controller
     //
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string',
-            'year' => 'required|integer',
-            'rating' => 'required|numeric',
-            'poster' => 'required|string',
-            'synopsis' => 'required|string',
-            'genre_id' => 'required|integer',
-            'showing_date' => 'required|date',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'title' => 'required|string',
+                'year' => 'required|integer',
+                'rating' => 'required|numeric',
+                'poster' => 'required|string',
+                'synopsis' => 'required|string',
+                'genre_id' => 'required|integer',
+                'showing_date' => 'required|date',
+                'poster_bg1' => 'required|string',
+                'poster_bg2' => 'required|string',
+            ]);
 
-        $movie = Movie::create($validatedData);
-
-        return response()->json($movie, 201);
+            $movie = Movie::create($validatedData);
+            return response()->json($movie, 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'There was an error while creating the movie: ' . $e->getMessage()], 500);
+        }
     }
 
     public function index()
@@ -45,12 +50,22 @@ class MovieController extends Controller
         return response()->json($movie, 200);
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
-        $movie = Movie::findOrFail($id);
-        $movie->delete();
+        try {
+            $movie = Movie::findOrFail($id);
+            $movie->delete();
 
-        return response()->json(null, 204);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Movie successfully deleted'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'There was an error deleting the movie: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     // get json and insert into db
@@ -68,11 +83,12 @@ class MovieController extends Controller
                 'synopsis' => $movie['synopsis'],
                 'genre_id' => $movie['genre_id'],
                 'showing_date' => $movie['showing_date'],
+                'poster_bg1' => $movie['poster_bg1'],
+                'poster_bg2' => $movie['poster_bg2'],
             ]);
         }
         // return response with message if positive
         return response()->json(['message' => 'Movies inserted'], 201);
-      
     }
 
     // return json of all movies with showing_date > today
@@ -83,6 +99,4 @@ class MovieController extends Controller
         $movies = Movie::where('showing_date', '>', $currentDate)->get();
         return response()->json($movies, 200);
     }
-
-    
 }
