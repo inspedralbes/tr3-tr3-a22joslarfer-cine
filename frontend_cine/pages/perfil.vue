@@ -52,12 +52,16 @@ export default {
         },
         getPiniaData() {
             const store = useStore();
+                
             this.user_id = store.return_user_id();
+            if(this.user_id === null){
+                store.save_is_navigating_to_profile(true);
+                alert('Has de fer login per veure el teu perfil');
+                navigateTo('/login');
+            }
             this.user_username = store.return_user_username();
             this.user_email = store.return_user_email();
-            if (this.user_id) {
-                this.user_logged = true;
-            }
+           
         },
 
     },

@@ -1,6 +1,6 @@
 <template>
     <div v-if="isLoading">
-        <img src="/icons/loading.svg" alt="" srcset="" class="spinner">
+        <nuxt-img src="/icons/loading.svg" alt="" srcset="" class="spinner" />
     </div>
 </template>
 

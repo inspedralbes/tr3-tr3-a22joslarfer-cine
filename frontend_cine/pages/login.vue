@@ -63,24 +63,8 @@ export default {
 
                 localStorage.setItem('auth-token', data.token);
                 this.token = data.token;
-                alert('Has iniciat sessió correctament!');
+
                 this.fetchUserId();
-               
-
-
-
-                // -------------- PROBLEMA -------------------------------------------------
-                const store = useStore();
-                if (store.return_selected_seats().length > 0) {
-                    console.log('entrando en store.return_selected_seats().length > 0');
-                    navigateTo('/checkout');
-                    console.log('despues de /checkout');
-                } else {
-                    console.log('yendo a /estrenos');
-                    navigateTo('/estrenos');
-                }
-                // -------------- PROBLEMA -------------------------------------------------
-
 
 
 
@@ -89,7 +73,7 @@ export default {
             }
         },
         async fetchUserId() {
-          
+
             try {
                 let response = await fetch(`http://localhost:8000/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
                     headers: {
@@ -107,6 +91,36 @@ export default {
                 if (this.user_id == null) {
                     alert('ERROR FETCHING DATA USER.ID');
                 }
+
+
+                alert('Has iniciat sessió correctament!');
+                const store = useStore();
+
+                console.log('abans dels ifs');
+                if (store.return_is_navigating_to_profile() === false && store.return_selected_seats().length === 0) {
+                    console.log('estrenos amb profile false i seients buits');
+                    navigateTo('/estrenos');
+
+
+                    // -------------- PROBLEMA -------------------------------------------------
+                } else if (store.return_is_navigating_to_profile() === true && store.return_selected_seats().length > 0) {
+                    console.log('perfil amb profile true i seients plens');
+                    navigateTo('/perfil');
+
+                    // -------------- PROBLEMA -------------------------------------------------
+
+
+
+                } else if (store.return_is_navigating_to_profile() === true && store.return_selected_seats().length === 0) {
+                    console.log('perfil amb profile true i seients buits');
+                    navigateTo('/perfil');
+                } else if (store.return_is_navigating_to_profile() === false && store.return_selected_seats().length > 0) {
+                    console.log('chekout amb profile false i seients plens');
+                    navigateTo('/checkout');
+                }
+                console.log('despres dels ifs');
+
+
                 const userStore = useStore();
                 userStore.save_user_info(data.user.name, this.email, this.user_id);
                 const usuarioId = userStore.return_user_id();
@@ -117,6 +131,9 @@ export default {
                 console.log('tu email', usuarioEmail);
                 const pinia_selected_seats = userStore.return_selected_seats();
                 console.log('tus asientos', pinia_selected_seats);
+
+
+
 
 
             } catch (error) {
@@ -199,15 +216,15 @@ input:focus {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px #d1d8d2 inset !important;
     -webkit-text-fill-color: #1c1c1c !important;
     -webkit-text-size-adjust: 2rem !important;
     transition: background-color 5000s ease-in-out 0s;
     font-family: "Antonio", sans-serif;
-  
+
 
 }
 
@@ -222,7 +239,7 @@ button {
     color: #1c1c1c;
     background-color: #d1d8d2;
     transition: background-color 0.1s ease-in-out;
-
+    cursor: pointer;
 }
 
 button:hover {

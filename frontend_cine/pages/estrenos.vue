@@ -9,8 +9,10 @@
 
 
                 <nuxt-img :src="`${estreno.poster}`" alt="Description of image" class="item--poster" width="500"
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 500px" placeholder="blur"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 500px" placeholder
                     layout="responsive" height="750" format="'webp'" quality="85" loading="'lazy'" />
+
+
                 <div class="item--infoContainer">
                     <p class="infoContainer--synopsis">{{ estreno.synopsis }}</p>
                     <p class="infoContainer--date">{{ estreno.showing_date }}</p>
@@ -25,7 +27,7 @@
         </div>
 
         <Loading :isLoading="!fetchSessionsIsDone" />
-
+        
 
         <Footer />
 

@@ -12,6 +12,7 @@ export const useStore = defineStore({
     username: null,
     movie_id: 0,
     date: null,
+    is_navigating_to_profile: false,
   }),
   actions: {
     save_seats(seats) {
@@ -30,6 +31,13 @@ export const useStore = defineStore({
     },
     save_date(date) {
       this.date = date;
+    },
+    save_is_navigating_to_profile(bool){
+      this.is_navigating_to_profile = bool;
+    },
+    return_is_navigating_to_profile(){
+      return this.is_navigating_to_profile;
+    
     },
     return_selected_seats() {
       return this.selected_seats;
