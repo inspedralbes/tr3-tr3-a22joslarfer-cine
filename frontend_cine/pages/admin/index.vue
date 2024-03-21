@@ -23,6 +23,7 @@
                         <th>Year</th>
                         <th>Delete</th>
                         <th>Create</th>
+                        <th>Show</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +55,8 @@
                         <td><button class="table--button-delete" @click="deleteSelectedItem(item.id)">Delete</button>
                         </td>
                         <td><button class="table--button-create" @click="createMovie()">Create</button></td>
+                        <td><button class="table--button-show" @click="showSelectedItem(item.id)">Show</button></td>
+
                     </tr>
                 </tbody>
             </table>
@@ -117,6 +120,9 @@ export default {
         },
         createMovie() {
             navigateTo('/admin/create');
+        },
+        showSelectedItem(id) {
+            navigateTo(`/admin/${id}/`);
         }
     },
     mounted() {
@@ -211,7 +217,10 @@ button {
 
 .table--button-delete {
     background-color: #993535;
+}
 
+.table--button-show {
+    background-color: #be810e;
 }
 
 .table--button-create {
@@ -219,7 +228,8 @@ button {
 }
 
 .table--button-delete:hover,
-.table--button-create:hover {
+.table--button-create:hover,
+.table--button-show:hover {
     color: #d2d2d2;
 
 }

@@ -103,14 +103,6 @@ export default {
         }
 
     },
-    head() {
-        return {
-
-            link: [
-
-            ]
-        }
-    },
     methods: {
         fetchDataMovies() {
             fetch(this.url_movies)

@@ -37,7 +37,7 @@ class GenreController extends Controller
         return response()->json($genre, 200);
     }
 
-    public function delete(Request $request, $id)
+    public function delete($id)
     {
         $genre = Genre::findOrFail($id);
         $genre->delete();

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['middleware' => 'jwt'], function () {
     Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout']);
-    Route::post('buyPurchasedSeats', [App\Http\Controllers\SeatController::class, 'buyPurchasedSeats']);
+    Route::get('get-user-id', [App\Http\Controllers\AuthController::class, 'getUserId']);
 });
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Route::group(['middleware' => 'jwt'], function () {
 */
 Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
-Route::get('get-user-id', [App\Http\Controllers\AuthController::class, 'getUserId']);
+
 
 
 /*

@@ -24,3 +24,8 @@ UPDATE movies SET poster_bg2 = 'posters-large/darkcity2.jpg' WHERE title = 'Dark
 
 UPDATE movies SET poster_bg1 = 'posters-large/theshining1.webp' WHERE title = 'The Shining';
 UPDATE movies SET poster_bg2 = 'posters-large/theshining2.jpg' WHERE title = 'The Shining';
+
+-- SET default values to poster_bg1 and poster_bg2
+
+ALTER TABLE movies ALTER COLUMN poster_bg1 SET DEFAULT 'posters-large/default1.jpg';
+ALTER TABLE movies ALTER COLUMN poster_bg2 SET DEFAULT 'posters-large/default2.jpg';
