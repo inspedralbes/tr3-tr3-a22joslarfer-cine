@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="!isLoading && isAdmin">
         <button class="button--turnBack" @click="turnBackToCRUD()">BACK</button>
         <form @submit.prevent="fetchCreateMovie" ref="form">
             <input type="text" v-model="title" placeholder="Title" required>
@@ -33,6 +33,8 @@ export default {
             poster_bg1: '',
             poster_bg2: '',
             url_create: `http://localhost:8000/api/movie`,
+            isAdmin: false,
+            isLoading: true,
         }
     },
     methods: {
@@ -82,8 +84,14 @@ export default {
             navigateTo('/admin/movies');
         },
     },
-    mounted() {
-
+    beforeMount() {
+        const store = useStore();
+        if (typeof window !== 'undefined' && (store.return_isAdmin() === false || localStorage.getItem('priviledgeState') === 'user')) {
+            navigateTo('/login');
+        } else {
+            this.isAdmin = true;
+        }
+        this.isLoading = false;
     },
 }
 </script>

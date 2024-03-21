@@ -8,7 +8,7 @@
 
             <div class="container--checkout" v-if="fetchUserCheckoutsIsDone">
                 <div class="checkout--details" v-for="checkout in user_checkouts" :key="checkout.id">
-                    <p>Id {{ checkout.id }}</p>
+                    <h2>TICKET ID {{ checkout.id }}</h2>
                     <p>Total {{ checkout.total }}</p>
                     <p>Data {{ checkout.date }}</p>
                 </div>
@@ -64,6 +64,7 @@ export default {
 
         },
 
+
     },
     mounted() {
         this.getPiniaData();
@@ -84,8 +85,10 @@ export default {
 * {
     box-sizing: border-box;
     padding: 0px;
-
+    margin: 0px;
+    font-family: 'Antonio', sans-serif;
 }
+
 
 .container {
     display: grid;
@@ -112,7 +115,15 @@ footer {
     grid-area: footer;
 }
 
+.clicked {
+    background-color: #1c1c1c;
+    color: #d1d8d2;
 
+}
+
+p{
+    margin: 20px;
+}
 
 h3 {
     text-align: center;
@@ -151,6 +162,12 @@ h3 {
     background-color: #1c1c1c1c;
     color: #1c1c1c;
     box-shadow: 0 1px 7px 0px #000000d2;
+    transition: box-shadow 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.checkout--details:hover {
+    box-shadow: 0 1px 14px 0px #000000d2;
 }
 
 
@@ -189,13 +206,13 @@ h3 {
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 768px) {
 
-    
+
 
     .container {
         height: auto;
         grid-template-columns: 1fr;
 
-      
+
 
     }
 
@@ -211,13 +228,13 @@ h3 {
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1200px) {
 
-    
+
 
     .container {
         height: auto;
         grid-template-columns: 1fr;
 
-      
+
 
     }
 
@@ -229,8 +246,4 @@ h3 {
 
 
 }
-
-
-
-
 </style>

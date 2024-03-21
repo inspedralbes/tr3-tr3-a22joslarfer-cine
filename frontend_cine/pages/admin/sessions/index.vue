@@ -1,7 +1,7 @@
 <template>
 
 
-    <div class="container" v-if="isAdmin">
+    <div class="container" v-if="isAdmin && !isLoading">
         <NavBarAdmin />
 
         <div class="container--table">
@@ -52,6 +52,7 @@ export default {
             fetchcheckoutsIsDone: false,
             url_checkouts: `http://localhost:8000/api/checkouts`,
             isAdmin: false,
+            isLoading: true,
         }
     },
     methods: {
@@ -101,17 +102,16 @@ export default {
         }
     },
     mounted() {
-        localStorage.getItem('priviledgeState') === 'admin' ? this.isAdmin = true : this.isAdmin = false;
-        if (this.isAdmin === false) navigateTo('/login');
-
-
-
         this.fetchcheckouts();
-
-
     },
-    created() {
-
+    beforeMount() {
+        const store = useStore();
+        if (typeof window !== 'undefined' && (store.return_isAdmin() === false || localStorage.getItem('priviledgeState') === 'user')) {
+            navigateTo('/login');
+        } else {
+            this.isAdmin = true;
+        }
+        this.isLoading = false;
     },
 }
 </script>

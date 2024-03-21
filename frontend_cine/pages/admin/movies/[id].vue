@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="isAdmin && !isLoading">
         <button class="button--turnBack" @click="turnBackToCRUD()">BACK</button>
         <form @submit.prevent="fetchEditMovie" ref="form">
             <input type="text" v-model="title" :placeholder="movie.title" required>
@@ -26,7 +26,8 @@ export default {
             movie: [],
             url_movie: `http://localhost:8000/api/movies/${this.$route.params.id}`,
             url_movie_update: `http://localhost:8000/api/movies/${this.$route.params.id}`,
-
+            isAdmin: false,
+            isLoading: true,
         }
     },
     methods: {
@@ -89,6 +90,16 @@ export default {
     mounted() {
         this.fetchShowMovie();
     },
+    beforeMount() {
+        const store = useStore();
+        if (typeof window !== 'undefined' && (store.return_isAdmin() === false || localStorage.getItem('priviledgeState') === 'user')) {
+            navigateTo('/login');
+        } else {
+            this.isAdmin = true;
+        }
+        this.isLoading = false;
+    },
+    
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
 
 
-    <div class="container" v-if="isAdmin">
+    <div class="container" v-if="!isLoading && isAdmin">
         <NavBarAdmin />
 
         <div class="container--table">
@@ -74,6 +74,7 @@ export default {
             fetchMoviesIsDone: false,
             url_movies: `http://localhost:8000/api/movies`,
             isAdmin: false,
+            isLoading: true,
         }
     },
     methods: {
@@ -132,8 +133,14 @@ export default {
 
 
     },
-    created() {
-
+    beforeMount() {
+        const store = useStore();
+        if (typeof window !== 'undefined' && (store.return_isAdmin() === false || localStorage.getItem('priviledgeState') === 'user')) {
+            navigateTo('/login');
+        } else {
+            this.isAdmin = true;
+        }
+        this.isLoading = false;
     },
 }
 </script>

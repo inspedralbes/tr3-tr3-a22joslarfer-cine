@@ -4,14 +4,14 @@
 
 
         <div class="container--moviesContainer">
-            <div class="moviesContainer--item" v-for="estreno in  estrenos " :key="estreno.id"
+            <div class="moviesContainer--item" v-for="estreno in  estrenos " :key="estreno.id" 
                 @click="navigate_to_session(estreno.id)">
 
 
                 <nuxt-img :src="`${estreno.poster}`" alt="Description of image" class="item--poster" width="500"
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 500px" placeholder fit="contain"
-                    preload
-                    layout="responsive" height="750" format="'webp'" quality="85"  />
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 500px" fit="contain"
+                    layout="responsive" height="750" format="'webp'" quality="85"
+               />
 
 
                 <div class="item--infoContainer">
@@ -26,9 +26,9 @@
 
 
         </div>
-        
+
         <Loading :isLoading="!fetchSessionsIsDone" /> 
-        
+
 
         <Footer />
 
@@ -56,13 +56,15 @@
 .container {
     height: auto;
     background-color: #d1d8d2;
-  
- 
+
+
 }
-nav{
+
+nav {
     grid-area: nav;
 }
-footer{
+
+footer {
     grid-area: footer;
 }
 
@@ -151,44 +153,53 @@ footer{
 
 /* media querys */
 @media only screen and (min-device-width: 320px) and (max-device-width: 500px) {
+
     /* Styles for smartphones */
     .container--moviesContainer {
         grid-template-columns: 1fr;
 
-        
+
     }
-    .moviesContainer--item{
+
+    .moviesContainer--item {
         margin: 10px;
-       
+
     }
-    .item--poster{
+
+    .item--poster {
         width: 100%;
         height: 100%;
     }
 
 
 }
+
 @media only screen and (min-device-width: 500px) and (max-device-width: 1250px) {
     .container--moviesContainer {
         grid-template-columns: 1fr 1fr;
         gap: 0px;
     }
-    .moviesContainer--item{
+
+    .moviesContainer--item {
         margin: 10px;
-       
+
     }
-    .item--poster{
+
+    .item--poster {
         width: 100%;
         height: 100%;
     }
 }
+
 @media only screen and (min-device-width: 1250px) and (max-device-width: 1880px) {
+
     /* Styles for smartphones */
     .container--moviesContainer {
         grid-template-columns: 1fr 1fr 1fr;
-        
+
     }
-    .item--poster{
+
+    .item--poster {
         width: 100%;
         height: 100%;
     }
@@ -231,7 +242,7 @@ export default {
     mounted() {
         this.fetchDataSessions();
     },
-    created(){
+    created() {
         const store = useStore();
         if (typeof window !== 'undefined' && (store.return_isAdmin() === true || localStorage.getItem('priviledgeState') === 'admin')) {
             navigateTo('/admin');

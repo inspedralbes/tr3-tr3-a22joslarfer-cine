@@ -25,6 +25,11 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/icons/cinema.svg' }
       ]
     }
+  },
+  nitro: {
+    prerender: {
+      routes: ['/register', '/perfil', '/login', '/', '/estrenos', '/checkout', '/${id}', '/admin', '/admin/movies', '/admin/movies/create', '/admin/movies/${id}', '/admin/sessions', '/admin/sessions/create', '/admin/sessions/${id}']
+    }
   }
 
   /* set lang and title and other meta tags */
