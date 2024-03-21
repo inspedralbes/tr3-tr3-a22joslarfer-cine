@@ -69,6 +69,12 @@ export default {
         this.getPiniaData();
         this.fetchUserCheckouts();
     },
+    created(){
+        const store = useStore();
+        if (store.return_isAdmin() === true) {
+            navigateTo('/');
+        }
+    }
 
 }
 

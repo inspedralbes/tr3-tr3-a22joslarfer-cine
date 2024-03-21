@@ -231,6 +231,12 @@ export default {
     mounted() {
         this.fetchDataSessions();
     },
+    created(){
+        const store = useStore();
+        if (store.return_isAdmin() === true) {
+            navigateTo('/');
+        }
+    }
 
 }
 

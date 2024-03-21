@@ -226,6 +226,12 @@ export default {
             navigateTo('/login');
         }
     },
+    created(){
+        const store = useStore();
+        if (store.return_isAdmin() === true) {
+            navigateTo('/');
+        }
+    }
    
 };
 

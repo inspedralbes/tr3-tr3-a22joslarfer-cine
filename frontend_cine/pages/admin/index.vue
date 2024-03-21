@@ -1,11 +1,8 @@
 <template>
 
 
-    <div class="container">
+    <div class="container" v-if="isAdmin">
         <NavBar />
-
-
-
 
         <div class="container--table">
             <table>
@@ -76,7 +73,7 @@ export default {
             movies: [],
             fetchMoviesIsDone: false,
             url_movies: `http://localhost:8000/api/movies`,
-
+            isAdmin: false,
         }
     },
     methods: {
@@ -126,8 +123,18 @@ export default {
         }
     },
     mounted() {
-        this.fetchMovies();
+        if(this.isAdmin===true){
+            this.fetchMovies();
+        }
+    
     },
+    created(){
+        const store = useStore();
+        if(store.return_isAdmin()===false){
+            navigateTo('/');
+        }
+        this.isAdmin = true;
+    }
 }
 </script>
 

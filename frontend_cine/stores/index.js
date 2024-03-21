@@ -13,6 +13,7 @@ export const useStore = defineStore({
     movie_id: 0,
     date: null,
     is_navigating_to_profile: false,
+    isAdmin: false,
   }),
   actions: {
     save_seats(seats) {
@@ -35,12 +36,19 @@ export const useStore = defineStore({
     save_is_navigating_to_profile(bool){
       this.is_navigating_to_profile = bool;
     },
+    save_isAdmin(bool){
+      this.isAdmin = bool;
+    
+    },
     return_is_navigating_to_profile(){
       return this.is_navigating_to_profile;
     
     },
     return_selected_seats() {
       return this.selected_seats;
+    },
+    return_isAdmin(){
+      return this.isAdmin;
     },
     return_user_id() {
       return this.user_id;

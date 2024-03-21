@@ -67,7 +67,6 @@ export default {
                 this.fetchUserId();
 
 
-
             } catch (error) {
                 console.error('ERROR ERROR ERROR: ', error);
             }
@@ -86,15 +85,20 @@ export default {
                 }
 
                 let data = await response.json();
+                const store = useStore();
+
 
                 this.user_id = data.user.id;
                 if (this.user_id == null) {
                     alert('ERROR FETCHING DATA USER.ID');
                 }
+                if(this.user.rol = 'admin'){
+                    store.save_isAdmin(true);
+                }
 
 
 
-                const store = useStore();
+               
 
                 console.log('abans dels ifs');
                 if (store.return_is_navigating_to_profile() === false && store.return_selected_seats().length === 0) {
