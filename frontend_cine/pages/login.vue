@@ -39,12 +39,13 @@ export default {
             password: '',
             user_id: null,
             token: null,
+            url_login: 'http://localhost:8000/api/login',
         }
     },
     methods: {
         async fetchLogin() {
             try {
-                let response = await fetch('http://localhost:8000/api/login', {
+                let response = await fetch(this.url_login, {
 
                     method: 'POST',
                     headers: {
@@ -85,38 +86,19 @@ export default {
                 }
 
                 let data = await response.json();
-                const store = useStore();
+
 
 
                 this.user_id = data.user.id;
                 if (this.user_id == null) {
                     alert('ERROR FETCHING DATA USER.ID');
                 }
-                if(this.user.rol = 'admin'){
-                    store.save_isAdmin(true);
-                }
 
 
 
-               
 
-                console.log('abans dels ifs');
-                if (store.return_is_navigating_to_profile() === false && store.return_selected_seats().length === 0) {
-                    console.log('estrenos amb profile false i seients buits');
-                    navigateTo('/estrenos');
+                this.redirect(data.user.rol);
 
-                } else if (store.return_is_navigating_to_profile() === true && store.return_selected_seats().length > 0) {
-                    console.log('perfil amb profile true i seients plens');
-                    navigateTo('/perfil');
-
-                } else if (store.return_is_navigating_to_profile() === true && store.return_selected_seats().length === 0) {
-                    console.log('perfil amb profile true i seients buits');
-                    navigateTo('/perfil');
-                } else if (store.return_is_navigating_to_profile() === false && store.return_selected_seats().length > 0) {
-                    console.log('chekout amb profile false i seients plens');
-                    navigateTo('/checkout');
-                }
-                console.log('despres dels ifs');
 
 
                 const userStore = useStore();
@@ -138,6 +120,36 @@ export default {
                 console.error('There was a problem with the fetch operation: ', error);
             }
         },
+        redirect(rol) {
+            const store = useStore();
+            if (rol === 'admin') {
+                store.save_isAdmin(true);
+                console.log(store.return_isAdmin());
+                console.log('ERES ADMIN');
+                localStorage.setItem('priviledgeState', rol);
+                navigateTo('/admin/movies');
+
+            } else if (store.return_is_navigating_to_profile() === false && store.return_selected_seats().length === 0) {
+                console.log('estrenos amb profile false i seients buits');
+                localStorage.setItem('priviledgeState', rol);
+                navigateTo('/estrenos');
+
+            } else if (store.return_is_navigating_to_profile() === true && store.return_selected_seats().length > 0) {
+                console.log('perfil amb profile true i seients plens');
+                localStorage.setItem('priviledgeState', rol);
+                navigateTo('/perfil');
+
+            } else if (store.return_is_navigating_to_profile() === true && store.return_selected_seats().length === 0) {
+                console.log('perfil amb profile true i seients buits');
+                localStorage.setItem('priviledgeState', rol);
+                navigateTo('/perfil');
+            } else if (store.return_is_navigating_to_profile() === false && store.return_selected_seats().length > 0) {
+                console.log('chekout amb profile false i seients plens');
+                localStorage.setItem('priviledgeState', rol);
+                navigateTo('/checkout');
+            }
+        }
+
     },
 }
 </script>
@@ -157,13 +169,13 @@ export default {
     height: auto;
     background-color: #d1d8d2;
     display: grid;
-  
+
     grid-template-areas:
         "nav"
         "form"
         "footer"
     ;
- 
+
 
 }
 

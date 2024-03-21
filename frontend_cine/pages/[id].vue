@@ -185,13 +185,14 @@ export default {
     created() {
         const store = useStore();
         if (store.return_isAdmin() === true) {
-            navigateTo('/');
+            navigateTo('/admin');
         }
-        this.fetchDataMovies();
-        this.fetchDataSeats();
+
 
     },
     mounted() {
+        this.fetchDataMovies();
+        this.fetchDataSeats();
         setInterval(() => {
             this.typeText();
         }, 130);

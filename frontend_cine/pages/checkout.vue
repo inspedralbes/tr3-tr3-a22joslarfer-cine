@@ -195,7 +195,7 @@ export default {
         },
         async fetchSavePurchase(checkoutData) {
             try {
-                let response = await fetch(url_checkouts, {
+                let response = await fetch(this.url_checkouts, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -229,8 +229,9 @@ export default {
     created(){
         const store = useStore();
         if (store.return_isAdmin() === true) {
-            navigateTo('/');
+            navigateTo('/admin');
         }
+
     }
    
 };

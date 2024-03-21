@@ -119,7 +119,7 @@ export default {
     created() {
         const store = useStore();
         if (store.return_isAdmin() === true) {
-            navigateTo('/');
+            navigateTo('/admin');
         }
     }
 }
