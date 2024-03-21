@@ -62,7 +62,7 @@
 
 
 
-        <Footer />
+        <FooterAdmin />
     </div>
 </template>
 
@@ -125,7 +125,7 @@ export default {
     },
     mounted() {
         localStorage.getItem('priviledgeState') === 'admin' ? this.isAdmin = true : this.isAdmin = false;
-        if(this.isAdmin === false) navigateTo('/login');
+        if (this.isAdmin === false) navigateTo('/login');
 
 
 

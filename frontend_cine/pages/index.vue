@@ -1,14 +1,8 @@
 <template>
     <div class="container">
         <NavBar />
-        
-
         <SectionOurMovies />
-     
-       
         <SectionUpComing />
-       
-
         <Footer />
       
     </div>

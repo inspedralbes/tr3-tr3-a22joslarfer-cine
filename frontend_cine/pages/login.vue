@@ -1,8 +1,4 @@
 <template>
-
-
-
-
     <div class="container">
         <NavBar />
 
@@ -14,7 +10,6 @@
             <label for="password">Contrasenya</label>
             <input type="password" id="password" v-model="password" placeholder="contrasenya actual">
 
-
             <nuxt-link to="/register" class="nuxt-link">No tens compte? Registra't</nuxt-link>
 
 
@@ -24,11 +19,6 @@
         <Footer />
 
     </div>
-
-
-
-
-
 </template>
 
 

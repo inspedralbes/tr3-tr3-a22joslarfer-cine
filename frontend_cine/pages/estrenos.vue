@@ -2,18 +2,14 @@
     <div class="container">
         <NavBar />
 
-
         <div class="container--moviesContainer">
             <div class="moviesContainer--item" v-for="estreno in  estrenos " :key="estreno.id" 
-                @click="navigate_to_session(estreno.id)">
-
+                @click="navigateToSession(estreno.id)">
 
                 <nuxt-img :src="`${estreno.poster}`" alt="Description of image" class="item--poster" width="500"
                     sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 500px" fit="contain"
                     layout="responsive" height="750" format="'webp'" quality="85"
-               />
-
-
+                />
                 <div class="item--infoContainer">
                     <p class="infoContainer--synopsis">{{ estreno.synopsis }}</p>
                     <p class="infoContainer--date">{{ estreno.showing_date }}</p>
@@ -23,16 +19,9 @@
                 </div>
 
             </div>
-
-
         </div>
-
         <Loading :isLoading="!fetchSessionsIsDone" /> 
-
-
         <Footer />
-
-
     </div>
 </template>
 
@@ -235,7 +224,7 @@ export default {
                     console.error(error);
                 });
         },
-        navigate_to_session(id) {
+        navigateToSession(id) {
             navigateTo(`/${id}`);
         },
     },

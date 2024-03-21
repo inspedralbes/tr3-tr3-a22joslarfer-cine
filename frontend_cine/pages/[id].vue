@@ -11,7 +11,7 @@
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
-        }" @click="open_seats_panel()" @double-click="open_seats_panel()">
+        }" @click="openSeatsPanel()" @double-click="openSeatsPanel()">
             <div class="movie--typedText title fade-in">
                 <span id="typed-text">{{ textTyped }}</span><span class="cursor" id="cursor">|</span>
             </div>
@@ -19,8 +19,8 @@
 
         <div class="container--seats" id="container--seats">
             <div class="seats--cont">
-                <div v-for="seat in  seats" :key="seat.id" class="seat--cont" @click="seat_selected(seat)"
-                    @double-click="seat_selected(seat)">
+                <div v-for="seat in  seats" :key="seat.id" class="seat--cont" @click="seatHasBeenSelected(seat)"
+                    @double-click="seatHasBeenSelected(seat)">
 
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
                         class="seat--icon available" :class="{ 'seat--clicked': isSelected(seat.id) }"
@@ -57,8 +57,8 @@
             </div>
 
             <div class="container--buttonContainer">
-                <button class="buttonContainer--button" id="buttonContainer--button" @click="purchase_seats()"
-                    @double-click="purchase_seats()">
+                <button class="buttonContainer--button" id="buttonContainer--button" @click="purchaseSeats()"
+                    @double-click="purchaseSeats()">
                     COMPRAR
                 </button>
                 <button id="cancel_purchase" class="buttonContainer--button-cancel">
@@ -67,21 +67,11 @@
             </div>
 
         </div>
-
-
         <Loading :isLoading="!fetchSeatsOfMovieIsDone || !fetchMovieIsDone" />
-
-
         <Footer />
-
-
-
-
     </div>
 
 </template>
-
-
 
 <script>
 
@@ -134,7 +124,7 @@ export default {
                     console.error(error);
                 });
         },
-        seat_selected(seat) {
+        seatHasBeenSelected(seat) {
             if (seat.status === 'booked') {
                 return
             }
@@ -161,7 +151,7 @@ export default {
                 this.isDeleting = false;
             }
         },
-        open_seats_panel() {
+        openSeatsPanel() {
             this.seatPanelOpened = true;
             document.getElementById('container--seats').style.display = 'grid';
             document.getElementById('typed-text').style.display = 'none';
@@ -169,7 +159,7 @@ export default {
 
 
         },
-        purchase_seats() {
+        purchaseSeats() {
             if (this.selected_seats.length === 0) {
                 alert('Selecciona alguna butaca')
                 return;

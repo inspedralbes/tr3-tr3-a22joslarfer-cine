@@ -24,7 +24,7 @@
         </div>
 
         <div class="container--buttonContainer">
-            <button @click="confirm_purchase()">CONFIRMAR ({{ total }}€)</button>
+            <button @click="confirmPurchase()">CONFIRMAR ({{ total }}€)</button>
         </div>
 
         <Footer />
@@ -170,7 +170,7 @@ export default {
             this.date = userStore.return_movie_date();
 
         },
-        confirm_purchase() {
+        confirmPurchase() {
            
             let checkout_data = this.selected_seats_to_purchase.map(seat => ({
                 seat_id: seat.id,

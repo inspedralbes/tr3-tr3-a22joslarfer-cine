@@ -1,6 +1,6 @@
 <template>
     <div v-if="isAdmin && !isLoading">
-        <button class="button--turnBack" @click="turnBackToCRUD()">BACK</button>
+        <button class="button--turnBack" @click="navigateToDisplayMoviesAdmin()">BACK</button>
         <form @submit.prevent="fetchEditMovie" ref="form">
             <input type="text" v-model="title" :placeholder="movie.title" required>
             <input type="number" v-model="year" :placeholder="movie.year" required>
@@ -14,7 +14,7 @@
             <input type="date" v-model="showing_date" required :placeholder="movie.showing_date">
             <button type="submit" style="display: none;"></button>
         </form>
-        <button type="submit" class="button--edit" @click="submit_form()">EDIT</button>
+        <button type="submit" class="button--edit" @click="submitFormUpdateMovie()">EDIT</button>
 
     </div>
 </template>
@@ -79,10 +79,10 @@ export default {
                     console.error(error);
                 });
         },
-        turnBackToCRUD(){
+        navigateToDisplayMoviesAdmin(){
             navigateTo('/admin/movies');
         },
-        submit_form(){
+        submitFormUpdateMovie(){
             this.fetchEditMovie();
         }
 

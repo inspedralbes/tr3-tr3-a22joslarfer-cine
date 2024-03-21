@@ -40,7 +40,7 @@
 
 
 
-        <Footer />
+        <FooterAdmin />
     </div>
 </template>
 

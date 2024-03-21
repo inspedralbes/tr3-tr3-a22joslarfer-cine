@@ -7,9 +7,9 @@
             <h3>Les teves sessions</h3>
 
             <div class="container--checkout" v-if="fetchUserCheckoutsIsDone">
-                <div class="checkout--details" v-for="checkout in user_checkouts" :key="checkout.id" @click="checkDetailsCheckout()">
+                <div class="checkout--details" v-for="checkout in user_checkouts" :key="checkout.id" @click="checkDetailsCheckout(checkout.movie_id)">
                     <h2>TICKET ID {{ checkout.id }}</h2>
-                    <p>Total {{ checkout.total }}</p>
+                    <p>Total {{ checkout.total }}€</p>
                     <p>Data {{ checkout.date }}</p>
                 </div>
 
@@ -63,6 +63,9 @@ export default {
             this.user_email = store.return_user_email();
 
         },
+        checkDetailsCheckout(id) {
+            navigateTo(`/movie/${id}`);
+        }
 
 
     },

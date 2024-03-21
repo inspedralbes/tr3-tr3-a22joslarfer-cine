@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="redirect--sessions" @click="goToSessionsControlPanel()">Sessions</button>
+        <button class="redirect--sessions" @click="goToSessionsControlPanel()">SESSIONS</button>
     </div>
 
 

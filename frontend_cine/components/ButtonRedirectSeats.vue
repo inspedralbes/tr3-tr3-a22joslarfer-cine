@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="redirect--movies" @click="goToMoviesControlPanel()">MOVIES</button>
+        <button class="redirect--seats" @click="navigateToSeatsControlPanel()">SEATS</button>
     </div>
 
 
@@ -9,8 +9,8 @@
 <script>
 export default {
     methods: {
-        goToMoviesControlPanel() {
-            navigateTo('/admin/movies');
+        navigateToSeatsControlPanel() {
+            navigateTo('/admin/seats');
         }
     }
 }
@@ -22,16 +22,16 @@ div {
 
     width: 100%;
     height: 100%;
-    grid-area: redirectMovies;
+    grid-area: redirectSeats;
 
 }
 
-.redirect--movies:hover {
+.redirect--seats:hover {
     background-color: #473d3d;
     color: #d1d8d2;
 }
 
-.redirect--movies {
+.redirect--seats {
     transition: background-color 0.3s ease-in-out, color 0.1s ease-in-out;
     width: 100%;
     height: 100%;

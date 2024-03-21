@@ -1,6 +1,7 @@
 <template>
     <div class="container" v-if="!isLoading && isAdmin">
         <ButtonRedirectMovies />
+        <ButtonRedirectSeats />
         <ButtonRedirectSessions />
     </div>
 </template>
@@ -32,20 +33,19 @@ export default {
 .container {
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
     grid-template-areas:
-        "redirectMovies redirectSessions"
+        "redirectMovies redirectSeats redirectSessions"
 
     ;
-    align-items: center;
-    justify-items: center;
+
 
 }
 
 * {
     font-size: 8rem;
     font-family: "Antonio", sans-serif;
-    color: #d2d2d2;
+   
 }
 </style>

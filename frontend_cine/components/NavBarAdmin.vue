@@ -3,6 +3,7 @@
         <ul>
             <li><nuxt-link to="/admin" class="nav-link">INDEX</nuxt-link></li>
             <li><nuxt-link to="/" class="nav-link">HOME</nuxt-link></li>
+            <li><nuxt-link to="/admin/seats" class="nav-link">SEATS</nuxt-link></li>
             <li><nuxt-link to="/admin/sessions" class="nav-link">SESSIONS</nuxt-link></li>
             <li><nuxt-link to="/admin/movies" class="nav-link">MOVIES</nuxt-link></li>
             <li><nuxt-link class="nav-link">LOGOUT</nuxt-link></li>
@@ -16,7 +17,7 @@
 
 <style scoped>
 nav {
-    background-color: #c93d3d;
+    background-color: #292626;
     font-weight: 900;
     z-index: 100;
     max-height: 150px;
@@ -38,12 +39,12 @@ nav ul li {
 
 .nav-link {
     text-decoration: none;
-    color: #1c1c1c;
+    color: #888484;
     font-family: "Antonio", sans-serif;
 }
 
 .nav-link:hover {
-    color: #d1d8d2;
+    color: #d2d2d2;
     transition: color 0.1s ease-in-out;
 
 }
