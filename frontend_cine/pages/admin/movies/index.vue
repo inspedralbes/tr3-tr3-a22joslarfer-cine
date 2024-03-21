@@ -124,23 +124,18 @@ export default {
         }
     },
     mounted() {
-        localStorage.getItem('priviledgeState') === 'admin' ? this.isAdmin = true : this.isAdmin = false;
-        if (this.isAdmin === false) navigateTo('/login');
-
-
 
         this.fetchMovies();
-
 
     },
     beforeMount() {
         const store = useStore();
-        if (typeof window !== 'undefined' && (store.return_isAdmin() === false || localStorage.getItem('priviledgeState') === 'user')) {
-            navigateTo('/login');
-        } else {
-            this.isAdmin = true;
-        }
+        this.isAdmin = store.return_isAdmin();
+        localStorage.getItem('priviledgeState') === 'admin' ? this.isAdmin = true : this.isAdmin = false;
+        if (this.isAdmin === false) navigateTo('/login');
+
         this.isLoading = false;
+        this.isAdmin = true;
     },
 }
 </script>
