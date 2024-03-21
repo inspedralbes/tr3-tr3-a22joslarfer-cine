@@ -7,7 +7,7 @@
             <h3>Les teves sessions</h3>
 
             <div class="container--checkout" v-if="fetchUserCheckoutsIsDone">
-                <div class="checkout--details" v-for="checkout in user_checkouts" :key="checkout.id">
+                <div class="checkout--details" v-for="checkout in user_checkouts" :key="checkout.id" @click="checkDetailsCheckout()">
                     <h2>TICKET ID {{ checkout.id }}</h2>
                     <p>Total {{ checkout.total }}</p>
                     <p>Data {{ checkout.date }}</p>
@@ -70,12 +70,12 @@ export default {
         this.getPiniaData();
         this.fetchUserCheckouts();
     },
-    created() {
-        const store = useStore();
-        if (typeof window !== 'undefined' && (store.return_isAdmin() === true || localStorage.getItem('priviledgeState') === 'admin')) {
-            navigateTo('/admin');
-        }
+    beforeMount() {
+    const store = useStore();
+    if (typeof window !== 'undefined' && (store.return_isAdmin() === true || localStorage.getItem('priviledgeState') === 'admin')) {
+        navigateTo('/admin');
     }
+    },
 
 }
 

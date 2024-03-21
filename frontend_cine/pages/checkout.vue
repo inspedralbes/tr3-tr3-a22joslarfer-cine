@@ -226,13 +226,12 @@ export default {
             navigateTo('/login');
         }
     },
-    created(){
-        const store = useStore();
-        if (typeof window !== 'undefined' && (store.return_isAdmin() === true || localStorage.getItem('priviledgeState') === 'admin')) {
-            navigateTo('/admin');
-        }
-
+    beforeMount() {
+    const store = useStore();
+    if (typeof window !== 'undefined' && (store.return_isAdmin() === true || localStorage.getItem('priviledgeState') === 'admin')) {
+        navigateTo('/admin');
     }
+    },
    
 };
 
