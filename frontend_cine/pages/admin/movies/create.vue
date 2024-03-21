@@ -32,6 +32,7 @@ export default {
             showing_date: '',
             poster_bg1: '',
             poster_bg2: '',
+            url_create: `http://localhost:8000/api/movie`,
         }
     },
     methods: {
@@ -44,7 +45,7 @@ export default {
             console.log('poster 1', this.poster_bg1);
             console.log('poster 2', this.poster_bg2);
             console.log('poster', this.poster);
-            fetch('http://localhost:8000/api/movie', {
+            fetch(this.url_create, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,8 +79,8 @@ export default {
                 });
         },
         turnBackToCRUD(){
-            navigateTo('/admin');
-        }
+            navigateTo('/admin/movies');
+        },
     },
     mounted() {
 

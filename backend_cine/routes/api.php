@@ -64,6 +64,9 @@ Route::post('seats', [App\Http\Controllers\SeatController::class, 'insert']);
 | CECKOUT ROUTES
 |--------------------------------------------------------------------------
 */
-Route::get('checkout', [App\Http\Controllers\CheckoutController::class, 'index']);
+Route::get('checkouts', [App\Http\Controllers\CheckoutController::class, 'index']);
 Route::get('checkouts/{id}', [App\Http\Controllers\CheckoutController::class, 'showBasedOnUserId']);
 Route::post('checkout', [App\Http\Controllers\CheckoutController::class, 'store']);
+Route::delete('checkout/{id}', [App\Http\Controllers\CheckoutController::class, 'destroy']);
+Route::put('checkout/{id}', [App\Http\Controllers\CheckoutController::class, 'update']);
+Route::get('checkout/{id}', [App\Http\Controllers\CheckoutController::class, 'show']);

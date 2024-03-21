@@ -79,7 +79,7 @@ export default {
                 });
         },
         turnBackToCRUD(){
-            navigateTo('/admin');
+            navigateTo('/admin/movies');
         },
         submit_form(){
             this.fetchEditMovie();

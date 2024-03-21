@@ -52,16 +52,16 @@ export default {
         },
         getPiniaData() {
             const store = useStore();
-                
+
             this.user_id = store.return_user_id();
-            if(this.user_id === null){
+            if (this.user_id === null) {
                 store.save_is_navigating_to_profile(true);
                 alert('Has de fer login per veure el teu perfil');
                 navigateTo('/login');
             }
             this.user_username = store.return_user_username();
             this.user_email = store.return_user_email();
-           
+
         },
 
     },
@@ -69,9 +69,9 @@ export default {
         this.getPiniaData();
         this.fetchUserCheckouts();
     },
-    created(){
+    created() {
         const store = useStore();
-        if (store.return_isAdmin() === true) {
+        if (typeof window !== 'undefined' && (store.return_isAdmin() === true || localStorage.getItem('priviledgeState') === 'admin')) {
             navigateTo('/admin');
         }
     }
@@ -98,7 +98,7 @@ export default {
     background-color: #d1d8d2;
 }
 
-.container--main{
+.container--main {
     grid-area: main;
 }
 
@@ -152,4 +152,85 @@ h3 {
     color: #1c1c1c;
     box-shadow: 0 1px 7px 0px #000000d2;
 }
+
+
+
+@media only screen and (min-device-width: 300px) and (max-device-width: 375px) {
+    /* Styles for smartphones */
+
+    * {
+        font-size: 20px;
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .container {
+        height: auto;
+        grid-template-columns: 1fr;
+
+    }
+
+    .container--checkout {
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .checkout--details {
+        width: 100%;
+        border-radius: 0px;
+
+    }
+
+
+
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 768px) {
+
+    
+
+    .container {
+        height: auto;
+        grid-template-columns: 1fr;
+
+      
+
+    }
+
+    .container--checkout {
+        grid-template-columns: 1fr;
+
+    }
+
+
+
+}
+
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1200px) {
+
+    
+
+    .container {
+        height: auto;
+        grid-template-columns: 1fr;
+
+      
+
+    }
+
+    .container--checkout {
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+
+}
+
+
+
+
 </style>

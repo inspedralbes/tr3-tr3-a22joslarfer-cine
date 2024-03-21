@@ -1,33 +1,34 @@
 <template>
-    <div>
 
+
+
+
+    <div class="container">
         <NavBar />
 
-        <div class="container">
+        <form @submit.prevent="fetchLogin">
 
-            <form @submit.prevent="fetchLogin">
+            <label for="email">Email</label>
+            <input type="text" id="email" v-model="email" placeholder="exemple@gmail.com">
 
-                <label for="email">Email</label>
-                <input type="text" id="email" v-model="email" placeholder="exemple@gmail.com">
-
-                <label for="password">Contrasenya</label>
-                <input type="password" id="password" v-model="password" placeholder="contrasenya actual">
+            <label for="password">Contrasenya</label>
+            <input type="password" id="password" v-model="password" placeholder="contrasenya actual">
 
 
-                <nuxt-link to="/register" class="nuxt-link">No tens compte? Registra't</nuxt-link>
+            <nuxt-link to="/register" class="nuxt-link">No tens compte? Registra't</nuxt-link>
 
 
-                <button type="submit">Login</button>
+            <button type="submit">Login</button>
 
-
-            </form>
-
-        </div>
-
-
+        </form>
         <Footer />
 
     </div>
+
+
+
+
+
 </template>
 
 
@@ -127,7 +128,7 @@ export default {
                 console.log(store.return_isAdmin());
                 console.log('ERES ADMIN');
                 localStorage.setItem('priviledgeState', rol);
-                navigateTo('/admin/movies');
+                navigateTo('/admin');
 
             } else if (store.return_is_navigating_to_profile() === false && store.return_selected_seats().length === 0) {
                 console.log('estrenos amb profile false i seients buits');
@@ -175,7 +176,7 @@ export default {
         "form"
         "footer"
     ;
-
+    grid-template-rows: auto 1fr auto;
 
 }
 
@@ -276,4 +277,80 @@ label {
     transition: color 0.1s ease-in-out;
 
 }
+
+
+@media only screen and (min-device-width: 300px) and (max-device-width: 375px) {
+    /* Styles for smartphones */
+
+    .container {
+        height: 100vh;
+        align-items: center;
+    }
+
+    *,
+    input,
+    label,
+    button,
+    .nuxt-link {
+        font-size: 20px;
+        padding: 0;
+        height: auto;
+        overflow: hidden;
+    }
+    input,
+    button{
+        height: 50px;
+        width: 190px;
+        margin: auto;
+    }
+    label{
+        margin: 10px;
+    }
+   
+
+    form {
+        margin: 15px 30px;
+        
+        height: auto;
+        gap: 5px;
+        
+      
+    }
+
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 425px) {
+
+    form {
+        margin: 0px 30px;
+        height: auto;
+        gap: 15px;
+      
+    }
+    *,
+    input,
+    label,
+    button,
+    .nuxt-link {
+        font-size: 25px;
+        padding: 0;
+        height: auto;
+        overflow: hidden;
+    }
+    input,
+    label,
+    button{
+        height: 50px;
+        width: 250px;
+        margin: auto;
+    }
+    .container {
+        height: 100vh;
+        align-items: center;
+    }
+    
+
+}
+
+
 </style>

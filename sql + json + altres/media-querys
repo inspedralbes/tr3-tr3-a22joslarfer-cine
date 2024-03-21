@@ -1,0 +1,16 @@
+@media only screen and (min-device-width: 300px) and (max-device-width: 375px) {
+    /* Styles for smartphones S */
+
+
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 425px) {
+    /* Styles for smartphones L */
+
+
+}
+
+@media only screen and (min-device-width: 425px) and (max-device-width: 768px) {
+    /* Styles for smartphones L-TABLETS */
+
+}

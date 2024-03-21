@@ -1,11 +1,11 @@
 <template>
     <nav>
         <ul>
+            <li><nuxt-link to="/admin" class="nav-link">INDEX</nuxt-link></li>
             <li><nuxt-link to="/" class="nav-link">HOME</nuxt-link></li>
-            <li><nuxt-link to="/estrenos" class="nav-link">ESTRENOS</nuxt-link></li>
-            <li><nuxt-link to="/perfil" class="nav-link">PERFIL</nuxt-link></li>
-            <li><nuxt-link to="/login" class="nav-link">LOGIN</nuxt-link></li>
-            <li><nuxt-link to="/register" class="nav-link">SIGN UP</nuxt-link></li>
+            <li><nuxt-link to="/admin/sessions" class="nav-link">SESSIONS</nuxt-link></li>
+            <li><nuxt-link to="/admin/movies" class="nav-link">MOVIES</nuxt-link></li>
+            <li><nuxt-link class="nav-link">LOGOUT</nuxt-link></li>
         </ul>
     </nav>
 </template>

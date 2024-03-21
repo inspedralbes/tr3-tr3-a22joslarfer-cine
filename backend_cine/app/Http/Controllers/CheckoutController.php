@@ -26,14 +26,14 @@ class CheckoutController extends Controller
 
             foreach ($request->all() as $seatData) {
                 $seat = Seat::find($seatData['seat_id']);
-    
+
                 if (!$seat) {
                     return response()->json(['error' => 'Seat not found'], 404);
                 }
-    
+
                 $seat->status = 'booked';
                 $seat->save();
-    
+
                 Checkout::create([
                     'movie_id' => (int)$seatData['movie_id'],
                     'user_id' => $seatData['user_id'],
@@ -86,9 +86,29 @@ class CheckoutController extends Controller
     public function showBasedOnUserId($id)
     {
         $checkouts = Checkout::where('user_id', $id)->get();
-        if(!$checkouts) {
+        if (!$checkouts) {
             return response()->json(['error' => 'Checkout not found'], 404);
         }
         return $checkouts;
+    }
+
+    public function show($id)
+    {
+        $checkout = Checkout::find($id);
+        if (!$checkout) {
+            return response()->json(['error' => 'Checkout not found'], 404);
+        }
+        return $checkout;
+    }
+
+    public function update($id)
+    {
+        $checkout = Checkout::find($id);
+        if (!$checkout) {
+            return response()->json(['error' => 'Checkout not found'], 404);
+        }
+        $checkout->status = 'paid';
+        $checkout->save();
+        return response()->json(['message' => 'Checkout updated'], 200);
     }
 }

@@ -1,35 +1,36 @@
 <template>
-    <div>
+
+
+
+    <div class="container">
         <NavBar />
+        <form @submit.prevent="fetchRegister">
 
-        <div class="container">
+            <label for="name">Nom Usuari</label>
+            <input type="text" id="name" v-model="name" placeholder="John">
 
-            <form @submit.prevent="fetchRegister"> 
+            <label for="email">Email</label>
+            <input type="email" id="email" v-model="email" placeholder="john@gmail.com">
 
-                <label for="name">Nom Usuari</label>
-                <input type="text" id="name" v-model="name" placeholder="John">
+            <label for="password">Contrasenya</label>
+            <input type="password" id="password" v-model="password" placeholder="contrasenya actual">
 
-                <label for="email">Email</label>
-                <input type="email" id="email" v-model="email" placeholder="john@gmail.com">
-
-                <label for="password">Contrasenya</label>
-                <input type="password" id="password" v-model="password" placeholder="contrasenya actual">
-
-                <nuxt-link to="/login" class="nuxt-link">Tens compte? Inicia Sessió!</nuxt-link>
+            <nuxt-link to="/login" class="nuxt-link">Tens compte? Inicia Sessió!</nuxt-link>
 
 
-                <button type="submit">Registrarse</button>
+            <button type="submit">Registrarse</button>
 
 
-            </form>
-
-        </div>
-
+        </form>
 
 
         <Footer />
 
     </div>
+
+
+
+
 </template>
 
 <script>
@@ -118,9 +119,10 @@ export default {
     },
     created() {
         const store = useStore();
-        if (store.return_isAdmin() === true) {
+        if (typeof window !== 'undefined' && (store.return_isAdmin() === true || localStorage.getItem('priviledgeState') === 'admin')) {
             navigateTo('/admin');
         }
+
     }
 }
 </script>
@@ -234,6 +236,74 @@ label {
 .nuxt-link:hover {
     color: #d1d8d2;
     transition: color 0.1s ease-in-out;
+
+}
+
+
+@media only screen and (min-device-width: 300px) and (max-device-width: 375px) {
+    /* Styles for smartphones */
+
+    .container {
+        height: 100vh;
+
+
+    }
+
+    *,
+    input,
+    label,
+    button,
+    .nuxt-link {
+        font-size: 20px;
+        padding: 0;
+        height: auto;
+        overflow: hidden;
+    }
+
+    input,
+    button {
+        height: 50px;
+        width: 200px;
+        margin: auto;
+    }
+
+    label {
+        margin: 10px;
+    }
+
+
+    form {
+        margin: 15px 30px;
+        height: auto;
+        gap: 10px;
+
+    }
+
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 768px) {
+
+    form {
+        margin: 15px 30px;
+        height: auto;
+        gap: 10px;
+
+
+    }
+
+    *,
+    input,
+    label,
+    button,
+    .nuxt-link {
+        font-size: 25px;
+
+    }
+
+    .container {
+        height: 100vh;
+    }
+
 
 }
 </style>

@@ -233,7 +233,7 @@ export default {
     },
     created(){
         const store = useStore();
-        if (store.return_isAdmin() === true) {
+        if (typeof window !== 'undefined' && (store.return_isAdmin() === true || localStorage.getItem('priviledgeState') === 'admin')) {
             navigateTo('/admin');
         }
     }

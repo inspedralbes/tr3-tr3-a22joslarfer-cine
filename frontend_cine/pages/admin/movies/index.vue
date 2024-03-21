@@ -2,7 +2,7 @@
 
 
     <div class="container" v-if="isAdmin">
-        <NavBar />
+        <NavBarAdmin />
 
         <div class="container--table">
             <table>
@@ -116,10 +116,10 @@ export default {
                 });
         },
         createMovie() {
-            navigateTo('/admin/create');
+            navigateTo('/admin/movies/create');
         },
         showSelectedItem(id) {
-            navigateTo(`/admin/${id}/`);
+            navigateTo(`/admin/movies/${id}/`);
         }
     },
     mounted() {
