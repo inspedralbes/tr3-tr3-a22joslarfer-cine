@@ -32,11 +32,12 @@ export default {
             user_username: null,
             user_email: null,
             user_logged: false,
+            url_fetch_user_checkouts: `http://a22joslarfer/laravel/public/api/checkouts/${this.user_id}`,
         }
     },
     methods: {
         fetchUserCheckouts() {
-            fetch(`http://localhost:8000/api/checkouts/${this.user_id}`)
+            fetch(`http://a22joslarfer/laravel/public/api/checkouts/${this.user_id}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data) {
@@ -49,6 +50,8 @@ export default {
                 .catch(error => {
                     console.error(error);
                 });
+        
+
         },
         getPiniaData() {
             const store = useStore();

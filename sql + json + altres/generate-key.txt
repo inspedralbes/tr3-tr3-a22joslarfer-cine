@@ -1,5 +1,0 @@
-php artisan key:generate
-
-php artisan jwt:secrety
-
-php artisan make:migration add_rol_to_users_table --table=users

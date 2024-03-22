@@ -32,7 +32,7 @@ export default {
             showing_date: '',
             poster_bg1: '',
             poster_bg2: '',
-            url_create: `http://localhost:8000/api/movie`,
+            url_create: `http://a22joslarfer/laravel/public/api/movie`,
             isAdmin: false,
             isLoading: true,
         }

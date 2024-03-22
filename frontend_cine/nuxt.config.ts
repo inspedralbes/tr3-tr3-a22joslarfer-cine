@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: ['/register', '/perfil', '/login', '/', '/estrenos', '/checkout', '/${id}', '/admin', '/admin/movies', '/admin/movies/create', '/admin/movies/${id}', '/admin/sessions', '/admin/sessions/create', '/admin/sessions/${id}', '/admin/seats', ]
+      routes: ['/register', '/perfil', '/login', '/', '/estrenos', '/checkout', '/${id}', '/admin', '/admin/movies', '/admin/movies/create', '/admin/movies/${id}', '/admin/sessions', '/admin/seats', ]
     }
   }
 

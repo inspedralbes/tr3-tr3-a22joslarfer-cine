@@ -50,7 +50,7 @@ export default {
         return {
             checkouts: [],
             fetchcheckoutsIsDone: false,
-            url_checkouts: `http://localhost:8000/api/checkouts`,
+            url_checkouts: `http://a22joslarfer/laravel/public/api/checkouts`,
             isAdmin: false,
             isLoading: true,
         }

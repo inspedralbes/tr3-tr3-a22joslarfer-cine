@@ -2,8 +2,7 @@
 -- delete all data from the table
 DELETE FROM movies;
 -- insert data into the table movies
-ALTER TABLE movies ADD COLUMN poster_bg1 DATE;
-ALTER TABLE movies ADD COLUMN poster_bg2 DATE;
+
 
 
 
@@ -38,28 +37,3 @@ INSERT INTO movies (title, year, rating, poster, synopsis, genre_id, showing_dat
 ('Dark City', 1998, 7.6, 'https://m.media-amazon.com/images/M/MV5BMGExOGExM2UtNWM5ZS00OWEzLTllNzYtM2NlMTJlYjBlZTJkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg', 'A man struggles with memories of his past, which includes a wife he cannot remember, and a nightmarish world without a sun.', 1, '2024-05-07', 
 'posters-large/darkcity1.jpg', 'posters-large/darkcity2.jpg'
 );
-
-
--- add poster_bg1 and poster_bg2 VALUES to the movies table using WHERE
-
-UPDATE movies SET poster_bg1 = 'posters-large/suspiria1.jpg' WHERE title = 'Suspiria 2';
-UPDATE movies SET poster_bg2 = 'posters-large/suspiria2.jpg' WHERE title = 'Suspiria 2';
-
-UPDATE movies SET poster_bg1 = 'posters-large/theshining1.webp' WHERE title = 'The Shining';
-UPDATE movies SET poster_bg2 = 'posters-large/theshining2.webp' WHERE title = 'The Shining';
-
-UPDATE movies SET poster_bg1 = 'posters-large/thelighthouse1.jpg' WHERE title = 'The Lighthouse';
-UPDATE movies SET poster_bg2 = 'posters-large/thelighthouse2.jpg' WHERE title = 'The Lighthouse';
-
-UPDATE movies SET poster_bg1 = 'posters-large/alien1.webp' WHERE title = 'Alien';
-UPDATE movies SET poster_bg2 = 'posters-large/alien2.jpg' WHERE title = 'Alien';
-
-UPDATE movies SET poster_bg1 = 'posters-large/pulpfiction2.jpg' WHERE title = 'Pulp Fiction';
-UPDATE movies SET poster_bg2 = 'posters-large/pulpfiction1.jpg' WHERE title = 'Pulp Fiction';
-
-UPDATE movies SET poster_bg1 = 'posters-large/thematrix1.jpg' WHERE title = 'The Matrix';
-UPDATE movies SET poster_bg2 = 'posters-large/thematrix2.jpg' WHERE title = 'The Matrix';
-
-UPDATE movies SET poster_bg1 = 'posters-large/darkcity1.jpg' WHERE title = 'Dark City';
-UPDATE movies SET poster_bg2 = 'posters-large/darkcity2.jpg' WHERE title = 'Dark City';
-```

@@ -35,12 +35,12 @@
                         </td>
                         <td>
 
-                            <img :src="item.poster_bg1" alt="" class="table--poster">
+                            <img :src="'/'+item.poster_bg1" alt="" class="table--poster">
 
                         </td>
                         <td>
 
-                            <img :src="item.poster_bg2" alt="" class="table--poster">
+                            <img :src="'/'+item.poster_bg2" alt="" class="table--poster">
 
 
                         </td>

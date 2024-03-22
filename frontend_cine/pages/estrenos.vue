@@ -204,7 +204,7 @@ export default {
             estrenos: [],
             user_id: null,
             fetchSessionsIsDone: false,
-            url_sessions: 'http://localhost:8000/api/estrenos',
+            url_sessions: 'https://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/estrenos',
 
         }
     },

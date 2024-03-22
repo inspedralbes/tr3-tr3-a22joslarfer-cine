@@ -46,11 +46,13 @@ export default {
             password: '',
             user_id: null,
             token: null,
+            url_register: 'http://a22joslarfer/laravel/public/api/register',
+            
         }
     },
     methods: {
         fetchRegister() {
-            fetch('http://localhost:8000/api/register', {
+            fetch(this.url_register, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -87,7 +89,7 @@ export default {
         fetchUserId() {
             const userStore = useStore();
 
-            fetch(`http://localhost:8000/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
+            fetch(`http://a22joslarfer/laravel/public/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
                 headers: {
                     'Authorization': `Bearer ${this.token}`
                 }
