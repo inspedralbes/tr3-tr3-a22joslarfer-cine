@@ -30,7 +30,8 @@ export default defineNuxtConfig({
     prerender: {
       routes: ['/register', '/perfil', '/login', '/', '/estrenos', '/checkout', '/${id}', '/admin', '/admin/movies', '/admin/movies/create', '/admin/movies/${id}', '/admin/sessions', '/admin/seats', ]
     }
-  }
+  },
+
 
   /* set lang and title and other meta tags */
 

@@ -72,7 +72,7 @@ export default {
         return {
             movies: [],
             fetchMoviesIsDone: false,
-            url_movies: `http://localhost:8000/api/movies`,
+            url_movies: `http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/movies`,
             isAdmin: false,
             isLoading: true,
         }

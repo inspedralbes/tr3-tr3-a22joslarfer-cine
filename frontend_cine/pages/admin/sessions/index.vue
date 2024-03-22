@@ -50,7 +50,7 @@ export default {
         return {
             checkouts: [],
             fetchcheckoutsIsDone: false,
-            url_checkouts: `http://a22joslarfer/laravel/public/api/checkouts`,
+            url_checkouts: `http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/checkouts`,
             isAdmin: false,
             isLoading: true,
         }
@@ -75,7 +75,7 @@ export default {
         deleteSelectedItem(id) {
             this.delete_id = id;
             console.log('delete id', this.delete_id)
-            fetch(`http://localhost:8000/api/checkout/${id}`, {
+            fetch(`http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/checkout/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => {

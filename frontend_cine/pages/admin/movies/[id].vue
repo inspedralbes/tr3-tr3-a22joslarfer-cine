@@ -24,8 +24,8 @@ export default {
     data() {
         return {
             movie: [],
-            url_movie: `http://a22joslarfer/laravel/public/api/movies/${this.$route.params.id}`,
-            url_movie_update: `http://a22joslarfer/laravel/public/api/movies/${this.$route.params.id}`,
+            url_movie: `http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/movies/${this.$route.params.id}`,
+            url_movie_update: `http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/movies/${this.$route.params.id}`,
             isAdmin: false,
             isLoading: true,
         }

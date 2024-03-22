@@ -30,7 +30,7 @@ export default {
             password: '',
             user_id: null,
             token: null,
-            url_login: 'http://a22joslarfer/laravel/public/api/login',
+            url_login: 'http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/login',
         }
     },
     methods: {
@@ -66,7 +66,7 @@ export default {
         async fetchUserId() {
 
             try {
-                let response = await fetch(`http://a22joslarfer/laravel/public/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
+                let response = await fetch(`http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/get-user-id?email=${encodeURIComponent(this.email)}`, {
                     headers: {
                         'Authorization': `Bearer ${this.token}`
                     }
