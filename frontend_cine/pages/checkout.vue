@@ -152,7 +152,7 @@ export default {
             movie_id: null,
             user_id: null,
             date: null,
-            url_checkouts: 'http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/checkout',
+            url_checkouts: 'http://localhost:8000/api/checkout',
             token: null,
         }
     },

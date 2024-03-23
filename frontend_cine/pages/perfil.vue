@@ -32,12 +32,12 @@ export default {
             user_username: null,
             user_email: null,
             user_logged: false,
-            url_fetch_user_checkouts: `http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/checkouts/${this.user_id}`,
+            url_fetch_user_checkouts: `http://localhost:8000/api/checkouts/${this.user_id}`,
         }
     },
     methods: {
         fetchUserCheckouts() {
-            fetch(`http://a22joslarfer/laravel/public/api/checkouts/${this.user_id}`)
+            fetch(`http://localhost:8000/api/checkouts/${this.user_id}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data) {

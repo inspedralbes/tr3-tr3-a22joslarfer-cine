@@ -88,8 +88,8 @@ export default {
             textTyped: "",
             isDeleting: false,
             seatPanelOpened: false,
-            url_movies: `http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/movies/${this.$route.params.id}`,
-            url_seats: `http://a22joslarfer.daw.inspedralbes.cat/laravel/public/api/seats/${this.$route.params.id}`,
+            url_movies: `http://localhost:8000/api/movies/${this.$route.params.id}`,
+            url_seats: `http://localhost:8000/api/seats/${this.$route.params.id}`,
         }
 
     },
